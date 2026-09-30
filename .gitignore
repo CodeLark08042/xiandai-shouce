@@ -2,6 +2,7 @@
 # 根目录下其余内容一律忽略，不进入仓库
 /*
 !/.gitignore
+!/.nojekyll
 !/线代手册/
 !/assets/
 
