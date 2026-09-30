@@ -1,0 +1,450 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>考研数学（一）· 线性代数 题型全解手册总索引（1987—2025 真题）</title>
+<script src="../assets/tex-svg.js"></script>
+<script src="../assets/echarts.min.js"></script>
+<style>
+:root{
+  --navy:#1e3a5f; --navy-2:#2c5282; --paper:#fafaf6; --card:#fff;
+  --accent:#d97706; --accent-soft:#fef3c7; --ink:#222; --ink-soft:#4a5568;
+  --line:#e2e7ee; --good:#1e7a46; --warn:#b03a2e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Microsoft YaHei','PingFang SC',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.75}
+.container{max-width:1100px;margin:0 auto;padding:40px 30px 80px}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;border-radius:16px;padding:44px 48px;margin-bottom:32px}
+.hero h1{font-size:30px;font-weight:900;letter-spacing:1px}
+.hero .sub{color:#c9d8e8;margin-top:10px;font-size:15px}
+.hero .kicker{display:inline-block;background:var(--accent);color:#fff;font-size:12px;letter-spacing:3px;padding:3px 12px;border-radius:4px;margin-bottom:14px}
+.stats-row{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:12px 22px;text-align:center}
+.stat b{display:block;font-size:26px;color:#ffce8a;font-weight:900}
+.stat span{font-size:12px;color:#c9d8e8}
+h2{font-size:22px;color:var(--navy);margin:36px 0 18px;padding-left:12px;border-left:4px solid var(--accent)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px;transition:box-shadow .2s,transform .2s;text-decoration:none;color:inherit;display:block}
+.card:hover{box-shadow:0 6px 20px rgba(30,58,95,.12);transform:translateY(-2px)}
+.card .ch-no{display:inline-block;background:var(--navy);color:#fff;width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;margin-bottom:10px}
+.card h3{font-size:18px;color:var(--navy);margin-bottom:6px}
+.card .meta{font-size:13px;color:var(--ink-soft);margin-top:8px}
+.card .meta b{color:var(--accent)}
+.chart-box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin:18px 0}
+.chart{width:100%;height:420px}
+.chart.tall{height:560px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th{background:var(--navy);color:#fff;padding:9px 12px;text-align:left;font-weight:500}
+td{border:1px solid var(--line);padding:8px 12px;background:#fff}
+tr:nth-child(even) td{background:#f8fafc}
+.note{background:#eef6ff;border:1px solid #cfe0f2;border-radius:10px;padding:14px 18px;font-size:13.5px;color:#23405f;margin:14px 0}
+@media print{.hero{background:var(--navy) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero">
+  <span class="kicker">数学一 · 线性代数</span>
+  <h1>线性代数 题型全解手册 · 总索引</h1>
+  <div class="sub">覆盖 1987—2025 年数学一线性代数真题，按 6 章独立成册，共 182 道真题</div>
+  <div class="stats-row">
+    <div class="stat"><b>6</b><span>独立手册</span></div>
+    <div class="stat"><b>182</b><span>真题总数</span></div>
+    <div class="stat"><b>39</b><span>年跨度</span></div>
+    <div class="stat"><b>~720</b><span>年均分值</span></div>
+  </div>
+</div>
+
+<h2>六章手册导航</h2>
+<div class="cards">
+  <a class="card" href="线代L1行列式题型全解手册.html">
+    <div class="ch-no">L1</div>
+    <h3>行列式</h3>
+    <div>数字型与抽象型行列式计算、展开定理、克拉默法则</div>
+    <div class="meta">真题 <b>18</b> 道 · 基础篇 11 + 提高篇 7</div>
+  </a>
+  <a class="card" href="线代L2矩阵题型全解手册.html">
+    <div class="ch-no">L2</div>
+    <h3>矩阵</h3>
+    <div>逆矩阵、初等变换、矩阵的秩、伴随矩阵、矩阵方程、分块矩阵</div>
+    <div class="meta">真题 <b>36</b> 道 · 基础篇 24 + 提高篇 12</div>
+  </a>
+  <a class="card" href="线代L3向量题型全解手册.html">
+    <div class="ch-no">L3</div>
+    <h3>向量（含数一专属向量空间）</h3>
+    <div>线性表示、相关性判定、极大无关组、基变换与 Schmidt</div>
+    <div class="meta">真题 <b>32</b> 道 · 基础篇 17 + 提高篇 15</div>
+  </a>
+  <a class="card" href="线代L4线性方程组题型全解手册.html">
+    <div class="ch-no">L4</div>
+    <h3>线性方程组</h3>
+    <div>解的判定、含参讨论、公共解与同解、三平面几何应用</div>
+    <div class="meta">真题 <b>35</b> 道 · 基础篇 18 + 提高篇 17</div>
+  </a>
+  <a class="card" href="线代L5特征值与相似对角化题型全解手册.html">
+    <div class="ch-no">L5</div>
+    <h3>特征值与相似对角化</h3>
+    <div>特征值计算、相似判定、对角化、实对称正交对角化、反求矩阵</div>
+    <div class="meta">真题 <b>34</b> 道 · 基础篇 17 + 提高篇 17</div>
+  </a>
+  <a class="card" href="线代L6二次型题型全解手册.html">
+    <div class="ch-no">L6</div>
+    <h3>二次型</h3>
+    <div>正交变换化标准形、惯性定理、合同、正定判定</div>
+    <div class="meta">真题 <b>27</b> 道 · 基础篇 11 + 提高篇 16</div>
+  </a>
+</div>
+
+<h2>全期线代考频热力图（章 × 年份）</h2>
+<div class="chart-box">
+  <div id="heatmap" class="chart tall"></div>
+</div>
+
+<h2>各章题量分布</h2>
+<div class="chart-box">
+  <div id="bar" class="chart"></div>
+</div>
+
+<h2>使用说明</h2>
+<div class="note">
+  <b>数据来源：</b>《考研数学真题真刷·基础篇（1987—2008）》与《提高篇（2009—2025）线性代数分册》（数学一）。<br>
+  <b>口径：</b>只计数学一真题；数二、数三、数四同考点题在各章题型卡内一句话备注，不进考频统计。<br>
+  <b>数一专属点：</b>L3 向量空间/基变换/Schmidt/正交矩阵、L5 实对称矩阵正交对角化，已在对应手册醒目标注。<br>
+  <b>跨章题：</b>按"最终求解目标"归口主章，其他章做交叉引用，不重复收录。<br>
+  <b>待人工核对：</b>各章手册中标注"待人工核对"的题目，均因扫描页边裁切或 OCR 存疑，正式印刷前建议对照原书复核。
+</div>
+
+</div>
+
+<script>
+// Heatmap data: chapter x year (1987-2025)
+const years = [];
+for (let y = 1987; y <= 2025; y++) years.push(y);
+const chapters = [
+  {key:'L1', name:'L1 行列式'},
+  {key:'L2', name:'L2 矩阵'},
+  {key:'L3', name:'L3 向量'},
+  {key:'L4', name:'L4 方程组'},
+  {key:'L5', name:'L5 特征值'},
+  {key:'L6', name:'L6 二次型'}
+];
+
+// Count data from ledger (manually aggregated from stats)
+</script>
+
+<script>
+<script>
+const stats = {
+  "total": 182,
+  "by_chapter": {
+    "L1": 18,
+    "L2": 36,
+    "L3": 32,
+    "L4": 35,
+    "L5": 34,
+    "L6": 27
+  },
+  "by_year": {
+    "1987": 5,
+    "1988": 4,
+    "1989": 4,
+    "1990": 4,
+    "1991": 5,
+    "1992": 4,
+    "1993": 4,
+    "1994": 4,
+    "1995": 4,
+    "1996": 4,
+    "1997": 5,
+    "1998": 5,
+    "1999": 4,
+    "2000": 4,
+    "2001": 4,
+    "2002": 4,
+    "2003": 5,
+    "2004": 5,
+    "2005": 5,
+    "2006": 5,
+    "2007": 5,
+    "2008": 5,
+    "2009": 5,
+    "2010": 5,
+    "2011": 5,
+    "2012": 5,
+    "2013": 5,
+    "2014": 5,
+    "2015": 5,
+    "2016": 5,
+    "2017": 5,
+    "2018": 5,
+    "2019": 5,
+    "2020": 5,
+    "2021": 5,
+    "2022": 5,
+    "2023": 5,
+    "2024": 4,
+    "2025": 5
+  },
+  "matrix": {
+    "L1": {
+      "1987": 1,
+      "1988": 1,
+      "1989": 1,
+      "1990": 0,
+      "1991": 1,
+      "1992": 0,
+      "1993": 0,
+      "1994": 1,
+      "1995": 1,
+      "1996": 1,
+      "1997": 0,
+      "1998": 0,
+      "1999": 1,
+      "2000": 0,
+      "2001": 0,
+      "2002": 0,
+      "2003": 0,
+      "2004": 1,
+      "2005": 1,
+      "2006": 1,
+      "2007": 0,
+      "2008": 0,
+      "2009": 0,
+      "2010": 0,
+      "2011": 0,
+      "2012": 0,
+      "2013": 1,
+      "2014": 1,
+      "2015": 1,
+      "2016": 1,
+      "2017": 0,
+      "2018": 1,
+      "2019": 0,
+      "2020": 1,
+      "2021": 1,
+      "2022": 0,
+      "2023": 0,
+      "2024": 0,
+      "2025": 0
+    },
+    "L2": {
+      "1987": 1,
+      "1988": 1,
+      "1989": 1,
+      "1990": 1,
+      "1991": 2,
+      "1992": 1,
+      "1993": 1,
+      "1994": 1,
+      "1995": 2,
+      "1996": 2,
+      "1997": 2,
+      "1998": 1,
+      "1999": 0,
+      "2000": 1,
+      "2001": 1,
+      "2002": 0,
+      "2003": 0,
+      "2004": 1,
+      "2005": 1,
+      "2006": 1,
+      "2007": 1,
+      "2008": 2,
+      "2009": 1,
+      "2010": 1,
+      "2011": 1,
+      "2012": 2,
+      "2013": 0,
+      "2014": 0,
+      "2015": 0,
+      "2016": 0,
+      "2017": 1,
+      "2018": 1,
+      "2019": 0,
+      "2020": 1,
+      "2021": 1,
+      "2022": 1,
+      "2023": 1,
+      "2024": 0,
+      "2025": 1
+    },
+    "L3": {
+      "1987": 1,
+      "1988": 1,
+      "1989": 0,
+      "1990": 1,
+      "1991": 1,
+      "1992": 1,
+      "1993": 1,
+      "1994": 1,
+      "1995": 0,
+      "1996": 0,
+      "1997": 2,
+      "1998": 1,
+      "1999": 0,
+      "2000": 1,
+      "2001": 0,
+      "2002": 0,
+      "2003": 2,
+      "2004": 1,
+      "2005": 1,
+      "2006": 1,
+      "2007": 1,
+      "2008": 0,
+      "2009": 1,
+      "2010": 1,
+      "2011": 1,
+      "2012": 1,
+      "2013": 1,
+      "2014": 1,
+      "2015": 1,
+      "2016": 0,
+      "2017": 1,
+      "2018": 0,
+      "2019": 1,
+      "2020": 1,
+      "2021": 1,
+      "2022": 1,
+      "2023": 2,
+      "2024": 1,
+      "2025": 0
+    },
+    "L4": {
+      "1987": 1,
+      "1988": 0,
+      "1989": 1,
+      "1990": 1,
+      "1991": 0,
+      "1992": 1,
+      "1993": 1,
+      "1994": 1,
+      "1995": 0,
+      "1996": 0,
+      "1997": 0,
+      "1998": 1,
+      "1999": 0,
+      "2000": 1,
+      "2001": 1,
+      "2002": 2,
+      "2003": 2,
+      "2004": 1,
+      "2005": 1,
+      "2006": 1,
+      "2007": 1,
+      "2008": 1,
+      "2009": 1,
+      "2010": 1,
+      "2011": 1,
+      "2012": 1,
+      "2013": 1,
+      "2014": 1,
+      "2015": 1,
+      "2016": 1,
+      "2017": 1,
+      "2018": 1,
+      "2019": 2,
+      "2020": 0,
+      "2021": 0,
+      "2022": 1,
+      "2023": 0,
+      "2024": 1,
+      "2025": 3
+    },
+    "L5": {
+      "1987": 1,
+      "1988": 1,
+      "1989": 1,
+      "1990": 0,
+      "1991": 0,
+      "1992": 1,
+      "1993": 0,
+      "1994": 0,
+      "1995": 1,
+      "1996": 0,
+      "1997": 1,
+      "1998": 1,
+      "1999": 2,
+      "2000": 1,
+      "2001": 1,
+      "2002": 1,
+      "2003": 1,
+      "2004": 1,
+      "2005": 0,
+      "2006": 1,
+      "2007": 1,
+      "2008": 1,
+      "2009": 1,
+      "2010": 1,
+      "2011": 1,
+      "2012": 0,
+      "2013": 1,
+      "2014": 1,
+      "2015": 1,
+      "2016": 2,
+      "2017": 1,
+      "2018": 1,
+      "2019": 1,
+      "2020": 1,
+      "2021": 1,
+      "2022": 1,
+      "2023": 1,
+      "2024": 2,
+      "2025": 0
+    },
+    "L6": {
+      "1987": 0,
+      "1988": 0,
+      "1989": 0,
+      "1990": 1,
+      "1991": 1,
+      "1992": 0,
+      "1993": 1,
+      "1994": 0,
+      "1995": 0,
+      "1996": 1,
+      "1997": 0,
+      "1998": 1,
+      "1999": 1,
+      "2000": 0,
+      "2001": 1,
+      "2002": 1,
+      "2003": 0,
+      "2004": 0,
+      "2005": 1,
+      "2006": 0,
+      "2007": 1,
+      "2008": 1,
+      "2009": 1,
+      "2010": 1,
+      "2011": 1,
+      "2012": 1,
+      "2013": 1,
+      "2014": 1,
+      "2015": 1,
+      "2016": 1,
+      "2017": 1,
+      "2018": 1,
+      "2019": 1,
+      "2020": 1,
+      "2021": 1,
+      "2022": 1,
+      "2023": 1,
+      "2024": 0,
+      "2025": 1
+    }
+  },
+  "chapter_names": {
+    "L1": "行列式",
+    "L2": "矩阵",
+    "L3": "向量",
+    "L4": "线性方程组",
+    "L5": "特征值与对角化",
+    "L6": "二次型"
+  }
+};
+</script>
+
+</body>
+</html>

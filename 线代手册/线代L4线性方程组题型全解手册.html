@@ -1,0 +1,742 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>线代 L4 线性方程组 题型全解手册（1987—2025 数一）</title>
+<script src="../assets/tex-svg.js"></script>
+<script src="../assets/echarts.min.js"></script>
+<style>
+:root{
+  --navy:#1e3a5f; --navy-2:#2a4d7a; --accent:#d97706; --accent-soft:#fef3e2;
+  --ink:#222; --ink-soft:#4a5568; --paper:#fafaf6; --card:#fff; --line:#e3e7ee;
+  --good:#1e7a46; --warn:#b03a2e; --bluebg:#eef3fa; --yellowbg:#fdf8e8; --greenbg:#eaf6ee;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Microsoft YaHei','PingFang SC',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.75;font-size:15px}
+.layout{display:flex;min-height:100vh}
+.sidebar{width:260px;flex:0 0 260px;background:var(--navy);color:#dfe8f2;position:sticky;top:0;height:100vh;overflow-y:auto;padding:20px 0 60px}
+.sidebar::-webkit-scrollbar{width:6px}
+.sidebar::-webkit-scrollbar-thumb{background:#3d5a7a;border-radius:3px}
+.main{flex:1;min-width:0;padding:0 0 60px}
+.side-logo{padding:8px 22px 14px;border-bottom:1px solid #2c4a6b;margin-bottom:10px}
+.side-logo .big{font-size:17px;font-weight:700;color:#fff;letter-spacing:1px}
+.side-logo .sub{font-size:11.5px;color:#9db4cc;margin-top:2px}
+.nav-group{font-size:11px;color:#7f99b5;padding:12px 22px 4px;letter-spacing:1.5px}
+.nav-item{display:block;color:#c9d8e8;text-decoration:none;font-size:13px;padding:6px 22px;border-left:3px solid transparent}
+.nav-item:hover{background:#2a4d7a;color:#fff}
+.section{max-width:1060px;margin:0 auto;padding:40px 36px 8px}
+.breadcrumb{font-size:12.5px;color:var(--ink-soft);margin-bottom:14px}
+.breadcrumb b{color:var(--navy)}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;border-radius:12px;padding:36px 40px 30px;position:relative;overflow:hidden}
+.hero::after{content:'Ax=b';position:absolute;right:10px;bottom:-30px;font-size:120px;font-family:Georgia,serif;color:rgba(255,255,255,.07);font-weight:700}
+.hero .kicker{display:inline-block;background:var(--accent);color:#fff;font-size:11.5px;letter-spacing:2px;padding:3px 10px;border-radius:4px;margin-bottom:12px}
+.hero h1{font-size:28px;font-weight:700}
+.hero .sub{color:#bcd0e4;font-size:14px;margin-top:8px}
+.stat-row{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 16px;text-align:center}
+.stat b{display:block;font-size:22px;color:#ffce8a}
+.stat span{font-size:11.5px;color:#c9d8e8}
+.lead{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 26px;margin-top:22px}
+.lead h2{font-size:17px;color:var(--navy);margin-bottom:8px}
+.lead p{color:var(--ink-soft);font-size:14px}
+h2.chap{font-size:22px;color:var(--navy);margin:36px 0 14px;padding-left:12px;border-left:5px solid var(--accent)}
+table.fm{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px}
+table.fm th{background:var(--navy);color:#fff;padding:8px 10px;text-align:left;font-weight:500}
+table.fm td{border:1px solid var(--line);padding:7px 10px;background:#fff}
+table.fm tr:nth-child(even) td{background:#f8fafc}
+.chart-box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:14px 0}
+.chart-box h4{font-size:14.5px;color:var(--navy);margin-bottom:6px}
+.chart{width:100%;height:340px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:20px 0 30px;overflow:hidden;break-inside:avoid}
+.qcard>.qhead{background:#fbf7f1;border-bottom:1px solid var(--line);padding:14px 22px}
+.qhead .tag{display:inline-block;font-size:11px;background:var(--accent-soft);color:var(--accent);border:1px solid #f2cf9f;border-radius:14px;padding:2px 10px;margin-right:8px}
+.qhead h3{display:inline;font-size:17px;color:var(--navy);font-weight:700}
+.qbody{padding:6px 22px 20px}
+.idbox{background:var(--bluebg);border-left:4px solid var(--navy-2);border-radius:0 6px 6px 0;padding:12px 16px;margin:14px 0}
+.idbox b{color:var(--navy-2)}
+.principle{background:var(--yellowbg);border-left:4px solid var(--accent);border-radius:0 6px 6px 0;padding:12px 16px;margin:12px 0}
+.principle b{color:var(--accent)}
+.flow{margin:14px 0 6px}
+.flow-title{font-size:14.5px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.step{margin-bottom:10px;border-radius:6px;overflow:hidden}
+.step .do{background:var(--bluebg);padding:8px 14px;font-weight:700;font-size:14px}
+.step .why{background:var(--yellowbg);padding:8px 14px;font-size:13.5px;color:var(--ink-soft)}
+.step .why b{color:var(--good)}
+.step .next{background:var(--greenbg);padding:8px 14px;font-size:13.5px;color:var(--navy-2)}
+details.exam{background:#fbfcfd;border:1px dashed #c9d4e0;border-radius:8px;margin:12px 0 8px}
+details.exam summary{cursor:pointer;padding:11px 16px;font-size:13.5px;color:var(--navy);font-weight:700;list-style:none}
+details.exam summary::before{content:'▸ ';color:var(--accent)}
+details.exam[open] summary::before{transform:rotate(90deg)}
+details.exam .eb{padding:4px 18px 14px;border-top:1px solid #eef2f6}
+.exam-meta{font-size:12px;color:var(--ink-soft);margin:8px 0 6px}
+.exam-meta b{color:var(--accent)}
+.sol{background:#fff;border:1px solid var(--line);border-radius:6px;padding:10px 14px;font-size:13.5px;margin-top:6px}
+.sol .ans{background:var(--greenbg);border-left:3px solid var(--good);padding:6px 10px;margin-top:6px;font-weight:700;color:#14532d}
+.pitfall{background:#fdf1f0;border-left:4px solid var(--warn);border-radius:0 6px 6px 0;padding:12px 16px;margin:12px 0}
+.pitfall b{color:var(--warn)}
+.rule{margin:10px 0;font-size:13.5px;color:var(--ink-soft)}
+.rule b{color:var(--navy)}
+.zhishu{display:inline-block;background:#e8f0fb;color:var(--navy);font-size:11px;padding:1px 8px;border-radius:10px;margin-left:6px}
+.totop{position:fixed;right:24px;bottom:24px;width:42px;height:42px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+table.zt{width:100%;border-collapse:collapse;font-size:12.5px;table-layout:fixed;margin:12px 0}
+table.zt th{background:var(--navy);color:#fff;padding:7px 8px;text-align:left;font-weight:500}
+table.zt td{border:1px solid var(--line);padding:6px 8px;background:#fff;vertical-align:top;word-wrap:break-word}
+table.zt tr:nth-child(even) td{background:#f8fafc}
+@media print{
+  .sidebar,.totop{display:none}
+  .main{padding:0}
+  .section{max-width:100%;padding:10px}
+  .qcard{break-inside:avoid}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar">
+  <div class="side-logo">
+    <div class="big">线代 L4 · 线性方程组</div>
+    <div class="sub">题型全解手册 · 1987—2025 数学一</div>
+  </div>
+  <div class="nav-group">总览</div>
+  <a class="nav-item" href="#cover">封面与考频总览</a>
+  <a class="nav-item" href="#overview">0 · 本章真题总览</a>
+  <div class="nav-group">A · 解的判定</div>
+  <a class="nav-item" href="#a1">A1 Ax=0 零解/非零解</a>
+  <a class="nav-item" href="#a2">A2 Ax=b 无解/唯一/无穷</a>
+  <a class="nav-item" href="#a3">A3 抽象方程组判定</a>
+  <div class="nav-group">B · 齐次方程组</div>
+  <a class="nav-item" href="#b1">B1 求基础解系</a>
+  <a class="nav-item" href="#b2">B2 通解结构</a>
+  <div class="nav-group">C · 非齐次方程组</div>
+  <a class="nav-item" href="#c1">C1 通解结构</a>
+  <a class="nav-item" href="#c2">C2 已知解反求通解</a>
+  <a class="nav-item" href="#c3">C3 抽象非齐次</a>
+  <div class="nav-group">D · 含参讨论（核心）</div>
+  <a class="nav-item" href="#d1">D1 方阵先行列式</a>
+  <a class="nav-item" href="#d2">D2 非方阵直接行变换</a>
+  <a class="nav-item" href="#d3">D3 参数在右端 b 中</a>
+  <div class="nav-group">E · 公共解与同解</div>
+  <a class="nav-item" href="#e1">E1 两齐次组公共解</a>
+  <a class="nav-item" href="#e2">E2 同解反求参数</a>
+  <a class="nav-item" href="#e3">E3 基础解系反构矩阵</a>
+  <div class="nav-group">F · 几何应用</div>
+  <a class="nav-item" href="#f1">F1 三平面/三直线位置</a>
+  <div class="nav-group">附录</div>
+  <a class="nav-item" href="#flowchart">解题总决策流程</a>
+  <a class="nav-item" href="#appendix">真题全清单</a>
+</nav>
+
+<main class="main">
+<div class="section" id="cover">
+  <div class="breadcrumb">线代 / <b>L4 线性方程组</b> / 题型全解手册</div>
+  <div class="hero">
+    <span class="kicker">LINEAR ALGEBRA · CH.4</span>
+    <h1>线性方程组 · 题型全解手册</h1>
+    <div class="sub">覆盖 1987—2025 数学一全部真题 · 共 35 题 · 含参讨论与公共解为拉分核心</div>
+    <div class="stat-row">
+      <div class="stat"><b>35</b><span>真题总数</span></div>
+      <div class="stat"><b>8</b><span>齐次/基础解系</span></div>
+      <div class="stat"><b>22</b><span>非齐次求解</span></div>
+      <div class="stat"><b>5</b><span>公共解/同解</span></div>
+      <div class="stat"><b>17</b><span>解答题分值占比</span></div>
+    </div>
+  </div>
+
+  <div class="lead">
+    <h2>本章在线代体系中的位置</h2>
+    <p>线性方程组是线代的"终点站"：行列式（L1）判可逆、矩阵秩（L2）定解数、向量组线性相关性（L3）解释解结构、特征值（L5）提供含参矩阵的隐藏信息、二次型（L6）偶尔以正定身份出现。本章题型高度程式化——<b>含参讨论"先行列式锁唯一解、再逐参数讨论"</b>是解答题绝对主力；<b>公共解/同解</b>近10年反复出现，是拉分题。三平面位置关系是数一专属几何考点。</p>
+  </div>
+</div>
+
+<div class="section" id="overview">
+  <h2 class="chap">0 · 本章真题总览</h2>
+
+  <table class="fm">
+    <tr><th>题型编号</th><th>题型名称</th><th>题数</th><th>分值合计</th><th>首现年份</th><th>最近年份</th></tr>
+    <tr><td>A1</td><td>Ax=0 零解/非零解判定</td><td>3</td><td>10</td><td>1992</td><td>2011</td></tr>
+    <tr><td>A2</td><td>Ax=b 无解/唯一/无穷判定</td><td>4</td><td>14</td><td>2000</td><td>2025</td></tr>
+    <tr><td>A3</td><td>抽象方程组判定（证秩）</td><td>2</td><td>20</td><td>2006</td><td>2017</td></tr>
+    <tr><td>B1</td><td>求基础解系</td><td>5</td><td>26</td><td>1998</td><td>2014</td></tr>
+    <tr><td>B2</td><td>齐次通解结构</td><td>3</td><td>10</td><td>1993</td><td>2019</td></tr>
+    <tr><td>C1</td><td>非齐次通解结构</td><td>1</td><td>3</td><td>1990</td><td>1990</td></tr>
+    <tr><td>C2</td><td>已知解反求通解</td><td>1</td><td>9</td><td>2006</td><td>2006</td></tr>
+    <tr><td>C3</td><td>抽象非齐次</td><td>6</td><td>62</td><td>2002</td><td>2025</td></tr>
+    <tr><td>D1</td><td>方阵含参（先行列式）</td><td>8</td><td>64</td><td>1987</td><td>2016</td></tr>
+    <tr><td>D2</td><td>非方阵含参（直接行变换）</td><td>1</td><td>9</td><td>2006</td><td>2006</td></tr>
+    <tr><td>D3</td><td>参数在右端 b 中</td><td>2</td><td>10</td><td>1989</td><td>2015</td></tr>
+    <tr><td>E1</td><td>两齐次组公共解</td><td>2</td><td>19</td><td>1994</td><td>2007</td></tr>
+    <tr><td>E2</td><td>同解反求参数/命题判断</td><td>3</td><td>14</td><td>2003</td><td>2025</td></tr>
+    <tr><td>E3</td><td>由基础解系反构系数矩阵</td><td>1</td><td>5</td><td>1998</td><td>1998</td></tr>
+    <tr><td>F1</td><td>三平面/三直线位置关系</td><td>5</td><td>23</td><td>2002</td><td>2025</td></tr>
+  </table>
+
+  <div class="chart-box"><h4>本章按年份题量分布（1987—2025）</h4><div id="chYear" class="chart"></div></div>
+  <div class="chart-box"><h4>各题型占比</h4><div id="chPie" class="chart"></div></div>
+
+  <div class="lead">
+    <h2>宏观命题规律</h2>
+    <p><b>1. 含参讨论是绝对主力。</b>D1（方阵先行列式）出现8次共64分，几乎隔年一道大题。标准动作：先算 |A| 锁定唯一解情形，再对 |A|=0 的参数值逐个代入增广矩阵讨论。</p>
+    <p><b>2. 抽象方程组（C3）是近年新宠。</b>2009—2025年考了6道，共62分，不再给具体矩阵，而是用"列向量组线性表示""A²α""AB=O"等条件反推秩与通解。</p>
+    <p><b>3. 公共解/同解（E）近10年反复出。</b>2022、2025连续考选择题，2007考过11分大题。核心工具：联立方程组、代入法、秩的等式。</p>
+    <p><b>4. 三平面几何（F1）是数一专属。</b>2002、2003、2019、2024、2025五次出现，全部是选择/填空，考 r(A) 与 r(Ā) 的关系对应空间位置。</p>
+    <p><b>5. 与L5特征值交叉命题明显。</b>2017、2025两题都把特征值/特征多项式作为含参矩阵的隐藏条件。</p>
+  </div>
+</div>
+
+<!-- ============ A 解的判定 ============ -->
+<div class="section">
+<h2 class="chap">A · 解的判定</h2>
+
+<div class="qcard" id="a1">
+  <div class="qhead"><span class="tag">A1</span><h3>Ax=0 零解 / 非零解判定</h3></div>
+  <div class="qbody">
+    <div class="idbox"><b>识别特征：</b>
+      <div>· 看到"齐次方程组有非零解/只有零解"→ 想到 r(A) 与 n 的关系</div>
+      <div>· 看到"n 阶方阵"→ 可直接算 |A|；看到"m×n 矩阵"→ 只能用秩，不能用行列式</div>
+      <div>· 选择题给两个解向量反选系数矩阵 → 用 n-r(A) 反推秩</div>
+    </div>
+    <div class="principle"><b>核心原理：</b>设 A 是 m×n 矩阵，则 $Ax=0$ 有非零解 $\Leftrightarrow r(A)<n$；只有零解 $\Leftrightarrow r(A)=n$。若 A 是 n 阶方阵，则等价于 $|A|=0$ / $|A|\ne 0$。解空间维数 $=n-r(A)$。</div>
+    <div class="flow">
+      <div class="flow-title">解题链路</div>
+      <div class="step"><div class="do">Step1｜判断 A 是否方阵</div><div class="why">若方阵 → 可算 |A|；若 m≠n → 只能用秩。<b>常见坑：</b>m×n 矩阵不能用 |A|=0 判定。</div><div class="next">下一步：方阵走 Step2；非方阵走 Step3。</div></div>
+      <div class="step"><div class="do">Step2｜算 |A|，令其为零解出参数</div><div class="why">|A|=0 ⇔ 有非零解。</div><div class="next">下一步：对参数值分别求基础解系（进 B1）。</div></div>
+      <div class="step"><div class="do">Step3（选择题）｜由已知解向量个数反推 r(A)</div><div class="why">若已知 k 个线性无关解，则 n-r(A)≥k，即 r(A)≤n-k。</div><div class="next">下一步：用秩排除选项。</div></div>
+    </div>
+    <details class="exam"><summary>【真题｜1992 数学一 二(5)（3分）】已知两解反选系数矩阵</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p170/p148</div>
+      <div class="sol">ξ1=(1,0,2)T, ξ2=(0,1,-1)T 都是 Ax=0 的解，且线性无关，故 n-r(A)≥2，n=3，r(A)≤1。选项中只有(A)[-2 1 1]秩为1。<div class="ans">答案：(A)</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2011 数学一 第6题（4分）】伴随矩阵的基础解系</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p034/p099</div>
+      <div class="sol">A=[α1,α2,α3,α4]四阶，(1,0,1,0)T 是 Ax=0 基础解系，故 n-r(A)=1，r(A)=3。由伴随矩阵秩公式 r(A*)=1（当 r(A)=n-1=3），故 A*x=0 的基础解系含 4-1=3 个向量。又 A*A=|A|E=O，A 的列都是 A*x=0 的解。由 A(1,0,1,0)T=0 得 α1+α3=0，α1,α3 相关，故 α2,α3,α4 线性无关。<div class="ans">答案：(D) α2,α3,α4</div></div>
+    </div></details>
+    <div class="pitfall"><b>易错点：</b>
+      <div>· m×n 矩阵（m≠n）没有行列式，不能用 |A|=0 判定。</div>
+      <div>· 伴随矩阵秩公式：r(A*)=n（r(A)=n）；1（r(A)=n-1）；0（r(A)<n-1）。</div>
+    </div>
+    <div class="rule"><b>命题规律：</b>1992、2011两次选择题，均考"由解反推秩"。2011年结合伴随矩阵，难度0.407。</div>
+  </div>
+</div>
+
+<div class="qcard" id="a2">
+  <div class="qhead"><span class="tag">A2</span><h3>Ax=b 无解 / 唯一解 / 无穷多解判定</h3></div>
+  <div class="qbody">
+    <div class="idbox"><b>识别特征：</b>
+      <div>· "方程组无解/有解/有无穷多解"→ 比较 r(A) 与 r(Ā)</div>
+      <div>· "存在2个不同的解"→ 隐含 r(A)=r(Ā)<n（无穷多解）</div>
+      <div>· 三平面位置关系图 → 数一半专属几何，见 F1</div>
+    </div>
+    <div class="principle"><b>核心定理（线性方程组有解判定定理）：</b>
+      <div>· $Ax=b$ 无解 $\Leftrightarrow r(A)\ne r(\bar A)$（即 $r(A)<r(\bar A)$）</div>
+      <div>· $Ax=b$ 有唯一解 $\Leftrightarrow r(A)=r(\bar A)=n$</div>
+      <div>· $Ax=b$ 有无穷多解 $\Leftrightarrow r(A)=r(\bar A)<n$</div>
+      <div>其中 $\bar A=[A\mid b]$ 为增广矩阵。</div>
+    </div>
+    <div class="flow">
+      <div class="flow-title">解题链路</div>
+      <div class="step"><div class="do">Step1｜对增广矩阵 Ā 作初等行变换</div><div class="why">只能行变换！列变换会改变解。</div><div class="next">下一步：读出 r(A) 与 r(Ā)。</div></div>
+      <div class="step"><div class="do">Step2｜比较两个秩</div><div class="why">r(A)<r(Ā) → 无解；相等且=n → 唯一；相等且<n → 无穷。</div><div class="next">下一步：无穷多解进 C1/D1；唯一解代入求解。</div></div>
+    </div>
+    <details class="exam"><summary>【真题｜2000 数学一 一(4)（3分）】已知无解反求参数</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p176/p153</div>
+      <div class="sol">$\begin{bmatrix}1&2&1\\2&3&a+2\\1&a&-2\end{bmatrix}x=\begin{bmatrix}1\\3\\0\end{bmatrix}$ 无解。行变换得最后行 $(0,0,a^2-2a-3\mid a-3)$。令 r(A)=2, r(Ā)=3，需 $a^2-2a-3=0$ 且 $a-3\ne 0$，即 $a=-1$。<div class="ans">答案：a=-1</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2015 数学一 第5题（4分）】范德蒙型无穷多解充要</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p038/p104</div>
+      <div class="sol">$A=\begin{bmatrix}1&1&1\\1&2&a\\1&4&a^2\end{bmatrix},\ b=\begin{bmatrix}1\\d\\d^2\end{bmatrix}$，Ω={1,2}。|A|=(a-1)(a-2)。无穷多解需 r(A)=r(Ā)<3，即 |A|=0 且最后行右端也为0，故 a∈Ω 且 d∈Ω。<div class="ans">答案：(D) a∈Ω, d∈Ω</div></div>
+    </div></details>
+    <div class="pitfall"><b>易错点：</b>
+      <div>· "有解"≠"唯一解"，必须区分 r(A)=r(Ā)=n 与 <n。</div>
+      <div>· 参数同时在 A 和 b 中时，两个条件都要满足。</div>
+    </div>
+  </div>
+</div>
+
+<div class="qcard" id="a3">
+  <div class="qhead"><span class="tag">A3</span><h3>抽象方程组判定（证秩）</h3></div>
+  <div class="qbody">
+    <div class="idbox"><b>识别特征：</b>
+      <div>· "证明 r(A)=?"→ 用不等式夹逼</div>
+      <div>· "有 k 个线性无关的解"→ n-r(A)≥k-1</div>
+      <div>· "AB=O"→ r(A)+r(B)≤n</div>
+    </div>
+    <div class="principle"><b>核心工具：</b>
+      <div>· 若 α1,...,αs 是 Ax=b 的 s 个线性无关解，则 α1-α2, α1-α3,...,α1-αs 是 Ax=0 的 s-1 个线性无关解，故 n-r(A)≥s-1，即 r(A)≤n-s+1。</div>
+      <div>· 再由 A 中存在非零的 k 阶子式 → r(A)≥k，夹逼得 r(A)=k。</div>
+      <div>· $AB=O\Rightarrow r(A)+r(B)\le n$（B 的列都是 Ax=0 的解）。</div>
+    </div>
+    <details class="exam"><summary>【真题｜2006 数学一 20题（9分）】由3个线性无关解证 r(A)=2</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p177/p153-154</div>
+      <div class="sol">(I) 设 α1,α2,α3 是 Ax=b 的3个线性无关解，则 α1-α2, α1-α3 是 Ax=0 的2个线性无关解，故 4-r(A)≥2，r(A)≤2。又 A 有二阶子式 $\begin{vmatrix}1&1\\4&3\end{vmatrix}=-1\ne 0$，故 r(A)≥2。夹逼得 r(A)=2。<div class="ans">答案：r(A)=2；a=2,b=-3；通解见 C2</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2017 数学一 20题（11分）】由特征值证 r(A)=2</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p039/p105-106</div>
+      <div class="sol">A=[α1,α2,α3] 有3个不同特征值，α3=α1+2α2 故 |A|=0，λ=0 是特征值。设另两个为 λ1,λ2≠0，则 A~diag(λ1,λ2,0)，r(A)=2。<div class="ans">答案：r(A)=2</div></div>
+    </div></details>
+    <div class="pitfall"><b>易错点：</b>把"有3个线性无关解"理解为"恰有3个"，实际是"至少3个"，用于夹逼秩。</div>
+  </div>
+</div>
+</div>
+
+<!-- ============ B 齐次 ============ -->
+<div class="section">
+<h2 class="chap">B · 齐次方程组 Ax=0</h2>
+
+<div class="qcard" id="b1">
+  <div class="qhead"><span class="tag">B1</span><h3>求基础解系</h3></div>
+  <div class="qbody">
+    <div class="idbox"><b>识别特征：</b>
+      <div>· "求 Ax=0 的一个基础解系"→ 标准行变换流程</div>
+      <div>· "证明 β1,...,βs 也是基础解系"→ 证三条：是解、个数=n-r(A)、线性无关</div>
+      <div>· AB=O → B 的列都是 Ax=0 的解</div>
+    </div>
+    <div class="principle"><b>基础解系三条件：</b>① 都是 Ax=0 的解；② 线性无关；③ 个数 = n-r(A)（即方程组中自由变量个数）。</div>
+    <div class="flow">
+      <div class="flow-title">标准解题链路</div>
+      <div class="step"><div class="do">Step1｜对系数矩阵 A 作初等行变换化为行最简形</div><div class="why">只用行变换！确定主变量（r个）与自由变量（n-r个）。</div><div class="next">下一步：选自由变量。</div></div>
+      <div class="step"><div class="do">Step2｜选自由变量，依次取单位向量赋值</div><div class="why">自由变量取 n-r 维单位坐标向量 e1,e2,...,e_{n-r}，回代求主变量。</div><div class="next">下一步：得 n-r 个解向量。</div></div>
+      <div class="step"><div class="do">Step3｜验证线性无关</div><div class="why">因自由变量部分是单位阵，天然线性无关。</div><div class="next">下一步：写出通解 x=k1η1+...+k_{n-r}η_{n-r}。</div></div>
+    </div>
+    <details class="exam"><summary>【真题｜2004 数学一 20题（9分）】n阶带参齐次方程组</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p171/p149-150</div>
+      <div class="sol">$|A|=a\left[a+\dfrac{n(n+1)}{2}\right]a^{n-1}$。
+      <br>a=0：A→$\begin{bmatrix}1&1&\cdots&1\\0&0&\cdots&0\\\vdots&&&\vdots\\0&0&\cdots&0\end{bmatrix}$，同解 x1+...+xn=0，基础解系 η1=(-1,1,0,...,0)T,...,η_{n-1}=(-1,0,...,0,1)T。
+      <br>a=-n(n+1)/2：r(A)=n-1，基础解系 η=(1,2,...,n)T。<div class="ans">答案：分 a=0 与 a=-n(n+1)/2 两种情形</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2005 数学一 21题（9分）】AB=O 反求通解</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p172/p150</div>
+      <div class="sol">A 第1行(a,b,c)，B=$\begin{bmatrix}1&2&3\\2&4&6\\3&6&k\end{bmatrix}$，AB=O。故 r(A)+r(B)≤3。
+      <br>k≠9：r(B)=2，r(A)=1，B 的两列(1,2,3)T,(3,6,k)T 线性无关，构成基础解系。
+      <br>k=9：r(B)=1，r(A)可能=1或2。r(A)=2时通解 k(1,2,3)T；r(A)=1时同解 ax1+bx2+cx3=0，基础解系 (-b,a,0)T,(-c,0,a)T。<div class="ans">答案：分 k≠9 与 k=9 讨论</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2014 数学一 20题（11分）】基础解系 + AB=E</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p038/p104</div>
+      <div class="sol">A=$\begin{bmatrix}1&-2&3&-4\\0&1&-1&1\\1&2&0&-3\end{bmatrix}$，行变换得行最简 $\begin{bmatrix}1&0&0&1\\0&1&0&-2\\0&0&1&-3\end{bmatrix}$，r(A)=3，n-r(A)=1，基础解系 η=(-1,2,3,1)T。<div class="ans">答案：η=(-1,2,3,1)T</div></div>
+    </div></details>
+    <div class="pitfall"><b>易错点：</b>
+      <div>· 只能行变换，不能列变换。</div>
+      <div>· 自由变量个数 = n-r(A)，不是 r(A)。</div>
+      <div>· 证"βi 也是基础解系"必须三条全证，不能只证线性无关。</div>
+    </div>
+  </div>
+</div>
+
+<div class="qcard" id="b2">
+  <div class="qhead"><span class="tag">B2</span><h3>齐次通解结构</h3></div>
+  <div class="qbody">
+    <div class="idbox"><b>识别特征：</b>
+      <div>· "A 的各行元素之和为零"→ A(1,1,...,1)T=0</div>
+      <div>· 给列向量组的线性表示关系 → 直接读出 Ax=0 的解</div>
+    </div>
+    <div class="principle"><b>核心：</b>若 α1,...,αs 是 A 的列向量，且 k1α1+...+ksαs=0，则 x=(k1,...,ks)T 是 Ax=0 的解。通解 = 特解（基础解系线性组合）。</div>
+    <details class="exam"><summary>【真题｜1993 数学一 一(5)（3分）】各行和为零</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p170/p148</div>
+      <div class="sol">A 各行元素之和为零，即 A(1,1,...,1)T=0。又 r(A)=n-1，基础解系含1个向量，故通解 k(1,1,...,1)T。<div class="ans">答案：k(1,1,...,1)T</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2019 数学一 13题（4分）】抽象齐次通解</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p035/p099</div>
+      <div class="sol">A=[α1,α2,α3]，α3=-α1+2α2，即 α1-2α2+α3=0，故 A(1,-2,1)T=0。又 α1,α2 无关，r(A)=2，基础解系含1个向量。通解 k(1,-2,1)T。<div class="ans">答案：k(1,-2,1)T</div></div>
+    </div></details>
+  </div>
+</div>
+</div>
+
+<!-- ============ C 非齐次 ============ -->
+<div class="section">
+<h2 class="chap">C · 非齐次方程组 Ax=b</h2>
+
+<div class="qcard" id="c1">
+  <div class="qhead"><span class="tag">C1</span><h3>通解结构（选择/填空）</h3></div>
+  <div class="qbody">
+    <div class="idbox"><b>识别特征：</b>给出 Ax=b 的解和 Ax=0 的基础解系，选通解。</div>
+    <div class="principle"><b>解的结构：</b>$Ax=b$ 的通解 = 特解 $\alpha$ + $Ax=0$ 的通解 $k_1\eta_1+\cdots+k_{n-r}\eta_{n-r}$。
+      <br>关键性质：① β1,β2 是 Ax=b 的解 → β1-β2 是 Ax=0 的解；② (β1+β2)/2 仍是 Ax=b 的解。</div>
+    <details class="exam"><summary>【真题｜1990 数学一 二(5)（3分）】解的结构选择</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p175/p152</div>
+      <div class="sol">β1,β2 是 Ax=b 不同解，α1,α2 是 Ax=0 基础解系。特解须是 Ax=b 的解：(β1+β2)/2 是；(β1-β2)/2 不是。导出组基础解系需两个线性无关的 Ax=0 解：α1, α1-α2 线性无关。<div class="ans">答案：(B) k1α1+k2(α1-α2)+(β1+β2)/2</div></div>
+    </div></details>
+  </div>
+</div>
+
+<div class="qcard" id="c2">
+  <div class="qhead"><span class="tag">C2</span><h3>已知解反求通解（综合大题）</h3></div>
+  <div class="qbody">
+    <div class="idbox"><b>识别特征：</b>"有 k 个线性无关的解"→ 先证秩（A3），再求参数，最后写通解。</div>
+    <div class="flow">
+      <div class="flow-title">解题链路</div>
+      <div class="step"><div class="do">Step1｜由线性无关解个数夹逼 r(A)</div><div class="why">s 个线性无关解 → n-r(A)≥s-1。</div><div class="next">下一步：由非零子式 r(A)≥k，夹逼。</div></div>
+      <div class="step"><div class="do">Step2｜行变换令 r(A)=r(Ā)=k，解出参数</div><div class="why">最后若干行须全零（系数行与右端行同时为零）。</div><div class="next">下一步：写同解方程组，求特解与基础解系。</div></div>
+    </div>
+    <details class="exam"><summary>【真题｜2006 数学一 20题（9分）】由3个线性无关解求通解</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p177/p153-154</div>
+      <div class="sol">(I) r(A)=2（见 A3）。
+      <br>(II) 行变换得 $\bar A\to\begin{bmatrix}1&0&2&-4&2\\0&1&-1&5&-3\\0&0&0&0&0\end{bmatrix}$（a=2,b=-3时）。
+      <br>特解 α=(2,-3,0,0)T；基础解系 η1=(-2,1,1,0)T, η2=(4,-5,0,1)T。
+      <br>通解 x=α+k1η1+k2η2。<div class="ans">答案：a=2,b=-3；通解 (2,-3,0,0)T+k1(-2,1,1,0)T+k2(4,-5,0,1)T</div></div>
+    </div></details>
+  </div>
+</div>
+
+<div class="qcard" id="c3">
+  <div class="qhead"><span class="tag">C3</span><h3>抽象非齐次方程组（无具体矩阵）</h3></div>
+  <div class="qbody">
+    <div class="idbox"><b>识别特征：</b>
+      <div>· 给列向量组 α1,...,αs 的线性表示关系，问 Ax=β 的通解</div>
+      <div>· Aξ2=ξ1, A²ξ3=ξ1 这种嵌套方程</div>
+      <div>· 矩阵方程 AX=B / AC-CA=B / AP=B</div>
+    </div>
+    <div class="principle"><b>核心思路：</b>不用行变换，用"列向量组的秩"与"线性表示"反推。
+      <br>① 由列向量组的线性相关性定 r(A)；
+      <br>② 由 β=k1α1+...+ksαs 直接读出特解 (k1,...,ks)T；
+      <br>③ 由 α1,...,αs 的线性相关关系读出 Ax=0 的基础解系。</div>
+    <details class="exam"><summary>【真题｜2002 数学一 九题（6分）】列向量组反推通解</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p177/p154</div>
+      <div class="sol">A=[α1,α2,α3,α4]，α2,α3,α4 无关，α1=2α2-α3。故 r(A)=3，Ax=0 基础解系含1个向量。由 α1-2α2+α3=0 得 (1,-2,1,0)T 是基础解系。β=α1+α2+α3+α4，故 (1,1,1,1)T 是特解。通解 k(1,-2,1,0)T+(1,1,1,1)T。<div class="ans">答案：k(1,-2,1,0)T+(1,1,1,1)T</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2009 数学一 20题（11分）】Aξ2=ξ1, A²ξ3=ξ1</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p036/p101</div>
+      <div class="sol">(I) 对 [A|ξ1] 行变换，ξ2=(-k,k,1-2k)T。A²=$\begin{bmatrix}2&2&0\\-2&-2&0\\4&4&0\end{bmatrix}$，对 [A²|ξ1] 行变换，ξ3=(-1/2-u,u,v)T。
+      <br>(II) |ξ1,ξ2,ξ3|=-1/2≠0，恒无关。<div class="ans">答案：ξ2=(-k,k,1-2k)T；ξ3=(-1/2-u,u,v)T</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2013 数学一 20题（11分）】AC-CA=B</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p037/p103</div>
+      <div class="sol">设 C=$\begin{bmatrix}x_1&x_2\\x_3&x_4\end{bmatrix}$，展开 AC-CA=B 得四元线性方程组。行变换得当且仅当 a=-1,b=0 时有解，C=$\begin{bmatrix}1+k_1+k_2&-k_1\\k_1&k_2\end{bmatrix}$。<div class="ans">答案：a=-1,b=0；C 如上</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2018 数学一 21题（11分）】AP=B 求可逆 P</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p040/p106-107</div>
+      <div class="sol">(I) A 经列变换得 B ⇔ r(A)=r(B)。r(A)=2（恒有二阶子式），|B|=2-a=0 得 a=2。
+      <br>(II) 对 [A|B] 行变换解 AX=B，得 X 三列含自由变量 k1,k2,k3，要求 |X|=k3-k2≠0 以保证 P 可逆。<div class="ans">答案：a=2；P 含自由参数且 k2≠k3</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2025 数学一 21题（12分）】Aα=α+β, A²α=α+2β</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p041/p107-108</div>
+      <div class="sol">(I) |λE-A|=(1-λ)[λ²+(1-a)λ+4-a]，λ=1 为重根 ⇒ 6-2a=0 ⇒ a=3。
+      <br>(II) 由 A²α=α+2(Aα-α)=2Aα-α，得 (A-E)²α=0。A-E=$\begin{bmatrix}-1&-1&2\\-1&-1&2\\-1&-1&2\end{bmatrix}$，(A-E)²=O，故 α 任意非零，β=(A-E)α。<div class="ans">答案：a=3；α 任意非零，β=(A-E)α</div></div>
+    </div></details>
+    <div class="pitfall"><b>易错点：</b>
+      <div>· 矩阵方程 AX=B：B 有多列时，把 B 的每列看作一个右端，分别求解（或对 [A|B] 整体行变换）。</div>
+      <div>· 求可逆 P 时必须附加 |P|≠0 的约束。</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ============ D 含参讨论（核心） ============ -->
+<div class="section">
+<h2 class="chap">D · 含参方程组讨论（解答题核心）</h2>
+
+<div class="qcard" id="d1">
+  <div class="qhead"><span class="tag">D1 · 核心</span><h3>方程数=未知量数（方阵）：先行列式锁唯一解</h3></div>
+  <div class="qbody">
+    <div class="idbox"><b>识别特征：</b>
+      <div>· A 是 n×n 方阵（方程数=未知量数）</div>
+      <div>· 问"λ 为何值时方程组有唯一解/无解/无穷多解"</div>
+      <div>· 参数在系数矩阵 A 中</div>
+    </div>
+    <div class="principle"><b>标准动作（必须写透）：</b>
+      <br><b>第一步：</b>计算 |A|，令 |A|≠0 → 此时唯一解，用 Cramer 法则或行变换求出。
+      <br><b>第二步：</b>令 |A|=0，解出参数的若干个值 λ1,λ2,...。
+      <br><b>第三步：</b>对每个 λi，代入增广矩阵 [A|b] 作行变换，比较 r(A) 与 r(Ā)：
+      <div>　· r(A)=r(Ā)=n → 唯一解（与第一步重合，一般不出现）</div>
+      <div>　· r(A)=r(Ā)<n → 无穷多解，写通解</div>
+      <div>　· r(A)<r(Ā) → 无解</div>
+      <br><b>为什么先算行列式：</b>方阵时 |A|≠0 是唯一解的充要条件，先把"唯一解情形"整块锁定，剩余 |A|=0 的有限个参数值逐个讨论，避免盲目行变换漏情况。</div>
+    <div class="flow">
+      <div class="flow-title">标准解题链路（以 2008 题为例）</div>
+      <div class="step"><div class="do">Step1｜做什么：写出系数矩阵 A，算 |A|</div><div class="why">n 阶三对角行列式用归纳法或三角化。本题 |A|=(n+1)a^n。</div><div class="next">下一步：|A|≠0 时唯一解；|A|=0 即 a=0。</div></div>
+      <div class="step"><div class="do">Step2｜做什么：|A|≠0（a≠0）时，用 Cramer 法则求 x1</div><div class="why">n 阶方阵唯一解时，Cramer 法则直接出 x1，避免解整个方程组。</div><div class="next">下一步：a=0 时代入增广矩阵讨论。</div></div>
+      <div class="step"><div class="do">Step3｜做什么：a=0 时对 [A|b] 行变换，比较秩</div><div class="why">此时 A 变为次对角阵，r(A)=r(Ā)=n-1<n，无穷多解。</div><div class="next">下一步：写通解 = 特解 + k·基础解系。</div></div>
+    </div>
+    <details class="exam"><summary>【真题｜2008 数学一 21题（12分）】n阶三对角带参（范式题）</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p178/p155-156</div>
+      <div class="sol">(I) 归纳法证 |A|=(n+1)a^n。
+      <br>(II) a≠0 时 |A|≠0，唯一解，Cramer 法则 $x_1=\dfrac{na^{n-1}}{(n+1)a^n}=\dfrac{n}{(n+1)a}$。
+      <br>(III) a=0 时，方程组为次对角阵，r(A)=r(Ā)=n-1，通解 (0,1,0,...,0)T+k(1,0,...,0)T。<div class="ans">答案：a≠0唯一解 x1=n/((n+1)a)；a=0无穷多解</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜1987 数学一 九题（8分）】双参数 a,b</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p174/p151-152</div>
+      <div class="sol">4阶方阵，|A|=(a-1)²。a≠1 时唯一解；a=1 时行变换得最后行 (0,0,0,0|b+1)。
+      <br>b≠-1：r(A)=2<r(Ā)=3，无解；b=-1：r(A)=r(Ā)=2，无穷多解，通解 (-1,1,0,0)T+k1(1,-2,1,0)T+k2(1,-2,0,1)T。<div class="ans">答案：a≠1唯一；a=1,b≠-1无解；a=1,b=-1无穷</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2010 数学一 20题（11分）】λ,a 双参</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p036/p102</div>
+      <div class="sol">|A|=(λ+1)(λ-1)²。λ=1 时 r(A)=1≠r(Ā)=2 无解，舍。λ=-1 时行变换令 a+2=0 得 a=-2，通解 1/2(3,-1,0)T+k(1,0,1)T。<div class="ans">答案：λ=-1,a=-2；通解如上</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2012 数学一 20题（11分）】四阶带参 a</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p037/p102-103</div>
+      <div class="sol">|A|=1-a⁴=0 ⇒ a=±1。a=1 时 r(A)=3≠r(Ā)=4 无解，舍。a=-1 时 r(A)=r(Ā)=3<4，通解 (0,-1,0,0)T+k(1,1,1,1)T。<div class="ans">答案：a=-1；通解如上</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2016 数学一 20题（11分）】矩阵方程 AX=B 含参</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p039/p105</div>
+      <div class="sol">对 [A|B] 行变换得 $\begin{bmatrix}1&-1&-1&2&2\\0&a+2&3&-3&a-4\\0&0&a-1&1-a&0\end{bmatrix}$。
+      <br>a=-2：r(A)=2<r([A|B])=3，无解。
+      <br>a≠1且a≠-2：唯一解 X=$\begin{bmatrix}1&3a/(a+2)\\0&(a-4)/(a+2)\\-1&0\end{bmatrix}$。
+      <br>a=1：无穷多解。<div class="ans">答案：分 a=-2 无解；a≠±1 唯一；a=1 无穷</div></div>
+    </div></details>
+    <div class="pitfall"><b>易错点：</b>
+      <div>· 先算行列式！不要一上来就盲目行变换带参数矩阵，容易错。</div>
+      <div>· |A|=0 的每个参数值都要代入增广矩阵检查 r(A) 是否等于 r(Ā)，不能默认一定有解。</div>
+      <div>· 双参数时，一个参数锁 |A|=0，另一个参数在右端行决定无解/无穷。</div>
+    </div>
+    <div class="rule"><b>命题规律：</b>D1 是本章最高频考点，1987、2000、2004、2008、2010、2012、2015、2016共8题64分。2008年难度0.305，是当年得分率最低的题之一。</div>
+  </div>
+</div>
+
+<div class="qcard" id="d2">
+  <div class="qhead"><span class="tag">D2</span><h3>方程数≠未知量数（非方阵）：直接行变换</h3></div>
+  <div class="qbody">
+    <div class="idbox"><b>识别特征：</b>A 是 m×n 矩阵，m≠n，无法算行列式。</div>
+    <div class="principle"><b>方法：</b>直接对增广矩阵 [A|b] 作初等行变换，把参数当作常数，观察最后含参数的行。令系数行=0 与右端行=0 同时成立，解参数。</div>
+    <details class="exam"><summary>【真题｜2006 数学一 20题（9分）】3方程4未知量</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p177/p153-154</div>
+      <div class="sol">3×4 矩阵，不能算行列式。行变换得最后行 (0,0,4-2a, b+4a-5 | 4-2a)。令 r(A)=r(Ā)=2，需 4-2a=0 且 b+4a-5=0，得 a=2,b=-3。<div class="ans">答案：a=2,b=-3</div></div>
+    </div></details>
+    <div class="pitfall"><b>易错点：</b>非方阵没有行列式，不要硬算 |A|。</div>
+  </div>
+</div>
+
+<div class="qcard" id="d3">
+  <div class="qhead"><span class="tag">D3</span><h3>参数在右端 b 中</h3></div>
+  <div class="qbody">
+    <div class="idbox"><b>识别特征：</b>参数 λ 在右端常数项中，A 不含参。</div>
+    <div class="principle"><b>方法：</b>对 [A|b] 行变换，最后一行右端出现参数表达式，令其=0 得有解条件。</div>
+    <details class="exam"><summary>【真题｜1989 数学一 七题（6分）】λ 在右端</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p174/p152</div>
+      <div class="sol">行变换得最后行 (0,0,0 | -λ+1)。λ=1 时 r(A)=r(Ā)=2<3，无穷多解。<div class="ans">答案：λ=1；通解 (1,-1,0)T+t(-1,2,1)T</div></div>
+    </div></details>
+  </div>
+</div>
+</div>
+
+<!-- ============ E 公共解与同解 ============ -->
+<div class="section">
+<h2 class="chap">E · 公共解与同解（拉分题）</h2>
+
+<div class="qcard" id="e1">
+  <div class="qhead"><span class="tag">E1</span><h3>两个齐次方程组的公共解</h3></div>
+  <div class="qbody">
+    <div class="idbox"><b>识别特征：</b>给出方程组(I)和(II)，问"是否有非零公共解"。</div>
+    <div class="principle"><b>两种方法：</b>
+      <br><b>方法一（联立）：</b>把(I)(II)联立成一个大方程组，其解就是公共解。
+      <br><b>方法二（代入）：</b>把(II)的通解 k1α1+k2α2 代入(I)，得到关于 k1,k2 的齐次方程组，解出 k1,k2 关系。</div>
+    <details class="exam"><summary>【真题｜1994 数学一 八题（8分）】两齐次组公共解</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p179/p157</div>
+      <div class="sol">(I) x1+x2=0, x2-x4=0，基础解系 (0,0,1,0)T,(-1,1,0,1)T。
+      <br>(II) 通解 k1(0,1,1,0)T+k2(-1,2,2,1)T。代入(I)得 k1=-k2≠0，公共解 k1(1,-1,-1,-1)T。<div class="ans">答案：非零公共解 k(1,-1,-1,-1)T</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2007 数学一 21题（11分）】齐次+非齐次公共解</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p180/p157-159</div>
+      <div class="sol">联立①②得4行3列增广阵，行变换得最后行 (a-1)(a-2)=0。
+      <br>a=1：公共解 k(-1,0,1)T；a=2：唯一公共解 (0,1,-1)T。<div class="ans">答案：a=1或a=2，分别如上</div></div>
+    </div></details>
+    <div class="pitfall"><b>易错点：</b>"有非零公共解"要求 k1,k2 不全为零，最后要检验。</div>
+  </div>
+</div>
+
+<div class="qcard" id="e2">
+  <div class="qhead"><span class="tag">E2</span><h3>同解反求参数 / 同解命题判断</h3></div>
+  <div class="qbody">
+    <div class="idbox"><b>识别特征：</b>
+      <div>· "Ax=0 与 Bx=0 同解"→ 秩相等 + 解互相包含</div>
+      <div>· "A²x=0 与 Ax=0 不同解"→ r(A)≠r(A²)</div>
+    </div>
+    <div class="principle"><b>核心结论：</b>
+      <br>① Ax=0 的解都是 Bx=0 的解 ⇒ r(A)≥r(B)；
+      <br>② Ax=0 与 Bx=0 同解 ⇒ r(A)=r(B)（但反过来不成立！）；
+      <br>③ Ax=0 与 A^TAx=0 必同解（实矩阵）。</div>
+    <details class="exam"><summary>【真题｜2003 数学一 二(5)（4分）】同解命题判断</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p180/p157</div>
+      <div class="sol">④ 错（r(A)=r(B) 推不出同解）；① 对；③ 对（同解则秩相等）。<div class="ans">答案：(B) ①③</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2022 数学一 6题（5分）】分块矩阵同解</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p044/p111</div>
+      <div class="sol">设 y=(y1,y2)T。$\begin{bmatrix}A&B\\O&B\end{bmatrix}y=0$ ⇒ Ay1+By2=0, By2=0，由 Ax=0 与 Bx=0 同解知 Ay2=0，故 By1=0，反推亦然。<div class="ans">答案：(C)</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2025 数学一 15题（5分）】A²x=0 与 Ax=0 不同解</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p044/p111</div>
+      <div class="sol">Ax=0 的解必是 A²x=0 的解，不同解说明 r(A²)<r(A)。由 A 的2,3列不成比例 r(A)≥2；若 r(A)=3 则 r(A²)=3 矛盾，故 r(A)=2, r(A²)=1。|A|=-(a-b+4)=0 ⇒ a-b=-4。<div class="ans">答案：a-b=-4</div></div>
+    </div></details>
+  </div>
+</div>
+
+<div class="qcard" id="e3">
+  <div class="qhead"><span class="tag">E3</span><h3>由基础解系反构系数矩阵</h3></div>
+  <div class="qbody">
+    <div class="idbox"><b>识别特征：</b>已知方程组(I)的基础解系，求方程组(II)的通解，其中(II)的系数矩阵就是(I)基础解系排成的矩阵。</div>
+    <div class="principle"><b>核心技巧：</b>若 B 的行都是 Ax=0 的解，则 AB^T=O，即 BA^T=O，说明 A 的行向量都是 Bx=0 的解。若 r(B)=n，2n-r(A)=n，则 A 的 n 个行向量线性无关，构成 Bx=0 的基础解系。</div>
+    <details class="exam"><summary>【真题｜1998 数学一 十二题（5分）】由基础解系反构</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p172/p150</div>
+      <div class="sol">(I) 系数阵 A(n×2n)，基础解系为 B 的行（n个线性无关向量）。故 AB^T=O ⇒ BA^T=O，A 的行都是(II)的解。r(B)=n，2n-r(A)=n ⇒ r(A)=n，A 的 n 行线性无关，构成(II)基础解系。<div class="ans">答案：(II)通解为 A 的行向量的线性组合</div></div>
+    </div></details>
+  </div>
+</div>
+</div>
+
+<!-- ============ F 几何 ============ -->
+<div class="section">
+<h2 class="chap">F · 几何应用（数一专属）</h2>
+
+<div class="qcard" id="f1">
+  <div class="qhead"><span class="tag">F1 · 数一专属</span><h3>三平面 / 三直线位置关系</h3></div>
+  <div class="qbody">
+    <div class="idbox"><b>识别特征：</b>
+      <div>· 三张平面方程 ai x+bi y+ci z=di，问位置关系</div>
+      <div>· 三条直线交于一点的充要条件</div>
+    </div>
+    <div class="principle"><b>三平面位置与秩的对应：</b>
+      <table class="fm">
+        <tr><th>r(A)</th><th>r(Ā)</th><th>解的情况</th><th>几何位置</th></tr>
+        <tr><td>3</td><td>3</td><td>唯一解</td><td>三平面交于一点</td></tr>
+        <tr><td>2</td><td>2</td><td>无穷多解（1参数）</td><td>三平面交于一条直线</td></tr>
+        <tr><td>2</td><td>3</td><td>无解</td><td>三平面两两相交，交线平行（无公共点）</td></tr>
+        <tr><td>1</td><td>2</td><td>无解</td><td>三平面平行（含重合）</td></tr>
+        <tr><td>1</td><td>1</td><td>无穷多解（2参数）</td><td>三平面重合</td></tr>
+      </table>
+    </div>
+    <details class="exam"><summary>【真题｜2002 数学一 二(4)（3分）】r(A)=r(Ā)=2</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p176/p153</div>
+      <div class="sol">r(A)=r(Ā)=2<3，无穷多解，三平面交于一直线。<div class="ans">答案：(B)</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2003 数学一 十题（8分）】三直线交于一点充要条件</summary><div class="eb">
+      <div class="exam-meta">来源：基础篇 p178/p155</div>
+      <div class="sol">三条直线 l1:ax+2by+3c=0 等。交于一点 ⇔ 方程组 r(A)=r(Ā)=2 ⇔ |Ā|=0 且有二阶子式非零。|Ā|=6(a+b+c)[(a-b)²+(b-c)²+(c-a)²]=0，三线不同故后者非零，得 a+b+c=0。<div class="ans">答案：充要条件 a+b+c=0</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2019 数学一 6题（4分）】交线平行</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p040/p107</div>
+      <div class="sol">三平面两两相交但无公共点 ⇒ r(A)=2, r(Ā)=3。<div class="ans">答案：(A)</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2024 数学一 5题（5分）】三平面交于一直线</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p041/p107</div>
+      <div class="sol">三平面交于一直线 ⇒ r(A)=r(Ā)=2，即 m=n=2。<div class="ans">答案：(B) m=n=2</div></div>
+    </div></details>
+    <details class="exam"><summary>【真题｜2025 数学一 6题（5分）】向量方程几何图形</summary><div class="eb">
+      <div class="exam-meta">来源：提高篇 p041/p107</div>
+      <div class="sol">xα1+yα2+zα3=α4，r(系数)=r(增广)=2<3，解空间1维（直线）；又 (0,0,0) 不是解（α4≠0），故不过原点。<div class="ans">答案：(D) 不过原点的一条直线</div></div>
+    </div></details>
+    <div class="pitfall"><b>易错点：</b>r(A)=2,r(Ā)=3 是"交线平行无公共点"，不是"交于一直线"；后者需 r(A)=r(Ā)=2。</div>
+  </div>
+</div>
+</div>
+
+<!-- ============ 决策流程图 ============ -->
+<div class="section" id="flowchart">
+<h2 class="chap">本章解题总决策流程</h2>
+<div class="chart-box"><div id="chFlow" class="chart" style="height:420px"></div></div>
+</div>
+
+<!-- ============ 附录 ============ -->
+<div class="section" id="appendix">
+<h2 class="chap">附录 · 本章真题全清单（35题）</h2>
+<table class="zt">
+<tr><th style="width:8%">年份</th><th style="width:14%">题号</th><th style="width:8%">分值</th><th style="width:8%">题型</th><th>摘要</th><th style="width:14%">来源页</th></tr>
+<tr><td>1987</td><td>九</td><td>8</td><td>D1</td><td>a,b为何值唯一解/无解/无穷</td><td>题p174/答p151</td></tr>
+<tr><td>1989</td><td>七</td><td>6</td><td>D3</td><td>λ为何值有解</td><td>题p174/答p152</td></tr>
+<tr><td>1990</td><td>二(5)</td><td>3</td><td>C1</td><td>解的结构选择</td><td>题p175/答p152</td></tr>
+<tr><td>1992</td><td>二(5)</td><td>3</td><td>A1</td><td>已知两解反选系数矩阵</td><td>题p170/答p148</td></tr>
+<tr><td>1993</td><td>一(5)</td><td>3</td><td>B2</td><td>各行和为零求通解</td><td>题p170/答p148</td></tr>
+<tr><td>1994</td><td>八</td><td>8</td><td>E1</td><td>两齐次组公共解</td><td>题p179/答p157</td></tr>
+<tr><td>1998</td><td>十二</td><td>5</td><td>E3</td><td>由基础解系反构(II)通解</td><td>题p172/答p150</td></tr>
+<tr><td>2000</td><td>一(4)</td><td>3</td><td>D1</td><td>方程组无解求a</td><td>题p176/答p153</td></tr>
+<tr><td>2001</td><td>九</td><td>6</td><td>B1</td><td>βi=t1αi+t2αi+1何时基础解系</td><td>题p171/答p148</td></tr>
+<tr><td>2002</td><td>二(4)</td><td>3</td><td>F1</td><td>三平面位置关系</td><td>题p176/答p153</td></tr>
+<tr><td>2002</td><td>九</td><td>6</td><td>C3</td><td>列向量组反推Ax=β通解</td><td>题p177/答p154</td></tr>
+<tr><td>2003</td><td>二(5)</td><td>4</td><td>E2</td><td>同解命题判断</td><td>题p180/答p157</td></tr>
+<tr><td>2003</td><td>十</td><td>8</td><td>F1</td><td>三直线交于一点充要条件</td><td>题p178/答p155</td></tr>
+<tr><td>2004</td><td>20</td><td>9</td><td>D1</td><td>n阶带参齐次方程组</td><td>题p171/答p149</td></tr>
+<tr><td>2005</td><td>21</td><td>9</td><td>B1</td><td>AB=O反求Ax=0通解</td><td>题p172/答p150</td></tr>
+<tr><td>2006</td><td>20</td><td>9</td><td>D2/C2</td><td>3个线性无关解证r(A)=2求a,b</td><td>题p177/答p153</td></tr>
+<tr><td>2007</td><td>21</td><td>11</td><td>E1</td><td>方程组①②有公共解求a</td><td>题p180/答p157</td></tr>
+<tr><td>2008</td><td>21</td><td>12</td><td>D1</td><td>n阶三对角带参讨论</td><td>题p178/答p155</td></tr>
+<tr><td>2009</td><td>20</td><td>11</td><td>C3</td><td>Aξ2=ξ1,A²ξ3=ξ1</td><td>题p036/答p101</td></tr>
+<tr><td>2010</td><td>20</td><td>11</td><td>D1</td><td>λ,a双参Ax=b有2不同解</td><td>题p036/答p102</td></tr>
+<tr><td>2011</td><td>6</td><td>4</td><td>A1</td><td>伴随矩阵A*x=0基础解系</td><td>题p034/答p099</td></tr>
+<tr><td>2012</td><td>20</td><td>11</td><td>D1</td><td>四阶带参a求无穷多解</td><td>题p037/答p102</td></tr>
+<tr><td>2013</td><td>20</td><td>11</td><td>C3</td><td>AC-CA=B求a,b,C</td><td>题p037/答p103</td></tr>
+<tr><td>2014</td><td>20</td><td>11</td><td>B1</td><td>Ax=0基础解系+AB=E</td><td>题p038/答p104</td></tr>
+<tr><td>2015</td><td>5</td><td>4</td><td>D1</td><td>范德蒙无穷多解充要条件</td><td>题p038/答p104</td></tr>
+<tr><td>2016</td><td>20</td><td>11</td><td>D1</td><td>AX=B含参a讨论</td><td>题p039/答p105</td></tr>
+<tr><td>2017</td><td>20</td><td>11</td><td>C3/A3</td><td>3不同特征值+α3=α1+2α2</td><td>题p039/答p105</td></tr>
+<tr><td>2018</td><td>21</td><td>11</td><td>C3</td><td>AP=B求可逆P</td><td>题p040/答p106</td></tr>
+<tr><td>2019</td><td>6</td><td>4</td><td>F1</td><td>三平面交线平行判断秩</td><td>题p040/答p107</td></tr>
+<tr><td>2019</td><td>13</td><td>4</td><td>B2</td><td>抽象齐次通解</td><td>题p035/答p099</td></tr>
+<tr><td>2022</td><td>6</td><td>5</td><td>E2</td><td>同解与分块矩阵方程组</td><td>题p044/答p111</td></tr>
+<tr><td>2024</td><td>5</td><td>5</td><td>F1</td><td>三平面交于一直线判断m,n</td><td>题p041/答p107</td></tr>
+<tr><td>2025</td><td>6</td><td>5</td><td>F1</td><td>向量方程几何图形</td><td>题p041/答p107</td></tr>
+<tr><td>2025</td><td>15</td><td>5</td><td>E2</td><td>A²x=0与Ax=0不同解求a-b</td><td>题p044/答p111</td></tr>
+<tr><td>2025</td><td>21</td><td>12</td><td>C3</td><td>Aα=α+β,A²α=α+2β</td><td>题p041/答p107</td></tr>
+</table>
+</div>
+
+</main>
+</div>
+<a href="#cover" class="totop" title="回到顶部">↑</a>
+
+<script>
+// 年份题量
+var yearData = [
+  [1987,1],[1989,1],[1990,1],[1992,1],[1993,1],[1994,1],[1998,1],
+  [2000,1],[2001,1],[2002,2],[2003,2],[2004,1],[2005,1],[2006,1],
+  [2007,1],[2008,1],[2009,1],[2010,1],[2011,1],[2012,1],[2013,1],
+  [2014,1],[2015,1],[2016,1],[2017,1],[2018,1],[2019,2],[2022,1],
+  [2024,1],[2025,3]
+];
+echarts.init(document.getElementById('chYear')).setOption({
+  tooltip:{trigger:'axis'},
+  grid:{left:50,right:20,top:30,bottom:40},
+  xAxis:{type:'category',data:yearData.map(function(d){return d[0];}),axisLabel:{rotate:45}},
+  yAxis:{type:'value',minInterval:1},
+  series:[{type:'bar',data:yearData.map(function(d){return d[1];}),itemStyle:{color:'#1e3a5f'}}]
+});
+// 饼图
+echarts.init(document.getElementById('chPie')).setOption({
+  tooltip:{trigger:'item'},
+  legend:{bottom:0,type:'scroll'},
+  series:[{type:'pie',radius:['35%','65%'],data:[
+    {name:'D含参讨论',value:11,itemStyle:{color:'#d97706'}},
+    {name:'C非齐次',value:8,itemStyle:{color:'#2a4d7a'}},
+    {name:'B齐次',value:8,itemStyle:{color:'#3d6a9f'}},
+    {name:'F几何',value:5,itemStyle:{color:'#7a9cc6'}},
+    {name:'E公共解同解',value:5,itemStyle:{color:'#b03a2e'}},
+    {name:'A判定',value:9,itemStyle:{color:'#5a8a5e'}}
+  ]}]
+});
+// 决策流程图
+echarts.init(document.getElementById('chFlow')).setOption({
+  tooltip:{},
+  series:[{
+    type:'graph',layout:'none',roam:false,
+    symbolSize:[120,44],
+    itemStyle:{color:'#eef3fa',borderColor:'#1e3a5f',borderWidth:1.5},
+    label:{show:true,fontSize:12,color:'#1e3a5f'},
+    edgeSymbol:['none','arrow'],edgeSymbolSize:8,
+    lineStyle:{color:'#999',width:1.2,curveness:0},
+    data:[
+      {name:'拿到方程组题',x:300,y:0,itemStyle:{color:'#1e3a5f'},label:{color:'#fff'}},
+      {name:'给具体矩阵?',x:300,y:70},
+      {name:'A是方阵?',x:150,y:150},
+      {name:'A是m×n?',x:450,y:150},
+      {name:'算|A|锁唯一解\n→|A|=0逐参讨论',x:80,y:250,itemStyle:{color:'#fef3e2'}},
+      {name:'直接行变换\n(参数在A或b)',x:380,y:250,itemStyle:{color:'#fef3e2'}},
+      {name:'无具体矩阵?',x:300,y:150,itemStyle:{color:'#eaf6ee'}},
+      {name:'列向量组/AB=O/A²',x:300,y:250,itemStyle:{color:'#eaf6ee'}},
+      {name:'两方程组?',x:550,y:70,itemStyle:{color:'#fdf1f0'}},
+      {name:'联立或代入\n求公共解/同解',x:550,y:150,itemStyle:{color:'#fdf1f0'}},
+      {name:'三平面/直线?',x:300,y:340,itemStyle:{color:'#fff7e0'}},
+      {name:'r(A) vs r(Ā)\n定几何位置',x:300,y:410,itemStyle:{color:'#fff7e0'}}
+    ],
+    links:[
+      {source:'拿到方程组题',target:'给具体矩阵?'},
+      {source:'给具体矩阵?',target:'A是方阵?',label:{show:true,formatter:'是'}},
+      {source:'给具体矩阵?',target:'无具体矩阵?',label:{show:true,formatter:'否'}},
+      {source:'A是方阵?',target:'算|A|锁唯一解\n→|A|=0逐参讨论'},
+      {source:'A是m×n?',target:'直接行变换\n(参数在A或b)'},
+      {source:'无具体矩阵?',target:'列向量组/AB=O/A²'},
+      {source:'给具体矩阵?',target:'两方程组?',label:{show:true,formatter:'两题'}}
+    ]
+  }]
+});
+</script>
+</body>
+</html>

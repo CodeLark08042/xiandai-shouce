@@ -1,0 +1,632 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>考研数学（一）· 线性代数 L1「行列式」题型全解手册（1987—2025 真题）</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+  svg: { fontCache: 'global' },
+  options: { processHtmlClass: 'tex' }
+};
+</script>
+<script src="../assets/tex-svg.js" onerror="this.onerror=null;var s=document.createElement('script');s.src='../assets/tex-svg.js';document.head.appendChild(s);"></script>
+<script src="../assets/echarts.min.js" onerror="this.onerror=null;var s=document.createElement('script');s.src='../assets/echarts.min.js';document.head.appendChild(s);"></script>
+<style>
+:root{
+  --navy:#1e3a5f; --navy-2:#2c5282; --paper:#fafaf6; --card:#ffffff;
+  --accent:#d97706; --accent-soft:#fdf0dc; --line:#e3e6e0;
+  --ink:#222; --ink-soft:#55606e; --good:#1e7a46; --warn:#b03a2e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Microsoft YaHei','PingFang SC',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.75}
+h1,h2,h3,h4{font-family:'Microsoft YaHei','PingFang SC',sans-serif;line-height:1.4}
+.layout{display:flex;min-height:100vh}
+.sidebar{width:260px;flex:0 0 260px;background:var(--navy);color:#dfe8f2;position:sticky;top:0;height:100vh;overflow-y:auto;padding:22px 0 60px;z-index:50}
+.sidebar::-webkit-scrollbar{width:6px}
+.sidebar::-webkit-scrollbar-thumb{background:#3d5a7a;border-radius:3px}
+.main{flex:1;min-width:0;padding:0 0 80px}
+.side-logo{padding:6px 22px 16px;border-bottom:1px solid #2c4a6b;margin-bottom:12px}
+.side-logo .big{font-size:18px;font-weight:900;color:#fff;letter-spacing:1px}
+.side-logo .sub{font-size:11.5px;color:#9db4cc;margin-top:2px}
+.nav-group{font-size:11.5px;color:#7f99b5;padding:13px 22px 5px;letter-spacing:2px}
+.nav-item{display:block;color:#c9d8e8;text-decoration:none;font-size:13px;padding:6px 22px;border-left:3px solid transparent}
+.nav-item:hover{background:#2a4a72;color:#fff}
+.nav-item.active{background:#2a4a72;color:#fff;border-left-color:var(--accent)}
+.section{max-width:1060px;margin:0 auto;padding:48px 40px 8px}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;border-radius:14px;padding:42px 44px 34px;margin-top:30px;position:relative;overflow:hidden}
+.hero::after{content:'|A|';position:absolute;right:-6px;bottom:-46px;font-size:200px;color:rgba(255,255,255,.07);font-weight:700;font-family:Georgia,serif}
+.hero .kicker{display:inline-block;background:var(--accent);color:#fff;font-size:12px;letter-spacing:3px;padding:3px 12px;border-radius:4px;margin-bottom:14px}
+.hero h1{font-size:30px;font-weight:900}
+.hero .sub{color:#bcd0e4;font-size:14.5px;margin-top:10px}
+.stat-row{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:10px 18px;text-align:center}
+.stat b{display:block;font-size:22px;color:#fbbf77;font-family:Georgia,serif}
+.stat span{font-size:12px;color:#c9d8e8}
+.lead{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px 28px;margin-top:24px}
+.lead h2{font-size:18px;color:var(--navy);margin-bottom:10px}
+.lead p{color:var(--ink-soft);font-size:14.5px}
+.lead ol{margin:10px 0 0 20px;color:var(--ink-soft);font-size:14.5px}
+.chapter-head{display:flex;align-items:center;gap:14px;margin:38px 0 6px}
+.chapter-no{background:var(--navy);color:#fff;font-weight:900;font-size:20px;width:50px;height:50px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:0 0 50px}
+.chapter-head h2{font-size:24px;color:var(--navy);font-weight:900}
+.chapter-desc{color:var(--ink-soft);font-size:14px;margin:0 0 20px 64px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:22px 0 34px;overflow:hidden;box-shadow:0 1px 4px rgba(30,58,95,.05);break-inside:avoid}
+.qcard>.qhead{background:#fdf6ec;border-bottom:1px solid var(--line);padding:15px 22px}
+.qhead .tag{display:inline-block;font-size:11.5px;background:var(--accent-soft);color:var(--accent);border:1px solid #f0d4a8;border-radius:16px;padding:2px 11px;margin-right:8px}
+.qhead h3{display:inline;font-size:18px;color:var(--navy);font-weight:900}
+.qbody{padding:6px 22px 22px}
+.idbox{background:#eef3f9;border-left:4px solid var(--navy-2);border-radius:0 8px 8px 0;padding:12px 16px;margin:14px 0}
+.idbox b{color:var(--navy-2)}
+.principle{background:#fdf8ef;border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.principle b{color:var(--accent)}
+.flow{margin:16px 0 6px}
+.flow-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.step{margin-bottom:10px}
+.step-card{background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-bottom:8px}
+.step-card .do{font-weight:700;color:var(--ink);font-size:14px;background:#e7eff8;border-radius:6px;padding:2px 8px;display:inline-block}
+.step-card .why{color:var(--ink-soft);font-size:13.5px;margin-top:5px;background:#fdf6e3;border-radius:6px;padding:6px 10px}
+.step-card .why b{color:var(--accent)}
+.step-card .next{color:var(--navy-2);background:#e6f2ea;border-radius:6px;padding:6px 10px;font-size:13.5px;margin-top:6px}
+details.exam{background:#fbfcfd;border:1px dashed #c9d4e0;border-radius:8px;margin:14px 0 8px}
+details.exam summary{cursor:pointer;padding:11px 16px;font-size:13.5px;color:var(--navy);font-weight:700;list-style:none}
+details.exam summary::before{content:'▸';color:var(--accent);margin-right:8px}
+details.exam[open] summary::before{content:'▾'}
+details.exam .exam-body{padding:4px 18px 16px;border-top:1px solid #eef2f6}
+.exam-meta{font-size:12.5px;color:var(--ink-soft);margin:10px 0 6px}
+.exam-meta b{color:var(--accent)}
+.solution{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:14px;margin-top:6px}
+.solution .ans{background:#eef7f0;border-left:4px solid var(--good);border-radius:0 6px 6px 0;padding:7px 11px;margin-top:8px;font-weight:700;color:#14532d}
+.pitfall{background:#fdf1f0;border-left:4px solid var(--warn);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.pitfall b{color:var(--warn)}
+.rule{margin:12px 0;font-size:14px;color:var(--ink-soft)}
+.rule b{color:var(--navy)}
+.chart-box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 16px 6px;margin:16px 0}
+.chart-box h4{font-size:15px;color:var(--navy);margin-bottom:4px}
+.chart-box .cap{font-size:12.5px;color:var(--ink-soft);margin-bottom:6px}
+.chart{width:100%;height:340px}
+.zt-table{width:100%;border-collapse:collapse;font-size:12.8px;table-layout:fixed;margin:12px 0}
+.zt-table th{background:var(--navy);color:#fff;padding:7px 8px;text-align:left;font-weight:500}
+.zt-table td{border:1px solid var(--line);padding:6px 8px;background:#fff;vertical-align:top;word-break:break-all}
+.zt-table tr:nth-child(even) td{background:#f8fafc}
+.note{background:#eef6ff;border:1px solid #cfe0f2;border-radius:8px;padding:12px 16px;font-size:13.5px;color:#23405f;margin:12px 0}
+.backtop{position:fixed;right:26px;bottom:30px;width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:99}
+.flowsvg{width:100%;height:auto;background:#fff;border:1px solid var(--line);border-radius:10px;margin:14px 0}
+@media print{
+  .sidebar,.backtop{display:none}
+  .main{padding:0}
+  .section{max-width:100%;padding:10px 0}
+  .qcard{break-inside:avoid;box-shadow:none}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar">
+  <div class="side-logo">
+    <div class="big">线性代数 · L1</div>
+    <div class="sub">行列式题型全解手册 · 数一 1987—2025</div>
+  </div>
+  <div class="nav-group">总览</div>
+  <a class="nav-item" href="#cover">封面 / 章定位</a>
+  <a class="nav-item" href="#overview">0 · 本章真题总览</a>
+  <div class="nav-group">A 概念与性质</div>
+  <a class="nav-item" href="#a1">A1 逆序数与定义</a>
+  <a class="nav-item" href="#a2">A2 性质化简</a>
+  <a class="nav-item" href="#a3">A3 余子式与展开定理</a>
+  <div class="nav-group">B 数字型行列式</div>
+  <a class="nav-item" href="#b1">B1 低阶直接算</a>
+  <a class="nav-item" href="#b2">B2 行和列和相等型</a>
+  <a class="nav-item" href="#b3">B3 爪形 / 箭形</a>
+  <a class="nav-item" href="#b4">B4 三对角 / 递推</a>
+  <a class="nav-item" href="#b5">B5 范德蒙德型</a>
+  <div class="nav-group">C 抽象行列式（重点）</div>
+  <a class="nav-item" href="#c1">C1 伴随/逆/转置公式</a>
+  <a class="nav-item" href="#c2">C2 |AB| 与分块</a>
+  <a class="nav-item" href="#c3">C3 用特征值求 |A|</a>
+  <a class="nav-item" href="#c4">C4 矩阵方程中求行列式</a>
+  <div class="nav-group">D / E</div>
+  <a class="nav-item" href="#d1">D 克拉默法则</a>
+  <a class="nav-item" href="#e1">E1 判定 |A|=0</a>
+  <a class="nav-item" href="#flow">解题总决策图</a>
+  <a class="nav-item" href="#appendix">附录 · 真题全清单</a>
+</nav>
+
+<main class="main">
+<section class="section cover" id="cover">
+  <div class="hero">
+    <span class="kicker">LINEAR ALGEBRA · L1</span>
+    <h1>线性代数 L1 · 行列式题型全解手册</h1>
+    <div class="sub">真题范围：1987—2025 数学一（数一）｜ 数据来源：真题真刷基础篇 + 提高篇（数一）</div>
+    <div class="stat-row">
+      <div class="stat"><b>18</b><span>真题总数（数一）</span></div>
+      <div class="stat"><b>11 / 7</b><span>基础篇 / 提高篇</span></div>
+      <div class="stat"><b>73</b><span>合计分值</span></div>
+      <div class="stat"><b>10</b><span>抽象行列式 C 类题</span></div>
+    </div>
+  </div>
+  <div class="lead">
+    <h2>本章在线代体系中的位置</h2>
+    <p>行列式是线性代数的"工具章"：直接命题分值不高（年均约 2 分），但它是判断可逆、判断向量组线性相关、判断方程组解的情况、求特征值、判断正定的公共语言。<b>本章真正的重头戏是 C 类抽象行列式</b>——不给出具体矩阵，只给矩阵关系，靠 $|AB|=|A||B|$、$|A^*|=|A|^{n-1}$、$|A|=\prod\lambda_i$ 三条主线硬推。</p>
+    <ol>
+      <li>拿到"算一个具体数字行列式"→ 走 B 类（性质消零 + 展开）。</li>
+      <li>拿到"给矩阵关系求 |·|"→ 走 C 类（套公式，不要硬算元素）。</li>
+      <li>拿到"判断 |A| 是否为 0"→ 走 E1（秩 / 方程组 / 特征值三选一）。</li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="overview">
+  <div class="chapter-head"><div class="chapter-no">0</div><h2>本章真题总览</h2></div>
+  <p class="chapter-desc">考频统计、年份分布与命题规律（三处数字与附录清单、本章台账严格一致）。</p>
+
+  <table class="zt-table">
+    <thead><tr><th style="width:18%">题型编号</th><th style="width:30%">末级题型</th><th style="width:9%">题数</th><th style="width:11%">分值合计</th><th style="width:16%">首次出现</th><th style="width:16%">最近出现</th></tr></thead>
+    <tbody>
+      <tr><td>B1</td><td>低阶数字行列式直接算（含拉普拉斯）</td><td>3</td><td>11</td><td>1996</td><td>2020</td></tr>
+      <tr><td>B4</td><td>三对角 / n 阶递推数字行列式</td><td>2</td><td>8</td><td>2015</td><td>2016</td></tr>
+      <tr><td>B5</td><td>范德蒙德型（抽象外壳）</td><td>1</td><td>4</td><td>2005</td><td>2005</td></tr>
+      <tr><td>C1</td><td>$|A^*|,|A^{-1}|,|kA|$ 公式</td><td>1</td><td>3</td><td>1987</td><td>1987</td></tr>
+      <tr><td>C2</td><td>$|AB|=|A||B|$ 与按列线性</td><td>2</td><td>7</td><td>1988</td><td>2005</td></tr>
+      <tr><td>C3</td><td>用特征值求 $|A|$（交叉 L5）</td><td>3</td><td>16</td><td>1991</td><td>2018</td></tr>
+      <tr><td>C4</td><td>矩阵方程 / 伴随中求行列式</td><td>4</td><td>16</td><td>1994</td><td>2021</td></tr>
+      <tr><td>A3</td><td>余子式 / 代数余子式展开</td><td>1</td><td>5</td><td>2021</td><td>2021</td></tr>
+      <tr><td>E1</td><td>判定 $|A|=0$ / $|A|\ne0$</td><td>3</td><td>12</td><td>1989</td><td>1999</td></tr>
+      <tr style="font-weight:700;background:#eef3f9"><td colspan="2">合计</td><td>18</td><td>73</td><td>1987</td><td>2021</td></tr>
+    </tbody>
+  </table>
+
+  <div class="chart-box"><h4>图 1 · 本章按年份题量分布（1987—2025 数一）</h4><div class="cap">每年至多 1 题；2009 年后明显转向"小题、抽象、与特征值/伴随联姻"。</div><div id="chartYear" class="chart"></div></div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap">
+    <div class="chart-box" style="flex:1;min-width:320px"><h4>图 2 · 三大考点占比</h4><div class="cap">数字型 5 / 抽象型 10 / 判零 3。</div><div id="chartPie" class="chart" style="height:300px"></div></div>
+    <div class="chart-box" style="flex:1;min-width:320px"><h4>图 3 · 近 13 年分值趋势</h4><div class="cap">2013 年后每年 1 道 4—5 分填空。</div><div id="chartTrend" class="chart" style="height:300px"></div></div>
+  </div>
+
+  <div class="note">
+    <b>宏观命题规律：</b>
+    ① 纯行列式近 10 年固定考 1 道填空（4—5 分），不再出大题；
+    ② C 类抽象行列式占半壁江山，$|A^*|=|A|^{n-1}$、$|AB|=|A||B|$、$|A|=\prod\lambda_i$ 是三条命门；
+    ③ B 类数字行列式 2014—2016 连续三年考低阶巧算（拉普拉斯 / 递推），2020 再考对称化简；
+    ④ E1"判 |A|=0"在 1999 年后未单独命题，但其思想贯穿 L2 可逆、L3 相关、L4 解的判定；
+    ⑤ 本章几乎不单独出克拉默法则，D 类仅作工具。
+  </div>
+</section>
+
+<!-- ============ A 概念与性质 ============ -->
+<section class="section">
+  <div class="chapter-head"><div class="chapter-no">A</div><h2>概念与性质</h2></div>
+  <p class="chapter-desc">行列式定义、七条性质、展开定理——是 B、C 两类的运算地基。</p>
+
+  <div class="qcard" id="a1">
+    <div class="qhead"><span class="tag">A1</span><h3>逆序数与 n 阶行列式定义</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>题干要求"由定义展开""逆序数""不同行不同列元素乘积"；数一极少单独命题，多在选择概念题里埋伏。</div>
+      <div class="principle"><b>核心原理：</b>$D_n=\sum_{j_1\cdots j_n}(-1)^{\tau(j_1\cdots j_n)}a_{1j_1}\cdots a_{nj_n}$，共 $n!$ 项；上（下）三角行列式 = 主对角线乘积。</div>
+      <div class="pitfall"><b>易错点：</b>① 数错逆序数；② 忘记每一项必须"不同行不同列"；③ 副对角行列式符号是 $(-1)^{n(n-1)/2}$ 不是 $(-1)^{n}$。</div>
+      <div class="rule"><b>命题规律：</b>数一 1987—2025 未单独以定义出大题；只在性质题里间接用。</div>
+    </div>
+  </div>
+
+  <div class="qcard" id="a2">
+    <div class="qhead"><span class="tag">A2</span><h3>用性质做恒等化简</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>给的是若干列向量拼成的矩阵，问 $|A+B|$、$|\cdot|$ 之间的关系；或数字行列式里出现大量相同/成比例元素。</div>
+      <div class="principle"><b>核心性质（七条）：</b>
+        ① $|A^{\mathrm T}|=|A|$；② 某行提公因子 $k$；③ 两行互换行列式变号；④ 两行相同（成比例）$D=0$；
+        ⑤ 某行 $k$ 倍加到另一行 $D$ 不变；⑥ <b>对某一行（列）线性</b>：$|\alpha+\beta,\gamma,\cdots|=|\alpha,\gamma,\cdots|+|\beta,\gamma,\cdots|$；
+        ⑦ $|kA|=k^n|A|$（注意是 $n$ 次方，不是 $k$ 倍）。
+      </div>
+      <div class="flow"><div class="flow-title">完整解题链路</div>
+        <div class="step"><div class="step-card"><span class="do">Step1｜看"和"在哪一列</span><div class="why"><b>为什么：</b>性质⑥只能对<b>单独一行/列</b>拆，不能 $|A+B|=|A|+|B|$。</div><div class="next">下一步：若两矩阵只有第 1 列不同、其余列全同 → 拆成两个行列式相加。</div></div></div>
+        <div class="step"><div class="step-card"><span class="do">Step2｜数清公因子提了几次</span><div class="why"><b>为什么：</b>$A+B$ 的每一列若都变成原来 2 倍，要提 $2^n$。</div><div class="next">下一步：代入已知 $|A|,|B|$ 相加。</div></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜1988 数学一 二(4)（3 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：基础篇习题 p139｜考点：按列线性 + 公因子</div>
+          <div class="solution">$A=[\alpha,\gamma_2,\gamma_3,\gamma_4],\ B=[\beta,\gamma_2,\gamma_3,\gamma_4]$，$|A|=4,|B|=1$。<br>
+          $A+B=[\alpha+\beta,\ 2\gamma_2,\ 2\gamma_3,\ 2\gamma_4]=8[\alpha+\beta,\gamma_2,\gamma_3,\gamma_4]=8(|A|+|B|)=8\times5$。
+          <div class="ans">答案：$|A+B|=40$</div></div>
+        </div>
+      </details>
+      <div class="pitfall"><b>易错点：</b>① 直接写 $|A+B|=|A|+|B|=5$（漏提 $2^3$）；② 公因子只提一次。</div>
+    </div>
+  </div>
+
+  <div class="qcard" id="a3">
+    <div class="qhead"><span class="tag">A3</span><h3>余子式 / 代数余子式与展开定理</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>题目出现 $A_{ij}$（代数余子式）、求"某行（列）元素余子式之和"、伴随矩阵 $A^*$。</div>
+      <div class="principle"><b>核心：</b>
+        展开定理 $\sum_j a_{ij}A_{kj}=|A|\delta_{ik}$；
+        $A^*=(A_{ji})$（<b>注意转置</b>，第 $i$ 列是第 $i$ 行余子式）；
+        不搭配展开 $\sum_j a_{ij}A_{kj}=0\ (i\ne k)$。
+      </div>
+      <div class="flow"><div class="flow-title">解题链路</div>
+        <div class="step"><div class="step-card"><span class="do">Step1｜把"余子式之和"翻译成 $A^*$ 的某行/列和</span><div class="why"><b>为什么：</b>$\sum_i A_{i1}$ 是 $A^*$ 第 1 行元素之和 $=\mathbf 1^{\mathrm T}A^*\mathbf 1$。</div></div></div>
+        <div class="step"><div class="step-card"><span class="do">Step2｜用 $AA^*=|A|E$ 或 $A^*=|A|A^{-1}$</span><div class="why"><b>为什么：</b>避免一个个算 9 个余子式。</div><div class="next">下一步：若已知 $A\mathbf 1=\lambda\mathbf 1$，则 $A^*\mathbf 1=\frac{|A|}{\lambda}\mathbf 1$。</div></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜2021 数学一 15 题（5 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：提高篇题目 p008 / 答案 p074</div>
+          <div class="solution">$A$ 三阶，每行和为 2 即 $A\begin{pmatrix}1\\1\\1\end{pmatrix}=2\begin{pmatrix}1\\1\\1\end{pmatrix}$，$\lambda=2$。<br>
+          由 $AA^*=|A|E$，两边右乘 $\mathbf 1$：$A(A^*\mathbf 1)=|A|\mathbf 1=3\mathbf 1$；又 $A\mathbf 1=2\mathbf 1$，故 $A^*\mathbf 1=\frac{3}{2}\mathbf 1$。<br>
+          而 $A^*\mathbf 1$ 的第 1 个分量正是 $A_{11}+A_{21}+A_{31}$。
+          <div class="ans">答案：$3/2$</div></div>
+        </div>
+      </details>
+      <div class="note">拓展：1994 九题（$A^*=A^{\mathrm T}$ 证 $|A|\ne0$）本质也是展开定理，见 E1。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ B 数字型 ============ -->
+<section class="section">
+  <div class="chapter-head"><div class="chapter-no">B</div><h2>数字型行列式计算</h2></div>
+  <p class="chapter-desc">矩阵元素全给，目标是算出一个数。口诀：先消零造零，再展开；别一上来硬展开。</p>
+
+  <div class="qcard" id="b1">
+    <div class="qhead"><span class="tag">B1</span><h3>低阶直接算（含拉普拉斯、对称性消零）</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>3—4 阶、含大量 0、呈"反对角 / 块状 / 对称"结构。</div>
+      <div class="principle"><b>核心工具：</b>① 拉普拉斯展开（选零最多的 $k$ 行）；② 行/列互换把它凑成分块三角；③ 对称矩阵先做"行加行"消元。</div>
+      <div class="flow"><div class="flow-title">解题链路</div>
+        <div class="step"><div class="step-card"><span class="do">Step1｜画 nonzero 位置图</span><div class="why"><b>为什么：</b>看哪些行/列只有 2 个非零元，决定能否拉普拉斯。</div></div></div>
+        <div class="step"><div class="step-card"><span class="do">Step2｜选零最多的两行展开</span><div class="why"><b>为什么：</b>把 4 阶拆成两个 2 阶乘积，避免 3 阶。</div><div class="next">下一步：数清楚拉普拉斯符号 $(-1)^{\sum i+\sum j}$。</div></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜1996 数学一 二(5)（3 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：基础篇习题 p137</div>
+          <div class="solution">$D=\begin{vmatrix}a_1&0&0&b_1\\0&a_2&b_2&0\\0&b_3&a_3&0\\b_4&0&0&a_4\end{vmatrix}$。按第 2、3 行拉普拉斯：子式 $\begin{vmatrix}a_2&b_2\\b_3&a_3\end{vmatrix}=a_2a_3-b_2b_3$，余子式 $\begin{vmatrix}a_1&b_1\\b_4&a_4\end{vmatrix}=a_1a_4-b_1b_4$，行指标 $(2,3)$、列指标 $(2,3)$，符号 $(-1)^{5+5}=+$。
+          <div class="ans">答案：选 (D) $(a_2a_3-b_2b_3)(a_1a_4-b_1b_4)$</div></div>
+        </div>
+      </details>
+      <details class="exam" open><summary>【真题｜2014 数学一 5 题（4 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：提高篇题目 p005 / 答案 p070</div>
+          <div class="solution">$D=\begin{vmatrix}0&a&b&0\\a&0&0&b\\0&c&d&0\\c&0&0&d\end{vmatrix}$。换行换列凑块，得 $D=-\begin{vmatrix}c&d\\a&b\end{vmatrix}\begin{vmatrix}d&c\\b&a\end{vmatrix}=-(ad-bc)^2$。
+          <div class="ans">答案：选 (B) $-(ad-bc)^2$</div></div>
+        </div>
+      </details>
+      <details class="exam" open><summary>【真题｜2020 数学一 13 题（4 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：提高篇题目 p006 / 答案 p072</div>
+          <div class="solution">第 1 行加第 2 行、第 3 行加第 4 行，再用第 1 列消第 2、3 列，化出 $a^2\begin{vmatrix}a&2\\2&a\end{vmatrix}$。
+          <div class="ans">答案：$a^2(a^2-4)$</div></div>
+        </div>
+      </details>
+      <div class="pitfall"><b>易错点：</b>① 拉普拉斯符号漏算；② 把 4 阶当对角直接乘；③ 2020 题硬展开算到崩溃，其实行相加两步就清。</div>
+    </div>
+  </div>
+
+  <div class="qcard" id="b2">
+    <div class="qhead"><span class="tag">B2</span><h3>行和（列和）相等型</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>每行（列）元素之和为同一常数 $s$。</div>
+      <div class="principle"><b>套路：</b>把第 2…n 列全加到第 1 列 → 提出公因子 $s$ → 第 1 列全 1 → 消元化三角。数一 2009 后未单独考；典型拓展见 1997 数四（全 1 / 全 0 矩阵）。</div>
+      <div class="rule"><b>结论速记：</b>$J_n$（全 1 矩阵）$|J_n+(c-1)E|=c^{n-1}(c+n-1)$。</div>
+    </div>
+  </div>
+
+  <div class="qcard" id="b3">
+    <div class="qhead"><span class="tag">B3</span><h3>爪形 / 箭形行列式</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>除第一行、第一列和主对角线外全是 0（"爪"字）。</div>
+      <div class="principle"><b>套路：</b>用主对角线元素把第一列（行）其余元素消成 0，化为上（下）三角。数一 1987—2025 未单独命制，了解即可。</div>
+    </div>
+  </div>
+
+  <div class="qcard" id="b4">
+    <div class="qhead"><span class="tag">B4</span><h3>三对角 / n 阶递推型</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>$n$ 阶、主对角线 + 两条次对角线（或末列全常数），矩阵呈带状。</div>
+      <div class="principle"><b>核心：</b>按第一行（列）展开建立 $D_n=pD_{n-1}+qD_{n-2}$ 或 $D_n=pD_{n-1}+q$ 的一阶递推，再迭代/套等比数列公式。</div>
+      <div class="flow"><div class="flow-title">解题链路</div>
+        <div class="step"><div class="step-card"><span class="do">Step1｜按含 0 最多的行展开</span><div class="why"><b>为什么：</b>带状矩阵第一行通常只有 2 个非零元，展开就出 $D_{n-1}$。</div></div></div>
+        <div class="step"><div class="step-card"><span class="do">Step2｜写递推、算初值 $D_1,D_2$</span><div class="why"><b>为什么：</b>一阶递推 $D_n=pD_{n-1}+q$ 解为 $D_n=p^{n-1}D_1+q\frac{p^{n-1}-1}{p-1}$。</div></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜2015 数学一 13 题（4 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：提高篇题目 p006 / 答案 p070–p071</div>
+          <div class="solution">按第一列展开得 $D_n=2D_{n-1}+2$，$D_2=\begin{vmatrix}2&2\\-1&2\end{vmatrix}=6$。令 $E_n=D_n+2$，则 $E_n=2E_{n-1}$，$E_2=8$，$E_n=2^{n+1}$。
+          <div class="ans">答案：$D_n=2^{n+1}-2=2(2^n-1)$</div></div>
+        </div>
+      </details>
+      <details class="exam" open><summary>【真题｜2016 数学一 13 题（4 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：提高篇题目 p006 / 答案 p072</div>
+          <div class="solution">$D=\begin{vmatrix}\lambda&-1&0&0\\0&\lambda&-1&0\\0&0&\lambda&-1\\4&3&2&\lambda+1\end{vmatrix}$。按第一列展开：$\lambda\cdot\begin{vmatrix}\lambda&-1&0\\0&\lambda&-1\\3&2&\lambda+1\end{vmatrix}+4(-1)^{4+1}\begin{vmatrix}-1&0&0\\\lambda&-1&0\\0&\lambda&-1\end{vmatrix}=\lambda(\lambda^3+\lambda^2+2\lambda+3)+4$。
+          <div class="ans">答案：$\lambda^4+\lambda^3+2\lambda^2+3\lambda+4$</div></div>
+        </div>
+      </details>
+      <div class="pitfall"><b>易错点：</b>① 递推符号写错（余子式代数符号）；② 忘记验证 $D_1,D_2$；③ 2015 题难度系数仅 0.257，是本章最易失分的填空题。</div>
+    </div>
+  </div>
+
+  <div class="qcard" id="b5">
+    <div class="qhead"><span class="tag">B5</span><h3>范德蒙德型</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>列向量做线性组合，系数恰好是 $1,t,t^2$ 这种幂次；或数字矩阵列是 $1,x,x^2$。</div>
+      <div class="principle"><b>公式：</b>$V_n=\prod_{1\le i<j\le n}(x_j-x_i)$。</div>
+      <details class="exam" open><summary>【真题｜2005 数学一 5 题（4 分）】（抽象外壳下的范德蒙德）</summary>
+        <div class="exam-body"><div class="exam-meta">来源：基础篇习题 p139 / 答案 p125</div>
+          <div class="solution">$B=A\begin{pmatrix}1&1&1\\1&2&3\\1&4&9\end{pmatrix}$，右边 $V=\prod_{i<j}(x_j-x_i)=(2-1)(3-1)(3-2)=2$。
+          <div class="ans">答案：$|B|=|A|\cdot2=2$</div></div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ C 抽象 ============ -->
+<section class="section">
+  <div class="chapter-head"><div class="chapter-no">C</div><h2>抽象行列式计算（本章重头戏）</h2></div>
+  <p class="chapter-desc">不给具体矩阵，只给矩阵关系。四条主线：伴随公式、乘积公式、特征值、矩阵方程。</p>
+
+  <div class="qcard" id="c1">
+    <div class="qhead"><span class="tag">C1</span><h3>$|kA|,\ |A^{\mathrm T}|,\ |A^{-1}|,\ |A^*|$ 公式</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>题干出现 $A^*$、$A^{-1}$、$kA$、$|A|=a$，求另一个行列式。</div>
+      <div class="principle"><b>必背公式（$A$ 为 $n$ 阶）：</b>
+        $|A^{\mathrm T}|=|A|$；$|kA|=k^n|A|$；$|A^{-1}|=|A|^{-1}$；
+        $|A^*|=|A|^{n-1}$；$|AB|=|A||B|$；$|A^k|=|A|^k$。
+      </div>
+      <details class="exam" open><summary>【真题｜1987 数学一 五(4)（3 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：基础篇习题 p138</div>
+          <div class="solution">$AA^*=|A|E$ 两边取行列式：$|A||A^*|=|A|^n$，故 $|A^*|=|A|^{n-1}=a^{n-1}$。
+          <div class="ans">答案：选 (C) $a^{n-1}$</div></div>
+        </div>
+      </details>
+      <div class="pitfall"><b>易错点：</b>① $|kA|$ 写成 $k|A|$（应为 $k^n$）；② $|A^*|$ 记成 $|A|^n$（应为 $n-1$）。</div>
+    </div>
+  </div>
+
+  <div class="qcard" id="c2">
+    <div class="qhead"><span class="tag">C2</span><h3>$|AB|=|A||B|$ 与分块三角</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>把矩阵写成两个矩阵相乘（列向量线性组合 = 右乘系数矩阵）；或出现分块对角。</div>
+      <div class="principle"><b>核心：</b>
+        若 $B=AC$，则 $|B|=|A||C|$；
+        分块对角 $\begin{vmatrix}P&O\\O&Q\end{vmatrix}=|P||Q|$；
+        反对角 $\begin{vmatrix}O&P\\Q&O\end{vmatrix}=(-1)^{mn}|P||Q|$（$P$ 为 $m$ 阶）。
+      </div>
+      <details class="exam" open><summary>【真题｜2005 数学一 5 题（4 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：基础篇习题 p139（见 B5）——这里强调"列组合=右乘"</div>
+          <div class="solution">$B=AC$，$|C|=2$，$|B|=|A||C|=2$。</div>
+        </div>
+      </details>
+      <div class="note">拓展：1992 数三 $\begin{vmatrix}O&A\\B&O\end{vmatrix}=(-1)^{mn}ab$ 是分块反对角标准题。</div>
+    </div>
+  </div>
+
+  <div class="qcard" id="c3">
+    <div class="qhead"><span class="tag">C3</span><h3>用特征值求 $|A|$（与 L5 交叉）</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>题干给"特征值""相似""正定""正交"，问 $|A|,|A+kE|,|f(A)|$。</div>
+      <div class="principle"><b>核心：</b>$|A|=\prod_{i=1}^n\lambda_i$；若 $\lambda_i$ 是 $A$ 的特征值，则 $f(A)$ 的特征值是 $f(\lambda_i)$，故 $|f(A)|=\prod f(\lambda_i)$。
+        正交阵特征值 $\pm1$；正定阵特征值全正。
+      </div>
+      <div class="flow"><div class="flow-title">解题链路</div>
+        <div class="step"><div class="step-card"><span class="do">Step1｜列出 $A$ 的全部特征值</span><div class="why"><b>为什么：</b>行列式就是特征值之积，这是最高效路径。</div></div></div>
+        <div class="step"><div class="step-card"><span class="do">Step2｜平移：$A+kE$ 的特征值为 $\lambda_i+k$</span><div class="next">下一步：连乘即得 $|A+kE|$。</div></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜1991 数学一 八题（6 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：基础篇习题 p140 / 答案 p125</div>
+          <div class="solution">$A$ 正定 $\Rightarrow\lambda_i>0$。$A+E$ 特征值 $\lambda_i+1>1$，故 $|A+E|=\prod(\lambda_i+1)>1$。</div>
+        </div>
+      </details>
+      <details class="exam" open><summary>【真题｜1995 数学一 九题（6 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：基础篇习题 p141 / 答案 p126</div>
+          <div class="solution">$AA^{\mathrm T}=E$ 为正交阵，特征值模 1；$|A|<0$ 故 $-1$ 是特征值，从而 $|A+E|=0$。代数推导：$|A+E|=|A+AA^{\mathrm T}|=|A||(A+E)^{\mathrm T}|=|A||A+E|$，$(1-|A|)|A+E|=0$。
+          <div class="ans">答案：$|A+E|=0$</div></div>
+        </div>
+      </details>
+      <details class="exam" open><summary>【真题｜2018 数学一 13 题（4 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：提高篇题目 p008 / 答案 p074</div>
+          <div class="solution">设特征值 $\lambda_1\ne\lambda_2$。$A^2(\alpha_1+\alpha_2)=\alpha_1+\alpha_2\Rightarrow\lambda_1^2=\lambda_2^2=1$。不同特征值 $\Rightarrow\{\lambda_1,\lambda_2\}=\{1,-1\}$。
+          <div class="ans">答案：$|A|=-1$</div></div>
+        </div>
+      </details>
+      <div class="pitfall"><b>易错点：</b>① 漏"$n$ 个特征值要全列齐"；② 平移方向反了（$A-3E$ 的特征值是 $\lambda_i-3$ 不是 $3-\lambda_i$）；③ 1995 题想不到正交阵特征值只能 $\pm1$。</div>
+    </div>
+  </div>
+
+  <div class="qcard" id="c4">
+    <div class="qhead"><span class="tag">C4</span><h3>矩阵方程中求行列式</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>给 $A$（可能具体）和含 $B$ 的矩阵方程，求 $|B|$。</div>
+      <div class="principle"><b>套路：</b>不要解出 $B$！先把方程整理成 $(\cdots)B(\cdots)=E$ 或 $(\cdots)B=C$，再<b>两边取行列式</b>。用 $|A^*|=|A|^{n-1}$ 消掉 $A^*$。</div>
+      <div class="flow"><div class="flow-title">解题链路</div>
+        <div class="step"><div class="step-card"><span class="do">Step1｜移项提取 $B$</span><div class="why"><b>为什么：</b>矩阵方程左/右乘可逆阵是等价变形。</div></div></div>
+        <div class="step"><div class="step-card"><span class="do">Step2｜两边取行列式</span><div class="why"><b>为什么：</b>$|P||B||Q|=|R|$，把数字 $|P|,|Q|,|R|$ 算出即可解 $|B|$。</div></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜2004 数学一 5 题（4 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：基础篇习题 p139</div>
+          <div class="solution">$ABA^*=2BA^*+E\Rightarrow(A-2E)BA^*=E$。$|A|=3,|A^*|=9,|A-2E|=1$。$1\cdot|B|\cdot9=1$。
+          <div class="ans">答案：$|B|=1/9$</div></div>
+        </div>
+      </details>
+      <details class="exam" open><summary>【真题｜2006 数学一 5 题（4 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：基础篇习题 p140 / 答案 p125</div>
+          <div class="solution">$BA=B+2E\Rightarrow B(A-E)=2E$。$|A-E|=\begin{vmatrix}1&1\\-1&1\end{vmatrix}=2$，$|2E|=4$。$|B|\cdot2=4$。
+          <div class="ans">答案：$|B|=2$</div></div>
+        </div>
+      </details>
+      <details class="exam" open><summary>【真题｜2013 数学一 13 题（4 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：提高篇题目 p008 / 答案 p074</div>
+          <div class="solution">$a_{ij}=-A_{ij}\Rightarrow A^{\mathrm T}=-A^*$。$|A|=|A^{\mathrm T}|=|-A^*|=(-1)^3|A^*|=-|A|^2$。解得 $|A|=0$ 或 $-1$；又 $A\ne O$ 且 $A^*=-A$，若 $|A|=0$ 则 $A=O$ 矛盾。
+          <div class="ans">答案：$|A|=-1$</div></div>
+        </div>
+      </details>
+      <div class="pitfall"><b>易错点：</b>① 试图先求 $B$ 再算行列式（慢且易错）；② $|2E|$ 算成 $2$（应为 $2^n$，2 阶是 4）；③ $|A^*|$ 忘乘方。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ D / E ============ -->
+<section class="section">
+  <div class="chapter-head"><div class="chapter-no">D</div><h2>克拉默法则</h2></div>
+  <p class="chapter-desc">数一 1987—2025 未单独命题，仅作工具。</p>
+  <div class="qcard" id="d1">
+    <div class="qhead"><span class="tag">D1</span><h3>克拉默法则（判定唯一解 / 公式解）</h3></div>
+    <div class="qbody">
+      <div class="principle"><b>结论：</b>$n$ 阶方程 $Ax=b$，若 $|A|\ne0$，则有唯一解 $x_i=D_i/D$；若 $|A|=0$，法则失效，转 L4 方程组理论。数一极少直接考，知道即可。</div>
+    </div>
+  </div>
+
+  <div class="chapter-head"><div class="chapter-no">E</div><h2>隐式应用 · 判定 $|A|=0$</h2></div>
+  <p class="chapter-desc">近十年未单独命题，但贯穿 L2/L3/L4/L5。</p>
+  <div class="qcard" id="e1">
+    <div class="qhead"><span class="tag">E1</span><h3>判定 $|A|=0$（或 $\ne0$）</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>选择题问"必有 $|AB|=0$""证明 $|A|\ne0$"。</div>
+      <div class="principle"><b>五条路：</b>
+        ① 证 $r(A)<n$；② $Ax=0$ 有非零解；③ $0$ 是特征值（$|A|=\prod\lambda_i=0$）；
+        ④ 反证法；⑤ $|A|=-|A|\Rightarrow|A|=0$（奇数阶反对称阵）。
+      </div>
+      <details class="exam" open><summary>【真题｜1989 数学一 二(5)（3 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：基础篇习题 p142 / 答案 p127</div>
+          <div class="solution">$|A|=0\iff$ 列相关 $\iff$ 必有某列是其余列的线性组合。(A)(B) 充分非必要，(D) 错在"任一"。
+          <div class="ans">答案：选 (C)</div></div>
+        </div>
+      </details>
+      <details class="exam" open><summary>【真题｜1994 数学一 九题（6 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：基础篇习题 p143 / 答案 p127</div>
+          <div class="solution">$A^*=A^{\mathrm T}\Rightarrow A_{ij}=a_{ij}$。不妨 $a_{11}\ne0$，按第一行展开 $|A|=\sum_j a_{1j}^2>0$。
+          <div class="ans">证毕：$|A|\ne0$</div></div>
+        </div>
+      </details>
+      <details class="exam" open><summary>【真题｜1999 数学一 二(4)（3 分）】</summary>
+        <div class="exam-body"><div class="exam-meta">来源：基础篇习题 p143 / 答案 p127</div>
+          <div class="solution">$AB$ 是 $m$ 阶阵，$r(AB)\le r(A)\le\min(m,n)$。$m>n$ 时 $r(AB)\le n<m$，故 $|AB|=0$。
+          <div class="ans">答案：选 (B)</div></div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 决策图 ============ -->
+<section class="section" id="flow">
+  <div class="chapter-head"><div class="chapter-no">图</div><h2>解题总决策流程</h2></div>
+  <p class="chapter-desc">拿到本章任意题，先看"矩阵给没给具体元素"，再按判据分流。</p>
+  <svg class="flowsvg" viewBox="0 0 1000 460" xmlns="http://www.w3.org/2000/svg">
+    <defs><style>
+      .nb{fill:#fff;stroke:#1e3a5f;stroke-width:1.5;rx:8}
+      .nb2{fill:#fdf0dc;stroke:#d97706;stroke-width:1.5}
+      .nb3{fill:#eef3f9;stroke:#2c5282;stroke-width:1.5}
+      .tx{font:13px 'Microsoft YaHei';fill:#222;text-anchor:middle}
+      .txs{font:11px 'Microsoft YaHei';fill:#55606e;text-anchor:middle}
+      .ln{stroke:#888;stroke-width:1.4;fill:none;marker-end:url(#ar)}
+      #ar{fill:#888}
+    </style></defs>
+    <rect class="nb" x="380" y="10" width="240" height="46" rx="8"/>
+    <text class="tx" x="500" y="38">拿到一道行列式题</text>
+    <path class="ln" d="M500,56 L500,86"/>
+    <rect class="nb2" x="360" y="86" width="280" height="46" rx="8"/>
+    <text class="tx" x="500" y="114">矩阵元素是否具体给出？</text>
+
+    <path class="ln" d="M430,132 L200,170"/>
+    <text class="txs" x="300" y="148">是（数字型）</text>
+    <path class="ln" d="M570,132 L800,170"/>
+    <text class="txs" x="700" y="148">否（抽象型）</text>
+
+    <rect class="nb3" x="60" y="170" width="280" height="46" rx="8"/>
+    <text class="tx" x="200" y="198">B：先消零造零再展开</text>
+    <rect class="nb3" x="660" y="170" width="280" height="46" rx="8"/>
+    <text class="tx" x="800" y="198">C：套三大公式之一</text>
+
+    <path class="ln" d="M200,216 L200,246"/>
+    <rect class="nb" x="40" y="246" width="120" height="40" rx="8"/>
+    <text class="tx" x="100" y="270">B1 低阶/拉普拉斯</text>
+    <rect class="nb" x="170" y="246" width="120" height="40" rx="8"/>
+    <text class="tx" x="230" y="270">B4 n阶递推</text>
+    <rect class="nb" x="300" y="246" width="120" height="40" rx="8"/>
+    <text class="tx" x="360" y="270">B5 范德蒙德</text>
+
+    <path class="ln" d="M800,216 L800,246"/>
+    <rect class="nb" x="640" y="246" width="110" height="40" rx="8"/>
+    <text class="tx" x="695" y="270">C1 伴随/逆公式</text>
+    <rect class="nb" x="760" y="246" width="110" height="40" rx="8"/>
+    <text class="tx" x="815" y="270">C2 |AB|乘积</text>
+    <rect class="nb" x="880" y="246" width="110" height="40" rx="8"/>
+    <text class="tx" x="935" y="270">C3 特征值</text>
+
+    <path class="ln" d="M750,286 L500,330"/>
+    <text class="txs" x="660" y="312">出现矩阵方程→</text>
+    <rect class="nb2" x="380" y="330" width="240" height="44" rx="8"/>
+    <text class="tx" x="500" y="357">C4：整理后两边取行列式</text>
+
+    <path class="ln" d="M500,374 L500,404"/>
+    <rect class="nb3" x="330" y="404" width="340" height="44" rx="8"/>
+    <text class="tx" x="500" y="431">问"|A|是否=0"→ E1：秩 / 方程组 / 特征值</text>
+  </svg>
+</section>
+
+<!-- ============ 附录 ============ -->
+<section class="section" id="appendix">
+  <div class="chapter-head"><div class="chapter-no">附</div><h2>附录 · 本章真题全清单</h2></div>
+  <p class="chapter-desc">共 18 行，与本章台账.csv 行数一致。</p>
+  <table class="zt-table">
+    <thead><tr><th style="width:8%">年份</th><th style="width:12%">题号</th><th style="width:8%">分值</th><th style="width:14%">题型</th><th style="width:14%">来源页</th><th>题目摘要 / 答案</th></tr></thead>
+    <tbody>
+      <tr><td>1996</td><td>二(5)</td><td>3</td><td>B1</td><td>基础p137</td><td>四阶拉普拉斯行列式 → (D)</td></tr>
+      <tr><td>1987</td><td>五(4)</td><td>3</td><td>C1</td><td>基础p138</td><td>|A|=a 求|A*| → a^(n-1)</td></tr>
+      <tr><td>1988</td><td>二(4)</td><td>3</td><td>A2/C2</td><td>基础p139</td><td>按列线性求|A+B| → 40</td></tr>
+      <tr><td>2004</td><td>5</td><td>4</td><td>C4</td><td>基础p139</td><td>ABA*=2BA*+E 求|B| → 1/9</td></tr>
+      <tr><td>2005</td><td>5</td><td>4</td><td>B5/C2</td><td>基础p139</td><td>列组合范德蒙德 → 2</td></tr>
+      <tr><td>2006</td><td>5</td><td>4</td><td>C4</td><td>基础p140</td><td>BA=B+2E 求|B| → 2</td></tr>
+      <tr><td>1991</td><td>八</td><td>6</td><td>C3</td><td>基础p140</td><td>正定阵证|A+E|&gt;1</td></tr>
+      <tr><td>1995</td><td>九</td><td>6</td><td>C3</td><td>基础p141</td><td>正交阵|A|&lt;0 求|A+E| → 0</td></tr>
+      <tr><td>1989</td><td>二(5)</td><td>3</td><td>E1</td><td>基础p142</td><td>|A|=0 列关系 → (C)</td></tr>
+      <tr><td>1994</td><td>九</td><td>6</td><td>E1</td><td>基础p143</td><td>A*=A^T 证|A|≠0</td></tr>
+      <tr><td>1999</td><td>二(4)</td><td>3</td><td>E1</td><td>基础p143</td><td>秩判|AB|=0 → (B)</td></tr>
+      <tr><td>2014</td><td>5</td><td>4</td><td>B1</td><td>提高p005</td><td>反对角四阶 → (B) -(ad-bc)²</td></tr>
+      <tr><td>2015</td><td>13</td><td>4</td><td>B4</td><td>提高p006</td><td>n阶递推 → 2(2ⁿ-1)</td></tr>
+      <tr><td>2016</td><td>13</td><td>4</td><td>B4</td><td>提高p006</td><td>相伴型四阶 → λ⁴+λ³+2λ²+3λ+4</td></tr>
+      <tr><td>2020</td><td>13</td><td>4</td><td>B1</td><td>提高p006</td><td>对称四阶化简 → a²(a²-4)</td></tr>
+      <tr><td>2013</td><td>13</td><td>4</td><td>C4</td><td>提高p008</td><td>aij+Aij=0 求|A| → -1</td></tr>
+      <tr><td>2018</td><td>13</td><td>4</td><td>C3</td><td>提高p008</td><td>特征值反求|A| → -1</td></tr>
+      <tr><td>2021</td><td>15</td><td>5</td><td>A3/C4</td><td>提高p008</td><td>行和2求余子式和 → 3/2</td></tr>
+    </tbody>
+  </table>
+  <div class="note">备注：1994 试卷Ⅱ（特征值 2,4,…,2n 求 |A-3E|）按书中标注属数学二卷，未计入数一 11 题，<b>待人工核对</b>是否在数一出现。</div>
+</section>
+
+</main>
+</div>
+<a class="backtop" href="#cover" title="回到顶部">↑</a>
+<script>
+(function(){
+  function bar(){
+    var el=document.getElementById('chartYear'); if(!el||typeof echarts==='undefined')return;
+    echarts.init(el).setOption({
+      grid:{left:40,right:20,top:30,bottom:40},
+      xAxis:{type:'category',data:['1987','1988','1989','1991','1994','1995','1996','1999','2004','2005','2006','2013','2014','2015','2016','2018','2020','2021'],axisLabel:{rotate:45,fontSize:10}},
+      yAxis:{type:'value',minInterval:1,name:'题数'},
+      series:[{type:'bar',data:[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],itemStyle:{color:'#1e3a5f'},barWidth:'60%'}]
+    });
+  }
+  function pie(){
+    var el=document.getElementById('chartPie'); if(!el||typeof echarts==='undefined')return;
+    echarts.init(el).setOption({
+      tooltip:{trigger:'item'},
+      legend:{bottom:0},
+      series:[{type:'pie',radius:['40%','68%'],data:[
+        {value:5,name:'B 数字型',itemStyle:{color:'#1e3a5f'}},
+        {value:10,name:'C 抽象型',itemStyle:{color:'#d97706'}},
+        {value:3,name:'E 判零',itemStyle:{color:'#2c5282'}}
+      ],label:{formatter:'{b}: {c}题'}}]
+    });
+  }
+  function trend(){
+    var el=document.getElementById('chartTrend'); if(!el||typeof echarts==='undefined')return;
+    echarts.init(el).setOption({
+      grid:{left:40,right:20,top:30,bottom:30},
+      xAxis:{type:'category',data:['2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],axisLabel:{fontSize:10}},
+      yAxis:{type:'value',name:'分'},
+      series:[{type:'line',data:[4,4,4,4,0,4,0,4,5,0,0,0,0],smooth:true,itemStyle:{color:'#d97706'},areaStyle:{color:'rgba(217,119,6,.15)'}}]
+    });
+  }
+  function go(){bar();pie();trend();}
+  if(window.MathJax&&window.MathJax.startup){window.MathJax.startup.then(function(){setTimeout(go,300);});}
+  else{window.addEventListener('load',function(){setTimeout(go,300);});}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>线性代数 L5 特征值、特征向量与相似对角化 · 题型全解手册（1987—2025 数学一）</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+  svg: { fontCache: 'global' }, options: { processHtmlClass: 'tex' }
+};
+</script>
+<script src="../assets/tex-svg.js"></script>
+<script src="../assets/echarts.min.js"></script>
+<style>
+:root{
+  --navy:#1e3a5f; --navy2:#2c5282; --ink:#222; --soft:#556;
+  --paper:#fafaf6; --card:#fff; --line:#e3e0d6;
+  --accent:#d97706; --accentsoft:#fdf3e3;
+  --good:#1e7a46; --warn:#b03a2e;
+  --doblue:#eaf1f8; --doyellow:#fdf6e3; --dogreen:#e9f5ec;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Microsoft YaHei','PingFang SC',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.75}
+.layout{display:flex;min-height:100vh}
+/* sidebar */
+.sidebar{width:250px;flex:0 0 250px;background:var(--navy);color:#d8e3ef;position:sticky;top:0;height:100vh;overflow-y:auto;padding:20px 0 60px}
+.sidebar::-webkit-scrollbar{width:6px}.sidebar::-webkit-scrollbar-thumb{background:#3d5a7a;border-radius:3px}
+.side-logo{padding:4px 20px 14px;border-bottom:1px solid #2c4a6b;margin-bottom:10px}
+.side-logo .big{font-size:16px;font-weight:700;color:#fff;letter-spacing:1px}
+.side-logo .sub{font-size:11px;color:#9db4cc;margin-top:2px}
+.nav-group{font-size:11px;color:#7f99b5;padding:12px 20px 4px;letter-spacing:2px}
+.nav-item{display:block;color:#c9d8e8;text-decoration:none;font-size:13px;padding:6px 20px;border-left:3px solid transparent}
+.nav-item:hover{background:#1e3c5e;color:#fff;border-left-color:var(--accent)}
+.main{flex:1;min-width:0;padding:0 0 80px}
+.section{max-width:1000px;margin:0 auto;padding:40px 36px 8px}
+/* hero */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;border-radius:12px;padding:38px 40px;margin-top:28px;position:relative;overflow:hidden}
+.hero::after{content:'λ';position:absolute;right:10px;bottom:-40px;font-size:200px;font-family:Georgia,serif;color:rgba(255,255,255,.07);font-weight:700}
+.hero .kicker{display:inline-block;background:var(--accent);font-size:12px;letter-spacing:2px;padding:3px 12px;border-radius:4px;margin-bottom:14px}
+.hero h1{font-size:28px;font-weight:700}.hero .sub{color:#bcd0e4;font-size:14px;margin-top:8px}
+.stat-row{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 18px;text-align:center}
+.stat b{display:block;font-size:22px;color:#ffce8a}.stat span{font-size:11px;color:#c9d8e8}
+/* head */
+.breadcrumb{font-size:12px;color:var(--soft);margin:18px 0 0}
+.chapter-head{display:flex;align-items:center;gap:12px;margin:8px 0 4px}
+.chapter-no{background:var(--navy);color:#fff;font-weight:700;font-size:20px;width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.chapter-head h2{font-size:23px;color:var(--navy);font-weight:700}
+/* tables */
+table.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px}
+table.tbl th{background:var(--navy);color:#fff;padding:8px 10px;text-align:left;font-weight:500}
+table.tbl td{border:1px solid var(--line);padding:7px 10px;background:#fff;vertical-align:top}
+table.tbl tr:nth-child(even) td{background:#f8f7f2}
+/* topic card */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:22px 0;overflow:hidden}
+.qhead{background:#f6f3ec;border-bottom:1px solid var(--line);padding:14px 20px}
+.qhead .tag{display:inline-block;font-size:11px;background:var(--accentsoft);color:var(--accent);border:1px solid #eed3a3;border-radius:16px;padding:2px 10px;margin-right:8px}
+.qhead h3{display:inline;font-size:17px;color:var(--navy)}
+.qbody{padding:8px 20px 20px}
+.idbox{background:var(--doblue);border-left:4px solid var(--navy2);border-radius:0 8px 8px 0;padding:12px 16px;margin:14px 0}
+.idbox b{color:var(--navy2)}
+.principle{background:var(--doyellow);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:12px 16px;margin:14px 0}
+.principle b{color:var(--accent)}
+.flow{margin:16px 0 6px}
+.flow-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.step{display:flex;gap:12px;margin-bottom:10px}
+.step-num{flex:0 0:30px;flex-basis:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px}
+.step-card{flex:1;min-width:0;border:1px solid var(--line);border-radius:8px;padding:10px 14px}
+.step-card .do{font-weight:700;font-size:14px;background:var(--doblue);border-radius:6px;padding:4px 8px}
+.step-card .why{color:var(--soft);font-size:12.5px;margin-top:5px}
+.step-card .next{color:var(--navy2);background:var(--dogreen);border-radius:6px;padding:4px 8px;font-size:12.5px;margin-top:6px;display:block}
+details.exam{background:#fbfcfd;border:1px dashed #c9d4e0;border-radius:8px;margin:12px 0}
+details.exam summary{cursor:pointer;padding:11px 16px;font-size:13.5px;color:var(--navy);font-weight:700;list-style:none}
+details.exam summary::before{content:'▸';color:var(--accent);margin-right:6px}
+details.exam[open] summary::before{content:'▾'}
+.exam-body{padding:4px 18px 16px;border-top:1px solid #eef2f6;font-size:14px}
+.exam-meta{font-size:12px;color:var(--soft);margin:8px 0}
+.exam-meta b{color:var(--accent)}
+.solution{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13.5px;margin-top:8px}
+.ans{background:var(--dogreen);border-left:4px solid var(--good);border-radius:0 6px 6px 0;padding:7px 12px;margin-top:8px;font-weight:700;color:#14532d}
+.pitfall{background:#fdf1f0;border-left:4px solid var(--warn);border-radius:0 8px 8px 0;padding:12px 16px;margin:14px 0}
+.pitfall b{color:var(--warn)}
+.rule{margin:12px 0;font-size:13.5px;color:var(--soft)}
+.rule b{color:var(--navy)}
+.chart-box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 16px 6px;margin:16px 0}
+.chart-box h4{font-size:14px;color:var(--navy);margin-bottom:4px}
+.chart{width:100%;height:340px}
+.chart-row{display:flex;gap:16px;flex-wrap:wrap}
+.chart-row .chart-box{flex:1;min-width:320px}
+.oner{display:inline-block;background:var(--accent);color:#fff;font-size:11px;border-radius:4px;padding:1px 7px;margin-left:6px;vertical-align:middle}
+#topbtn{position:fixed;right:26px;bottom:30px;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;border:none;font-size:18px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25);display:none}
+@media print{
+  .sidebar,#topbtn{display:none!important}
+  .main{width:100%}.section{max-width:100%;padding:0 8px}
+  .qcard{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar">
+  <div class="side-logo"><div class="big">线代题型全解</div><div class="sub">L5 特征值 · 相似对角化</div></div>
+  <div class="nav-group">总览</div>
+  <a class="nav-item" href="#cover">封面与本章定位</a>
+  <a class="nav-item" href="#overview">0 · 真题总览与考频</a>
+  <div class="nav-group">题型主体</div>
+  <a class="nav-item" href="#A">A 特征值与特征向量计算</a>
+  <a class="nav-item" href="#B">B 特征值性质链</a>
+  <a class="nav-item" href="#C">C 相似矩阵</a>
+  <a class="nav-item" href="#D">D 相似对角化</a>
+  <a class="nav-item" href="#E">E 实对称矩阵（数一重点）</a>
+  <a class="nav-item" href="#F">F 由特征值反求 A</a>
+  <a class="nav-item" href="#G">G 对角化应用</a>
+  <div class="nav-group">收尾</div>
+  <a class="nav-item" href="#flow">解题总决策图</a>
+  <a class="nav-item" href="#appendix">附录 · 真题全清单</a>
+</nav>
+<main class="main">
+<div class="section">
+  <div class="breadcrumb">线代 / L5 特征值、特征向量与相似对角化</div>
+
+  <!-- ============ COVER ============ -->
+  <div class="hero" id="cover">
+    <span class="kicker">考研数学一 · 题型全解手册</span>
+    <h1>第五章 特征值、特征向量与相似对角化</h1>
+    <div class="sub">真题范围 1987—2025（数学一）· 数据来源：基础篇考点分类详解版 + 提高篇分册 · 共抽数一真题 34 道</div>
+    <div class="stat-row">
+      <div class="stat"><b>34</b><span>数一真题总数</span></div>
+      <div class="stat"><b>17</b><span>基础篇(87-08)</span></div>
+      <div class="stat"><b>17</b><span>提高篇(09-25)</span></div>
+      <div class="stat"><b>~11分</b><span>近10年大题标配</span></div>
+    </div>
+  </div>
+
+  <div class="idbox" style="margin-top:20px">
+    <b>本章在线代体系中的位置：</b>特征值是行列式（L1）、矩阵运算（L2）、向量组线性相关性与秩（L3）、方程组（L4）的「集大成」出口；它向下承接口$P^{-1}AP=\Lambda$的相似变换，向上直接喂给二次型（L6，合同/正交变换化标准形）。本章解答题是数一仅次于二次型的第二大线代大题来源。
+  </div>
+
+  <!-- ============ OVERVIEW ============ -->
+  <div class="chapter-head" id="overview" style="margin-top:34px"><div class="chapter-no">0</div><h2>本章真题总览与考频</h2></div>
+
+  <p style="font-size:14px;color:var(--soft)">基础篇章首权威考频表（p182，1987—2008）：概念与计算 6 次、相似与相似对角化 7 次、实对称矩阵 3 次。叠加 2009—2025 提高篇后，本章仍是线代解答题最高频章。</p>
+
+  <div class="chart-row">
+    <div class="chart-box"><h4>各题型组题量分布（共34题）</h4><div class="chart" id="pieChart"></div></div>
+    <div class="chart-box"><h4>按年份题量（1987—2024）</h4><div class="chart" id="barChart"></div></div>
+  </div>
+
+  <table class="tbl">
+    <tr><th>题型组</th><th>题数</th><th>分值合计</th><th>首次/最近出现</th><th>命题热度</th></tr>
+    <tr><td>A 特征值与特征向量计算</td><td>4</td><td>21</td><td>1999 / 2024</td><td>小题常客</td></tr>
+    <tr><td>B 特征值性质链</td><td>4</td><td>20</td><td>1987 / 2024</td><td>选择/填空</td></tr>
+    <tr><td>C 相似矩阵</td><td>9</td><td>66</td><td>1988 / 2020</td><td>近10年选择高密度</td></tr>
+    <tr><td>D 相似对角化判定与求P</td><td>5</td><td>44</td><td>1997 / 2023</td><td>大题核心</td></tr>
+    <tr><td>E 实对称矩阵<span class="oner">数一重点</span></td><td>4</td><td>36</td><td>1995 / 2021</td><td>正交对角化必考</td></tr>
+    <tr><td>F 由特征值反求 A</td><td>4</td><td>33</td><td>1995 / 2011</td><td>近10年热门</td></tr>
+    <tr><td>G 对角化应用（Aⁿ/多项式）</td><td>4</td><td>34</td><td>1992 / 2024</td><td>解答题压轴</td></tr>
+  </table>
+
+  <div class="rule"><b>宏观命题规律（5 条）：</b>
+  ① 本章几乎每年必考一道大题（11 分档），位置固定在第 21 题附近；② 「实对称正交对角化」是数一专属高频点，Schmidt 正交化几乎隔年出现；③ 近 8 年（2017—2024）「判两矩阵是否相似」选择小题爆发，核心是重根特征值的几何重数；④ 抽象矩阵（不给 A，给 $A\alpha=?$ 或 $A^2\alpha$）成为主流，纯数字行列式求特征值的裸算题减少；⑤ 求 $A^n$、矩阵多项式 $f(A)$ 与数列递推结合，是 G 组固定套路。</div>
+
+  <!-- ============ A ============ -->
+  <div class="chapter-head" id="A" style="margin-top:30px"><div class="chapter-no">A</div><h2>特征值与特征向量计算</h2></div>
+
+  <!-- A1 -->
+  <div class="qcard">
+    <div class="qhead"><span class="tag">A1</span><h3>数字矩阵解 $|\lambda E-A|=0$（含 $r(A)=1$ 速算）</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>① 题干给出具体数字矩阵 $A$；② 直接问「求特征值/特征向量」；③ 矩阵元素全同/成比例（全1矩阵、外积 $\alpha\beta^T$）；④ 选择题给对角形让你认。</div>
+      <div class="principle"><b>核心原理：</b>
+        定义 $A\alpha=\lambda\alpha,\ \alpha\ne0$。特征方程 $|\lambda E-A|=0$；对每个 $\lambda_i$，解 $(\lambda_i E-A)x=0$ 得特征向量。
+        速算公式：若 $r(A)=1$，则 $|\lambda E-A|=\lambda^n-(\sum a_{ii})\lambda^{n-1}$，即 $\lambda_1=\mathrm{tr}(A)=\sum a_{ii},\ \lambda_2=\cdots=\lambda_n=0$。
+      </div>
+      <div class="flow">
+        <div class="flow-title">解题链路</div>
+        <div class="step"><div class="step-num">1</div><div class="step-card"><span class="do">做什么：</span>先看秩与结构。若 $r(A)=1$（如全1矩阵、列×行），直接用速算公式。<span class="why">为什么：</span>避免硬算 n 阶行列式。<span class="next">下一步：$r(A)=1$ → 跳到 Step 4；否则 → Step 2。</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><span class="do">做什么：</span>展开 $|\lambda E-A|$，尽量用行和相等/行变换提公因子。<span class="why">为什么：</span>3 阶行列式按第一行展开通常可分解出 $(\lambda-a)$。<span class="next">下一步：得全部特征值后 → Step 3。</span></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-card"><span class="do">做什么：</span>对每个 $\lambda_i$ 化 $(\lambda_i E-A)$ 为行最简，写基础解系即特征向量。<span class="next">下一步：重根要数「无关特征向量个数」，为 D 组判定埋伏笔。</span></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-card"><span class="do">做什么：</span>$r(A)=1$ 时 $\lambda_1=\sum a_{ii}$，其余全 0；$\lambda=0$ 的特征向量即 $Ax=0$ 基础解系。<span class="next">下一步：输出。</span></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜1999 数学一 一(4)题（3分）】n 阶全1矩阵</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>设 n 阶矩阵 A 的元素全为 1，求 A 的 n 个特征值。<br><b>来源：</b>基础篇 p184 / 答案 p161</div>
+        <div class="solution">$r(A)=1$，$\sum a_{ii}=n$。由速算公式 $|\lambda E-A|=\lambda^n-n\lambda^{n-1}$。
+        <div class="ans">特征值为 $n,\ 0,0,\cdots,0$（共 n−1 个 0）。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2003 数学一 九题（10分）】数字矩阵求特征值再联动 A*</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>$A=\begin{pmatrix}3&2&2\\2&3&2\\2&2&3\end{pmatrix}$，求特征值。<br><b>来源：</b>基础篇 p185 / 答案 p163</div>
+        <div class="solution">$|\lambda E-A|=\begin{vmatrix}\lambda-3&-2&-2\\-2&\lambda-3&-2\\-2&-2&\lambda-3\end{vmatrix}=(\lambda-1)^2(\lambda-7)$。
+        <div class="ans">$\lambda_1=\lambda_2=1,\ \lambda_3=7$。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2009 数学一 13题（4分）】列向量外积（r=1）</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>三维列向量 $\alpha,\beta$ 满足 $\alpha^T\beta=2$，求 $\beta\alpha^T$ 的非零特征值。<br><b>来源：</b>提高篇 p047 / 答案 p114</div>
+        <div class="solution">$r(\beta\alpha^T)=1$，迹 $\sum a_{ii}=\beta^T\alpha=\alpha^T\beta=2$，即唯一非零特征值。
+        <div class="ans">非零特征值为 2。</div></div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>① $r(A)=1$ 时唯一非零特征值是「迹 $\sum a_{ii}$」不是行列式；② 外积 $\beta\alpha^T$ 的迹等于 $\alpha^T\beta$（数），勿与 $A^2$ 混淆；③ 全1矩阵 $n=3$ 时特征值是 $3,0,0$，别写成 $1,0,0$。</div>
+      <div class="rule"><b>命题规律：</b>A1 多见于填空/选择，近 10 年常包在「r=1 速算」外壳里；它是 D/E 组大题的第一步。</div>
+    </div>
+  </div>
+
+  <!-- A2 -->
+  <div class="qcard">
+    <div class="qhead"><span class="tag">A2</span><h3>抽象矩阵用定义/相似背景反求特征值</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>① 不给 A 的具体元素，给 $A\alpha_1=?,A\alpha_2=?$；② 出现 $A(\alpha_1,\alpha_2)=(\alpha_1,\alpha_2)B$；③ 问非零特征值或某矩阵特征值。</div>
+      <div class="principle"><b>核心原理：</b>
+        关键恒等式：若 $A(\alpha_1,\cdots,\alpha_n)=(\alpha_1,\cdots,\alpha_n)B$ 且 $\alpha_i$ 线性无关，则 $P=(\alpha_1,\cdots,\alpha_n)$ 可逆且 $P^{-1}AP=B$，即 $A\sim B$，二者特征值相同。
+        定义法：凑出 $A\alpha=\mu\alpha$ 即得特征值 $\mu$。
+      </div>
+      <div class="flow">
+        <div class="flow-title">解题链路</div>
+        <div class="step"><div class="step-num">1</div><div class="step-card"><span class="do">做什么：</span>把已知 $A\alpha_i$ 的表达式按列拼起来。<span class="next">下一步：能写成 $AP=PB$ → Step 2；只能逐式凑 $A\alpha=\mu\alpha$ → Step 3。</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><span class="do">做什么：</span>认出 $P^{-1}AP=B$，$A$ 与 $B$ 特征值相同，直接读 $B$ 的特征值。<span class="why">为什么：</span>$P$ 的列 $\alpha_i$ 线性无关故可逆。<span class="next">下一步：输出。</span></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-card"><span class="do">做什么：</span>对每式凑 $A\alpha=\mu\alpha$。如 $A\alpha_1=0=0\cdot\alpha_1$（$\lambda=0$），$A(2\alpha_1+\alpha_2)=2\alpha_1+\alpha_2$（$\lambda=1$）。<span class="next">下一步：输出。</span></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜2008 数学一 13题（4分）】抽象二阶矩阵</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>A 二阶，$\alpha_1,\alpha_2$ 线性无关，$A\alpha_1=0,\ A\alpha_2=2\alpha_1+\alpha_2$，求非零特征值。<br><b>来源：</b>基础篇 p184 / 答案 p162</div>
+        <div class="solution">$A\alpha_1=0\cdot\alpha_1\Rightarrow\lambda=0$；$A(2\alpha_1+\alpha_2)=2A\alpha_1+A\alpha_2=2\alpha_1+\alpha_2\Rightarrow\lambda=1$。
+        <div class="ans">非零特征值为 1。</div></div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>① $A\alpha_2=2\alpha_1+\alpha_2$ 里 $\alpha_2$ 本身不是特征向量，要凑组合 $2\alpha_1+\alpha_2$；② 「相似背景」口诀：给 $A\alpha_i$ 的线性组合，系数列排成 $B$，$A\sim B$。</div>
+    </div>
+  </div>
+
+  <!-- A3 -->
+  <div class="qcard">
+    <div class="qhead"><span class="tag">A3</span><h3>含参矩阵特征值讨论</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>矩阵含参数 $a,k,b$，问「特征方程有重根求参数」「确定参数并讨论能否对角化」。</div>
+      <div class="principle"><b>核心原理：</b>
+        先展开 $|\lambda E-A|$，令某已知特征值代入使其为 0 解出参数；或令二次因子为完全平方。解出参数后必须回到 $D3$ 用秩判据判对角化。
+      </div>
+      <div class="flow">
+        <div class="step"><div class="step-num">1</div><div class="step-card"><span class="do">做什么：</span>展开特征多项式，尽量分解为 $(\lambda-a)\cdot$(二次式)。<span class="next">下一步：若已知「某值是二重根」→ 代入二次式=0 解参；若「特征方程有二重根」→ 令判别式=0 或直接分解。</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><span class="do">做什么：</span>对每个参数取值，算 $r(\lambda E-A)$，重根的几何重数 = $n-r(\lambda E-A)$。<span class="next">下一步：几何重数=代数重数 → 可对角化（接 D3）。</span></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜2004 数学一 21题（9分）】二重根讨论</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>$A=\begin{pmatrix}1&2&-3\\-1&4&-3\\1&a&5\end{pmatrix}$ 特征方程有二重根，求 $a$ 并讨论可否对角化。<br><b>来源：</b>基础篇 p189 / 答案 p167</div>
+        <div class="solution">$|\lambda E-A|=(\lambda-2)(\lambda^2-8\lambda+18+3a)$。
+        ① 若 $\lambda=2$ 是二重根：$4-16+18+3a=0\Rightarrow a=-2$，$r(2E-A)=1$，$\lambda=2$ 有 2 个无关特征向量，<b>可对角化</b>。
+        ② 若 $\lambda=2$ 单根：二次式须为完全平方，$18+3a=16\Rightarrow a=-\frac23$，特征值 $2,4,4$，$r(4E-A)=2$，$\lambda=4$ 仅 1 个无关特征向量，<b>不可对角化</b>。
+        <div class="ans">$a=-2$ 可对角化；$a=-\frac23$ 不可对角化。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜1997 数学一 七(2)题（6分）】已知特征向量反求参数</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>$\xi=(1,1,-1)^T$ 是 $A=\begin{pmatrix}2&-1&2\\5&a&3\\-1&b&-2\end{pmatrix}$ 的特征向量，求 $a,b$ 及特征值并判对角化。<br><b>来源：</b>基础篇 p187 / 答案 p165</div>
+        <div class="solution">$A\xi=\lambda_0\xi$ 解方程组得 $\lambda_0=-1,a=-3,b=0$。$|\lambda E-A|=(\lambda+1)^3$，但 $r(-E-A)=2$，$\lambda=-1$ 只 1 个无关特征向量（需 3 个）。
+        <div class="ans">$a=-3,b=0,\lambda_0=-1$；A 不能相似对角化。</div></div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>① 含参题常漏「双解」——二重根既可能是已知根本身重，也可能是二次式自身重根；② 求出参数后不判对角化必丢一半分。</div>
+    </div>
+  </div>
+
+  <!-- ============ B ============ -->
+  <div class="chapter-head" id="B" style="margin-top:30px"><div class="chapter-no">B</div><h2>特征值性质链</h2></div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">B1—B4</span><h3>迹/行列式、$f(A)$、$A^{-1}/A^*$、特征向量无关性</h3></div>
+    <div class="qbody">
+      <div class="principle"><b>核心原理（四条金律，直接套用）：</b>
+      设 $A$ 特征值为 $\lambda_1,\cdots,\lambda_n$：
+      <div style="margin-top:6px">
+      ① $\sum\lambda_i=\mathrm{tr}(A)=\sum a_{ii}$；$\prod\lambda_i=|A|$。<br>
+      ② $f(A)$ 的特征值为 $f(\lambda_i)$（$f$ 为多项式）。<br>
+      ③ $A^{-1}$ 特征值 $\frac1{\lambda_i}$；$A^*$ 特征值 $\frac{|A|}{\lambda_i}$（$A$ 可逆时）。<br>
+      ④ 不同特征值对应的特征向量线性无关；实对称时相互正交。
+      </div></div>
+      <div class="flow">
+        <div class="flow-title">解题链路（性质链题）</div>
+        <div class="step"><div class="step-num">1</div><div class="step-card"><span class="do">做什么：</span>看到「A 有特征值 λ，问 g(A) 的特征值」→ 直接套 ②③，把 λ 代入 g。<span class="next">下一步：涉及 A* 时用 $|A|/\lambda$。</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><span class="do">做什么：</span>看到「证 x₁+x₂ 不是特征向量」→ 用反证 + ④ 不同特征值特征向量无关。<span class="next">下一步：输出。</span></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-card"><span class="do">做什么：</span>看到「判 A²/A³ 的迹」→ 先定 A 的特征值，再用 ② 得矩阵幂特征值，求和得迹。</div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜1998 数学一 一(4)题（3分）】A* 多项式</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>|A|≠0，A 有特征值 λ，求 $(A^*)^2+E$ 的特征值。<br><b>来源：</b>基础篇 p183 / 答案 p161</div>
+        <div class="solution">A 有 $\lambda\Rightarrow A^*$ 有 $\frac{|A|}{\lambda}\Rightarrow(A^*)^2$ 有 $\left(\frac{|A|}{\lambda}\right)^2\Rightarrow$ 加 E 再加 1。
+        <div class="ans">$\left(\frac{|A|}{\lambda}\right)^2+1$。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜1989 数学一 八题（8分）】证明 A⁻¹ 与 A* 特征值</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>λ 为可逆矩阵 A 特征值，证明 1/λ 是 A⁻¹ 特征值，|A|/λ 是 A* 特征值。<br><b>来源：</b>基础篇 p183 / 答案 p161</div>
+        <div class="solution">$A\alpha=\lambda\alpha$ 左乘 $A^{-1}$：$\alpha=\lambda A^{-1}\alpha$，$\lambda\ne0$，$A^{-1}\alpha=\frac1\lambda\alpha$。又 $A^{-1}=\frac{A^*}{|A|}$，故 $A^*\alpha=\frac{|A|}{\lambda}\alpha$。
+        <div class="ans">证毕。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2024 数学一 7题（5分）】判 A²/A³ 的迹</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>A 秩 2 三阶，$A\alpha=0$（α 非零），且与 α 正交的 β 均满足 $A\beta=\beta$，则（ ）。<br><b>来源：</b>提高篇 p048 / 答案 p114</div>
+        <div class="solution">$A\alpha=0\Rightarrow\lambda=0$；与 α 正交的 β 满足 $A\beta=\beta\Rightarrow\lambda=1$（二重，有 2 个无关特征向量）。故 $A\sim\mathrm{diag}(0,1,1)$，$A^2,A^3$ 也相似于它，迹均为 $0+1+1=2$。
+        <div class="ans">选 (A)：$A^3$ 的迹为 2。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜1987 数学一 试卷II（6分）】特征向量无关性证明</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>$\lambda_1\ne\lambda_2$，$x_1,x_2$ 为对应特征向量，证明 $x_1+x_2$ 不是 A 的特征向量。<br><b>来源：</b>基础篇 p183 / 答案 p161</div>
+        <div class="solution">反证：若 $A(x_1+x_2)=\lambda(x_1+x_2)$，又 $A(x_1+x_2)=\lambda_1x_1+\lambda_2x_2$，相减得 $(\lambda-\lambda_1)x_1+(\lambda-\lambda_2)x_2=0$。因 $\lambda_1\ne\lambda_2$ 故 $x_1,x_2$ 无关，系数须全 0，$\lambda=\lambda_1=\lambda_2$ 矛盾。
+        <div class="ans">证毕。</div></div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>① $A^*$ 特征值是 $|A|/\lambda$ 不是 $1/\lambda$；② $f(A)$ 的特征值是 $f(\lambda)$，常数矩阵 E 对应特征值 1；③ 「迹」是所有特征值之和，矩阵幂的迹要先把每个特征值做幂再求和。</div>
+    </div>
+  </div>
+
+  <!-- ============ C ============ -->
+  <div class="chapter-head" id="C" style="margin-top:30px"><div class="chapter-no">C</div><h2>相似矩阵</h2></div>
+
+  <!-- C1 -->
+  <div class="qcard">
+    <div class="qhead"><span class="tag">C1</span><h3>相似定义 $P^{-1}AP=B$ 与抽象基反求 B</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>① 给两个矩阵说「相似」求参数；② 给 $P=[\alpha,A\alpha,\cdots]$ 求 $B$ 使 $A=PBP^{-1}$；③ 问 $|A+E|$ 之类行列式。</div>
+      <div class="principle"><b>核心原理：</b>
+      $A\sim B\Rightarrow\mathrm{tr}(A)=\mathrm{tr}(B)$、$|A|=|B|$、特征多项式相同。求 $B$ 的通用法：$AP=PB$，把 $A$ 作用在 $P$ 的每一列上，结果用 $P$ 的列线性表出，系数按列排成 $B$。
+      相似保持性：$A\sim B\Rightarrow A^T\sim B^T$、$A^{-1}\sim B^{-1}$、$A^k\sim B^k$、$f(A)\sim f(B)$；但 $A+A^T$ 一般不相似于 $B+B^T$。
+      </div>
+      <div class="flow">
+        <div class="step"><div class="step-num">1</div><div class="step-card"><span class="do">做什么：</span>相似求参数：列迹相等 + 行列式相等两个方程解两个参数。<span class="next">下一步：求行列式如 $|A+E|=|B+E|$（相似则同矩阵多项式也相似）。</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><span class="do">做什么：</span>抽象基反求 B：算 $AP=A[\alpha,A\alpha,A^2\alpha]$，用已知递推 $A^3x=3Ax-2A^2x$ 替换，按列凑成 $P\cdot B$。<span class="next">下一步：读出 B，再 $|A+E|=|B+E|$ 直接算 B 的行列式。</span></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜2001 数学一 十题（8分）】抽象基反求 B</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>$x,Ax,A^2x$ 线性无关，$A^3x=3Ax-2A^2x$，$P=(x,Ax,A^2x)$，求 B 使 $A=PBP^{-1}$ 及 $|A+E|$。<br><b>来源：</b>基础篇 p188 / 答案 p166</div>
+        <div class="solution">$AP=(Ax,A^2x,A^3x)=(Ax,A^2x,3Ax-2A^2x)=(x,Ax,A^2x)\begin{pmatrix}0&0&0\\1&0&3\\0&1&-2\end{pmatrix}$。
+        $|A+E|=|B+E|=\begin{vmatrix}1&0&0\\1&1&3\\0&1&-1\end{vmatrix}=-4$。
+        <div class="ans">$B=\begin{pmatrix}0&0&0\\1&0&3\\0&1&-2\end{pmatrix}$，$|A+E|=-4$。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2016 数学一 5题（4分）】相似保持性判别</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>A,B 可逆且相似，下列错误的是（ ）。A) $A^T\sim B^T$ B) $A^{-1}\sim B^{-1}$ C) $A+A^T\sim B+B^T$ D) $A+A^{-1}\sim B+B^{-1}$。<br><b>来源：</b>提高篇 p050 / 答案 p116</div>
+        <div class="solution">$B^T=P^TA^T(P^{-1})^T$（A对）；$B^{-1}=P^{-1}A^{-1}P$（B对）；$P^{-1}(A+A^{-1})P=B+B^{-1}$（D对）。$A+A^T$ 无此保持性。
+        <div class="ans">选 (C)。</div></div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>① $P^{-1}AP=\Lambda$ 时 P 的列是 A 的特征向量；但 $P^{-1}AP=B$（B 非对角）时 P 的列<b>不是</b>A 的特征向量，别乱套；② 相似不保持「A+Aᵀ」的相似性。</div>
+    </div>
+  </div>
+
+  <!-- C2 -->
+  <div class="qcard">
+    <div class="qhead"><span class="tag">C2</span><h3>相似则特征多项式/tr/行列式/秩相同（反过来不成立）</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>证明题「相似则特征多项式相等」；「举反例说明逆命题不成立」；「实对称时逆命题成立」。</div>
+      <div class="principle"><b>核心原理：</b>
+      $|\lambda E-B|=|\lambda E-P^{-1}AP|=|P^{-1}(\lambda E-A)P|=|\lambda E-A|$。
+      逆命题（特征多项式相同 $\Rightarrow$ 相似）一般不成立，除非附加条件（如实对称、或都可对角化）。
+      </div>
+      <div class="flow">
+        <div class="step"><div class="step-num">1</div><div class="step-card"><span class="do">做什么：</span>证正命题：用 $|P^{-1}|\cdot|P|=1$ 把 $P^{-1}(\lambda E-A)P$ 的行列式拆开。<span class="next">下一步：举反例：取特征多项式相同但秩不同的两矩阵。</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><span class="do">做什么：</span>实对称情形：实对称必可对角化，特征多项式相同即特征值相同，二者都相似于同一对角阵，传递得相似。</div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜2002 数学一 十题（8分）】相似与特征多项式</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>(1) 相似则特征多项式相等；(2) 举二阶反例说明逆命题不成立；(3) A,B 均实对称时逆命题成立。<br><b>来源：</b>基础篇 p188 / 答案 p166</div>
+        <div class="solution">(1) 行列式变换如上。(2) 取 $A=\begin{pmatrix}0&1\\0&0\end{pmatrix},B=\begin{pmatrix}0&0\\0&0\end{pmatrix}$，特征多项式均 $\lambda^2$，但 $r(A)=1\ne r(B)=0$ 不相似。(3) 实对称均相似于同一对角阵。
+        <div class="ans">证毕。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2014 数学一 21题（11分）】全1矩阵与对角阵相似证明</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>证明 n 阶全1矩阵与对角阵（末列 1,2,…,n）相似。<br><b>来源：</b>提高篇 p049 / 答案 p115</div>
+        <div class="solution">左阵 A 实对称必可对角化，特征值 $n,0,\cdots,0$；右阵 B 特征值同为 $n,0,\cdots,0$ 且 $r(B)=1$ 可对角化。二者都相似于 $\mathrm{diag}(n,0,\cdots,0)$，传递得 $A\sim B$。
+        <div class="ans">证毕。</div></div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>① 特征多项式相同只是相似的「必要不充分」；② 反例要找「特征值相同但几何重数不同」的矩阵（见 C3）。</div>
+    </div>
+  </div>
+
+  <!-- C3 -->
+  <div class="qcard">
+    <div class="qhead"><span class="tag">C3</span><h3>判两矩阵是否相似（重根几何重数/Jordan 标准形）</h3><span class="oner">近10年热点</span></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>给 2—3 个矩阵，问「哪两个相似」「哪个与给定矩阵相似」；常是特征值相同但排布不同的上三角/Jordan 块。</div>
+      <div class="principle"><b>核心原理：</b>
+      两矩阵相似 $\Leftrightarrow$ 它们的 Jordan 标准形相同。实操判据：① 特征值（代数重数）相同；② 对每个重特征值 $\lambda$，$n-r(\lambda E-A)$（几何重数）逐一相同。全部相同才相似。
+      </div>
+      <div class="flow">
+        <div class="step"><div class="step-num">1</div><div class="step-card"><span class="do">做什么：</span>先求各矩阵特征值，筛掉特征值不同的。<span class="next">下一步：特征值相同 → Step 2。</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><span class="do">做什么：</span>对每个重特征值算 $r(\lambda E-A)$，比较 $n-r$（无关特征向量数）。<span class="why">为什么：</span>Jordan 块大小由几何重数决定。<span class="next">下一步：几何重数全对应相同 → 相似；有一个不同 → 不相似。</span></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜2017 数学一 6题（4分）】三矩阵相似关系</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>$A=\begin{pmatrix}2&0&0\\0&2&1\\0&0&1\end{pmatrix},B=\begin{pmatrix}2&1&0\\0&2&0\\0&0&1\end{pmatrix},C=\mathrm{diag}(1,2,2)$，判相似。<br><b>来源：</b>提高篇 p050 / 答案 p116</div>
+        <div class="solution">三者特征值均 $2,2,1$。$r(2E-A)=1\Rightarrow\lambda=2$ 有 2 个无关特征向量，$A$ 可对角化 $\sim C$；$r(2E-B)=2\Rightarrow\lambda=2$ 只 1 个无关特征向量，$B$ 不可对角化 $\not\sim C$。
+        <div class="ans">选 (B)：$A\sim C$，$B\not\sim C$。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2018 数学一 5题（4分）】找与 Jordan 块相似的矩阵</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>选与 $\begin{pmatrix}1&1&0\\0&1&1\\0&0&1\end{pmatrix}$ 相似的矩阵。<br><b>来源：</b>提高篇 p050 / 答案 p116</div>
+        <div class="solution">题中矩阵 $\lambda=1$ 三重根，$r(E-A)=2$，只 1 个无关特征向量（单一 Jordan 块）。选项 (B)(C)(D) 的 $\lambda=1$ 均有 2 个无关特征向量，只有 (A) 也是单一 Jordan 块。
+        <div class="ans">选 (A)。</div></div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>① 特征值相同 ≠ 相似，必须逐重根比几何重数；② 上三角矩阵对角线就是特征值，直接读；③ 「可对角化」的矩阵只能相似于对角阵，不可对角化的 Jordan 块与对角阵绝不相似。</div>
+    </div>
+  </div>
+
+  <!-- ============ D ============ -->
+  <div class="chapter-head" id="D" style="margin-top:30px"><div class="chapter-no">D</div><h2>相似对角化</h2></div>
+
+  <!-- D1/D2 -->
+  <div class="qcard">
+    <div class="qhead"><span class="tag">D1·D2</span><h3>可对角化充要条件与充分条件</h3></div>
+    <div class="qbody">
+      <div class="principle"><b>核心原理：</b>
+      $A$ 可对角化 $\Leftrightarrow$ $A$ 有 $n$ 个线性无关的特征向量 $\Leftrightarrow$ 每个特征值的几何重数 = 代数重数。
+      充分条件：$A$ 有 $n$ 个互不相同的特征值（必可对角化，但不必要）。
+      实对称矩阵必可对角化。
+      </div>
+      <div class="flow">
+        <div class="step"><div class="step-num">1</div><div class="step-card"><span class="do">做什么：</span>看到「可对角化的充分不必要条件」→ 选「特征值互异」。<span class="why">为什么：</span>「n 个线性无关特征向量」是充要，不是充分不必要。<span class="next">下一步：判断题逐一对照。</span></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜2022 数学一 5题（5分）】可对角化条件</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>三阶 A 可对角化的充分不必要条件是（ ）。A) 3 个不同特征值 B) 3 个线性无关特征向量 C) 3 个两两线性无关特征向量 D) 不同特征值特征向量正交。<br><b>来源：</b>提高篇 p051 / 答案 p117</div>
+        <div class="solution">A) 互异特征值是充分不必要；B) 是充要；C) 两两无关≠满空间无关，错误；D) 正交不保证有 3 个无关特征向量。
+        <div class="ans">选 (A)。</div></div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>① 「两两线性无关」和「整体线性无关」不是一回事；② 特征向量正交不代表个数够。</div>
+    </div>
+  </div>
+
+  <!-- D3 -->
+  <div class="qcard">
+    <div class="qhead"><span class="tag">D3</span><h3>重根情形对角化判定（秩判据）</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>含参矩阵问「能否相似对角化」；矩阵有二重/三重根要判。</div>
+      <div class="principle"><b>核心原理：</b>
+      设 $\lambda$ 是 $A$ 的 $k$ 重特征值。$A$ 可对角化 $\Leftrightarrow$ 对每个重根 $\lambda$，$(\lambda E-A)x=0$ 的基础解系恰有 $k$ 个向量 $\Leftrightarrow r(\lambda E-A)=n-k$。
+      </div>
+      <div class="flow">
+        <div class="step"><div class="step-num">1</div><div class="step-card"><span class="do">做什么：</span>求出所有特征值，找出重根。<span class="next">下一步：单根无需判（自动 1 个特征向量）。</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><span class="do">做什么：</span>对每个 $k$ 重根 $\lambda$，算 $r(\lambda E-A)$。<span class="next">下一步：$r=n-k$ → 可对角化；$r>n-k$ → 不可对角化。</span></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜2023 数学一 6题（5分）】不能对角化的矩阵</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>选不能相似对角化的矩阵（四个含 a 的上三角/对称阵）。<br><b>来源：</b>提高篇 p051 / 答案 p117</div>
+        <div class="solution">(A) 特征值 1,2,3 互异可对角化；(B) 对称必可对角化；(C) 二重根 2，$r(2E-C)=1$ 有 2 个特征向量可对角化；(D) 二重根 2，$r(2E-D)=2$ 只 1 个特征向量，不可对角化。
+        <div class="ans">选 (D)。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜1997 数学一 七(2)题（6分）】三重根判定</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>$A$ 特征值全 $-1$（三重），问能否对角化。<br><b>来源：</b>基础篇 p187 / 答案 p166</div>
+        <div class="solution">$r(-E-A)=2$，$n-r=1<3$，三重根只 1 个无关特征向量。
+        <div class="ans">不能相似对角化。</div></div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>① 只判重根，单根自动满足；② 秩判据 $r(\lambda E-A)=n-k$ 是金标准，别凭感觉；③ 实对称矩阵跳过此判据直接可对角化。</div>
+    </div>
+  </div>
+
+  <!-- D4 -->
+  <div class="qcard">
+    <div class="qhead"><span class="tag">D4</span><h3>反求可逆矩阵 P 与对角阵 Λ</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>「求可逆矩阵 P 使 $P^{-1}AP=\Lambda$」；「A 相似于 B（B 非对角），求 P」。</div>
+      <div class="principle"><b>核心原理：</b>
+      $P^{-1}AP=\Lambda$：把 $A$ 的线性无关特征向量作列拼成 $P$，$\Lambda$ 对角线是对应特征值（顺序对齐）。
+      若 $P^{-1}AP=B$（B 非对角但可对角化）：先求 $P_1$ 使 $P_1^{-1}AP_1=\Lambda$，再求 $P_2$ 使 $P_2^{-1}BP_2=\Lambda$，则 $P=P_1P_2^{-1}$ 使 $P^{-1}AP=B$。
+      </div>
+      <div class="flow">
+        <div class="step"><div class="step-num">1</div><div class="step-card"><span class="do">做什么：</span>求 A 全部特征值与对应特征向量。<span class="next">下一步：可对角化前提下拼 P。</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><span class="do">做什么：</span>$P=(\xi_1,\xi_2,\xi_3)$，$\Lambda=\mathrm{diag}(\lambda_1,\lambda_2,\lambda_3)$，列顺序与特征值对齐。<span class="next">下一步：若目标是 B 非对角，用合成法 $P=P_1P_2^{-1}$。</span></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜2015 数学一 21题（11分）】求 P 对角化</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>$A=\begin{pmatrix}0&2&-3\\-1&3&-3\\1&-2&a\end{pmatrix}\sim B=\begin{pmatrix}1&-2&0\\0&b&0\\0&3&1\end{pmatrix}$，求 $a,b$ 及 P 使 $P^{-1}AP$ 对角。<br><b>来源：</b>提高篇 p053 / 答案 p119</div>
+        <div class="solution">迹与行列式得 $a=4,b=5$。特征值 $1,1,5$。$\lambda=1$：$\alpha_1=(2,1,0)^T,\alpha_2=(-3,0,1)^T$；$\lambda=5$：$\alpha_3=(-1,-1,1)^T$。
+        <div class="ans">$P=(\alpha_1,\alpha_2,\alpha_3)$，$P^{-1}AP=\mathrm{diag}(1,1,5)$。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2019 数学一 21题（11分）】P 使 $P^{-1}AP=B$（非对角）</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>$A\sim B=\begin{pmatrix}2&1&0\\0&-1&0\\0&0&y\end{pmatrix}$，求 $x,y$ 及 P 使 $P^{-1}AP=B$。<br><b>来源：</b>提高篇 p054 / 答案 p121</div>
+        <div class="solution">$x=3,y=-2$。A 特征值 $2,-1,-2$，求 A 的特征向量拼 $P_1$，B 的特征向量拼 $P_2$，$P=P_1P_2^{-1}$。
+        <div class="ans">$P=\begin{pmatrix}1&-1/3&1\\-2&-1/3&-2\\0&0&-4\end{pmatrix}$。</div></div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>① P 的列与 Λ 的对角线顺序必须一一对应；② 特征向量不唯一（可乘非零常数、重根内可线性组合），故 P 不唯一；③ 目标 B 非对角时不要直接拿 A 的特征向量凑，要走合成法。</div>
+    </div>
+  </div>
+
+  <!-- ============ E ============ -->
+  <div class="chapter-head" id="E" style="margin-top:30px"><div class="chapter-no">E</div><h2>实对称矩阵<span class="oner">数一必考</span></h2></div>
+
+  <!-- E1 -->
+  <div class="qcard">
+    <div class="qhead"><span class="tag">E1</span><h3>实对称矩阵三大性质</h3></div>
+    <div class="qbody">
+      <div class="principle"><b>核心原理：</b>
+      ① 实对称矩阵特征值全是实数；② 不同特征值对应的特征向量相互<b>正交</b>；③ 实对称矩阵必可<b>正交</b>相似对角化（即存在正交阵 $Q$ 使 $Q^{-1}AQ=Q^TAQ=\Lambda$）。
+      推论：实对称矩阵 $k$ 重特征值必有 $k$ 个线性无关特征向量（自动满足对角化）。
+      </div>
+      <details class="exam" open><summary>【真题｜2010 数学一 6题（4分）】多项式约束下定对角形</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>四阶实对称 $A$，$A^2+A=O$，$r(A)=3$，求 A 相似于哪个对角阵。<br><b>来源：</b>提高篇 p056 / 答案 p124</div>
+        <div class="solution">$A^2+A=O\Rightarrow\lambda^2+\lambda=0\Rightarrow\lambda=0$ 或 $-1$。实对称必可对角化，$r(A)=3\Rightarrow$ 3 个非零特征值。
+        <div class="ans">选 (D)：$\mathrm{diag}(-1,-1,-1,0)$。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2013 数学一 6题（4分）】实对称相似充要条件</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>$\begin{pmatrix}1&a&1\\a&b&a\\1&a&1\end{pmatrix}\sim\mathrm{diag}(2,b,0)$ 的充要条件。<br><b>来源：</b>提高篇 p057 / 答案 p125</div>
+        <div class="solution">实对称相似 $\Leftrightarrow$ 特征值相同。$2$ 必为 A 特征值，$|2E-A|=0\Rightarrow a=0$；此时 A 特征值恰 $2,b,0$，$b$ 任意。
+        <div class="ans">选 (B)：$a=0$，$b$ 任意。</div></div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>① 实对称才能用「正交」相似，一般矩阵只谈「相似」不正交；② 实对称重根特征向量自动够数，无需再判秩。</div>
+    </div>
+  </div>
+
+  <!-- E2 -->
+  <div class="qcard">
+    <div class="qhead"><span class="tag">E2</span><h3>正交矩阵 Q 对角化（含 Schmidt 正交化）</h3><span class="oner">数一重点</span></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>「求正交矩阵 Q 使 $Q^TAQ=\Lambda$」；重根特征向量不正交需 Schmidt。</div>
+      <div class="principle"><b>核心原理：</b>
+      步骤：① 求特征值；② 求特征向量；③ 对<b>同一重根</b>内不正交的特征向量做 Schmidt 正交化；④ 全部单位化；⑤ 拼成正交阵 $Q$。
+      不同特征值的特征向量天然正交，<b>无需</b> Schmidt。
+      </div>
+      <div class="flow">
+        <div class="step"><div class="step-num">1</div><div class="step-card"><span class="do">做什么：</span>求特征值与特征向量。<span class="next">下一步：重根内特征向量不正交 → Schmidt。</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><span class="do">做什么：</span>Schmidt：$\beta_1=\alpha_1$，$\beta_2=\alpha_2-\frac{(\alpha_2,\beta_1)}{(\beta_1,\beta_1)}\beta_1$。<span class="next">下一步：单位化 $\gamma_i=\beta_i/|\beta_i|$，拼 $Q=(\gamma_1,\gamma_2,\gamma_3)$。</span></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜2006 数学一 21题（9分）】各行和为 3 的实对称</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>三阶实对称各行和均 3，$\alpha_1=(-1,2,-1)^T,\alpha_2=(0,-1,1)^T$ 是 $Ax=0$ 解，求特征值与正交 Q。<br><b>来源：</b>基础篇 p191 / 答案 p170</div>
+        <div class="solution">$A(1,1,1)^T=3(1,1,1)^T\Rightarrow\lambda=3$；$A\alpha_1=A\alpha_2=0\Rightarrow\lambda=0$（二重）。$\alpha_1,\alpha_2$ 不正交，Schmidt 后单位化，与 $(1,1,1)^T$ 单位向量拼 Q。
+        <div class="ans">特征值 $3,0,0$；$Q^TAQ=\mathrm{diag}(0,0,3)$。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2021 数学一 21题（12分）】含参实对称正交对角化</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>$A=\begin{pmatrix}a&1&-1\\1&a&-1\\-1&-1&a\end{pmatrix}$，求正交 P 使 $P^TAP$ 对角。<br><b>来源：</b>提高篇 p057 / 答案 p126</div>
+        <div class="solution">$|\lambda E-A|=(\lambda-a+1)^2(\lambda-a-2)$，特征值 $a-1,a-1,a+2$。$\lambda=a-1$ 特征向量 $(-1,1,0)^T,(1,1,2)^T$（需 Schmidt）；$\lambda=a+2$：$(-1,-1,1)^T$。单位化拼 P。
+        <div class="ans">$P^TAP=\mathrm{diag}(a-1,a-1,a+2)$。</div></div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>① 只有同一重根内才需 Schmidt，不同特征值别多此一举；② Q 必须正交（列单位且两两正交），漏单位化直接扣分；③ $Q^TAQ=Q^{-1}AQ=\Lambda$，因为 $Q^{-1}=Q^T$。</div>
+    </div>
+  </div>
+
+  <!-- E3 -->
+  <div class="qcard">
+    <div class="qhead"><span class="tag">E3</span><h3>已知部分特征向量，利用正交性反求其余</h3><span class="oner">数一重点</span></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>实对称矩阵只给一个特征向量，让求其余特征向量/反求 A。</div>
+      <div class="principle"><b>核心原理：</b>
+      设已知 $\lambda_1$ 的特征向量 $\xi_1$。其余特征向量 $\xi$ 满足 $\xi^T\xi_1=0$（正交）。把 $\xi=(x_1,\cdots,x_n)^T$ 代入 $x_1\xi_{1,1}+\cdots+x_n\xi_{1,n}=0$ 解出基础解系，即得其余特征向量。
+      </div>
+      <div class="flow">
+        <div class="step"><div class="step-num">1</div><div class="step-card"><span class="do">做什么：</span>由秩/行列式/矩阵方程确定已知特征值。<span class="next">下一步：设其余特征向量 $\xi$，用 $\xi^T\xi_1=0$ 列正交方程。</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><span class="do">做什么：</span>解正交方程基础解系，即得其余特征值的特征向量（再用 $A\xi=\lambda\xi$ 定 $\lambda$）。<span class="next">下一步：接 F 组反求 A。</span></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜1995 数学一 八题（7分）】正交补求 A</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>三阶实对称 $A$，$\lambda_1=-1,\lambda_2=\lambda_3=1$，对应 $\lambda_1$ 的 $\xi_1=(0,1,1)^T$，求 A。<br><b>来源：</b>基础篇 p191 / 答案 p170</div>
+        <div class="solution">设 $\lambda=1$ 特征向量 $(x_1,x_2,x_3)^T$，由正交 $x_2+x_3=0$，得 $\xi_2=(1,0,0)^T,\xi_3=(0,1,-1)^T$。$A(\xi_1,\xi_2,\xi_3)=(-\xi_1,\xi_2,\xi_3)$。
+        <div class="ans">$A=\begin{pmatrix}1&0&0\\0&0&-1\\0&-1&0\end{pmatrix}$。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2011 数学一 21题（11分）】秩2实对称反求 A</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>三阶实对称 $r(A)=2$，$A\begin{pmatrix}1&1\\0&0\\-1&1\end{pmatrix}=\begin{pmatrix}-1&1\\0&0\\1&1\end{pmatrix}$，求特征值与 A。<br><b>来源：</b>提高篇 p057 / 答案 p124</div>
+        <div class="solution">$r(A)=2\Rightarrow|A|=0\Rightarrow\lambda=0$。由矩阵方程得 $\lambda=1$ 的 $\alpha_1=(1,0,1)^T$，$\lambda=-1$ 的 $\alpha_2=(1,0,-1)^T$。正交补得 $\lambda=0$ 的 $\alpha_3=(0,1,0)^T$。
+        <div class="ans">$A=\begin{pmatrix}0&0&1\\0&0&0\\1&0&0\end{pmatrix}$。</div></div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>① 正交方程 $\xi^T\xi_1=0$ 只有一个方程，n 阶时有 n−1 个自由未知量，对应 n−1 个特征向量；② 正交补求出后要核对它属于哪个特征值。</div>
+    </div>
+  </div>
+
+  <!-- ============ F ============ -->
+  <div class="chapter-head" id="F" style="margin-top:30px"><div class="chapter-no">F</div><h2>由特征值/特征向量反求 A</h2></div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">F1·F2</span><h3>$A=P\Lambda P^{-1}$ 与实对称正交补反求</h3><span class="oner">近10年热门</span></div>
+    <div class="qbody">
+      <div class="principle"><b>核心原理：</b>
+      若 $P^{-1}AP=\Lambda$，则 $A=P\Lambda P^{-1}$（$P$ 为特征向量列拼成的可逆阵）。
+      实对称时用 $Q$（正交阵）更省：$A=Q\Lambda Q^T$，免求逆。
+      含参时：利用 $A^*\alpha=\lambda_0\alpha$ 配合 $AA^*=|A|E$ 转化为 $A$ 的方程求参数。
+      </div>
+      <div class="flow">
+        <div class="step"><div class="step-num">1</div><div class="step-card"><span class="do">做什么：</span>凑齐全部特征值与对应特征向量（实对称用 E3 正交补补全）。<span class="next">下一步：拼 P，算 $P^{-1}$。</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><span class="do">做什么：</span>$A=P\Lambda P^{-1}$ 乘出结果。实对称可单位化后 $A=Q\Lambda Q^T$。<span class="next">下一步：输出。</span></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜1999 数学一 十题（8分）】A* 特征向量反求含参 A</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>$A=\begin{pmatrix}a&-1&c\\5&b&3\\1-c&0&-a\end{pmatrix}$，$|A|=-1$，$A^*$ 有特征值 $\lambda_0$，特征向量 $\alpha=(-1,-1,1)^T$，求 $a,b,c,\lambda_0$。<br><b>来源：</b>基础篇 p184 / 答案 p162</div>
+        <div class="solution">$A^*\alpha=\lambda_0\alpha$，用 $AA^*=|A|E=-E$ 左乘：$-\alpha=\lambda_0 A\alpha$，解方程组得 $\lambda_0=1,b=-3,a=c$，再由 $|A|=-1$ 得 $a=c=2$。
+        <div class="ans">$a=2,b=-3,c=2,\lambda_0=1$。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2007 数学一 22题（11分）】实对称矩阵多项式反求 B</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>$A$ 特征值 $1,2,-2$，$\alpha_1=(1,-1,1)^T$ 属 $\lambda=1$，$B=A^5-4A^3+E$，求 B。<br><b>来源：</b>基础篇 p192 / 答案 p171</div>
+        <div class="solution">$B$ 特征值 $f(1),f(2),f(-2)$，其中 $f(\lambda)=\lambda^5-4\lambda^3+1$，得 $-2,1,1$。$\mu=-2$ 特征向量 $\alpha_1$；正交补得 $\mu=1$ 的 $(1,1,0)^T,(-1,0,1)^T$。$B=(\,-2\alpha_1,\beta_2,\beta_3\,)(\alpha_1,\beta_2,\beta_3)^{-1}$。
+        <div class="ans">$B=\begin{pmatrix}0&1&-1\\1&0&1\\-1&1&0\end{pmatrix}$。</div></div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>① $A^*$ 问题要通过 $AA^*=|A|E$ 转成 A 的方程，别直接对 A* 算；② $P$ 的列与 $\Lambda$ 的对角顺序要对齐；③ 实对称单位化后用 $Q\Lambda Q^T$ 可避免求逆出错。</div>
+    </div>
+  </div>
+
+  <!-- ============ G ============ -->
+  <div class="chapter-head" id="G" style="margin-top:30px"><div class="chapter-no">G</div><h2>对角化应用</h2></div>
+
+  <!-- G1 -->
+  <div class="qcard">
+    <div class="qhead"><span class="tag">G1</span><h3>求 $A^n$（含数列递推应用）</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>「求 $A^n$」「求 $A^n\beta$」「递推数列 $x_{n+1}=Ax_n$ 求通项」。</div>
+      <div class="principle"><b>核心原理：</b>
+      $A=P\Lambda P^{-1}\Rightarrow A^n=P\Lambda^n P^{-1}$（$\Lambda^n=\mathrm{diag}(\lambda_1^n,\cdots,\lambda_n^n)$）。
+      若给 $\beta$ 的分解 $\beta=k_1\xi_1+\cdots+k_n\xi_n$，则 $A^n\beta=k_1\lambda_1^n\xi_1+\cdots+k_n\lambda_n^n\xi_n$。
+      </div>
+      <div class="flow">
+        <div class="step"><div class="step-num">1</div><div class="step-card"><span class="do">做什么：</span>对角化 A 得 $P,\Lambda$。<span class="next">下一步：算 $\Lambda^n$ 与 $P^{-1}$。</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><span class="do">做什么：</span>$A^n=P\Lambda^n P^{-1}$ 乘出。数列题：$\alpha_n=A^n\alpha_0$，代入初值。<span class="next">下一步：输出通项。</span></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜1992 数学一 九题（7分）】$A^n\beta$</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>A 特征值 $1,2,3$，特征向量 $\xi_1,\xi_2,\xi_3$，$\beta=(1,1,3)^T$，求 $A^n\beta$。<br><b>来源：</b>基础篇 p187 / 答案 p165</div>
+        <div class="solution">$\beta=2\xi_1-2\xi_2+\xi_3$。$A^n\beta=2\cdot1^n\xi_1-2\cdot2^n\xi_2+3^n\xi_3$。
+        <div class="ans">$A^n\beta=\begin{pmatrix}2-2^{n+1}+3^n\\2-2^{n+2}+3^{n+1}\\2-2^{n+3}+3^{n+2}\end{pmatrix}$。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2024 数学一 21题（12分）】三元递推求通项</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>三元递推 $x_n=-2x_{n-1}+2z_{n-1}$ 等，初值 $(-1,0,2)$，写 A 求 $A^n$ 及通项。<br><b>来源：</b>提高篇 p051 / 答案 p117</div>
+        <div class="solution">$A=\begin{pmatrix}-2&0&2\\0&-2&-2\\-6&-3&3\end{pmatrix}$，特征值 $0,1,-2$，特征向量 $(1,-1,1)^T,(-2,2,-3)^T,(1,-2,0)^T$。对角化后 $A^n$ 乘初值。
+        <div class="ans">$x_n=8+(-2)^n,\ y_n=-8+(-2)^{n+1},\ z_n=12$。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2016 数学一 21题（11分）】$A^{99}$</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>$A=\begin{pmatrix}0&-1&1\\2&-3&0\\0&0&0\end{pmatrix}$，求 $A^{99}$。<br><b>来源：</b>提高篇 p053 / 答案 p120</div>
+        <div class="solution">特征值 $0,-1,-2$，对角化后 $A^{99}=P\mathrm{diag}(0,(-1)^{99},(-2)^{99})P^{-1}$。
+        <div class="ans">$A^{99}=\begin{pmatrix}-2+2^{99}&1-2^{99}&2-2^{98}\\-2+2^{100}&1-2^{100}&2-2^{99}\\0&0&0\end{pmatrix}$。</div></div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>① $\Lambda^n$ 是每个对角元素取 n 次幂，不是整体取幂；② 数列递推注意下标 $A^{n-1}$ 还是 $A^n$；③ 不化简 $P^{-1}$ 直接硬乘易算错。</div>
+    </div>
+  </div>
+
+  <!-- G2 -->
+  <div class="qcard">
+    <div class="qhead"><span class="tag">G2</span><h3>矩阵多项式 $f(A)$ 与正定平方根</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>「$B=f(A)$，求 B 的特征值」「求正定矩阵 C 使 $C^2=g(A)$」。</div>
+      <div class="principle"><b>核心原理：</b>
+      若 $A\alpha=\lambda\alpha$，则 $f(A)\alpha=f(\lambda)\alpha$。故 $f(A)$ 的特征值为 $f(\lambda_i)$，特征向量不变。
+      正定平方根：若 $B$ 正定（特征值全正），则 $C=Q\,\mathrm{diag}(\sqrt{\mu_1},\sqrt{\mu_2},\sqrt{\mu_3})\,Q^T$ 满足 $C^2=B$。
+      </div>
+      <details class="exam" open><summary>【真题｜2021 数学一 21题（12分）】求正定平方根 C</summary><div class="exam-body">
+        <div class="exam-meta"><b>题目：</b>$A$ 特征值 $a-1,a-1,a+2$，求正定 $C$ 使 $C^2=(a+3)E-A$。<br><b>来源：</b>提高篇 p057 / 答案 p126</div>
+        <div class="solution">$B=(a+3)E-A$ 特征值 $4,4,1$（全正，正定）。$C=P\,\mathrm{diag}(2,2,1)\,P^T$。
+        <div class="ans">$C=\frac13\begin{pmatrix}5&-1&1\\-1&5&1\\1&1&5\end{pmatrix}$。</div></div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>① $f(A)$ 的特征向量与 A 相同，只是特征值变 $f(\lambda)$；② 正定平方根只取正根；③ 实对称才能用 $Q\Lambda Q^T$ 分解。</div>
+    </div>
+  </div>
+
+  <!-- ============ FLOW ============ -->
+  <div class="chapter-head" id="flow" style="margin-top:34px"><div class="chapter-no">图</div><h2>本章解题总决策流程</h2></div>
+  <div class="chart-box"><div class="chart" id="flowChart" style="height:420px"></div></div>
+
+  <!-- ============ APPENDIX ============ -->
+  <div class="chapter-head" id="appendix" style="margin-top:34px"><div class="chapter-no">附</div><h2>附录 · 本章真题全清单（34 道）</h2></div>
+  <table class="tbl" id="appTable">
+    <tr><th>年份</th><th>题号</th><th>分值</th><th>题型</th><th>摘要</th></tr>
+  </table>
+
+</div>
+</main>
+</div>
+<button id="topbtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// 回到顶部
+window.onscroll=function(){document.getElementById('topbtn').style.display=(document.body.scrollTop>300)?'block':'none';};
+
+// ===== 饼图 =====
+var pie=echarts.init(document.getElementById('pieChart'));
+pie.setOption({
+  tooltip:{trigger:'item'},
+  legend:{bottom:0,textStyle:{fontSize:11}},
+  series:[{type:'pie',radius:['38%','65%'],center:['50%','45%'],
+    label:{fontSize:11},
+    data:[
+      {value:4,name:'A 特征值计算'},{value:4,name:'B 性质链'},
+      {value:9,name:'C 相似矩阵'},{value:5,name:'D 对角化'},
+      {value:4,name:'E 实对称'},{value:4,name:'F 反求A'},
+      {value:4,name:'G 对角化应用'}
+    ],
+    color:['#1e3a5f','#2c5282','#d97706','#4a7ba6','#6b9bd1','#c98a3a','#8aa6c1']
+  }]
+});
+
+// ===== 柱状图（按年题量） =====
+var bar=echarts.init(document.getElementById('barChart'));
+var years=['1987','88','89','92','95','97','98','99','00','01','02','03','04','06','07','08','09','10','11','13','14','15','16','17','18','19','20','21','22','23','24'];
+var counts=[1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,2];
+bar.setOption({
+  tooltip:{trigger:'axis'},
+  grid:{left:36,right:16,top:20,bottom:30},
+  xAxis:{type:'category',data:years,axisLabel:{fontSize:10,rotate:45}},
+  yAxis:{type:'value',minInterval:1},
+  series:[{type:'bar',data:counts,itemStyle:{color:'#2c5282'},barWidth:'60%'}]
+});
+
+// ===== 决策流程图（graph） =====
+var flow=echarts.init(document.getElementById('flowChart'));
+flow.setOption({
+  tooltip:{},
+  series:[{type:'graph',layout:'none',roam:false,
+    symbolSize:[150,44],
+    label:{show:true,fontSize:12,color:'#fff'},
+    lineStyle:{color:'#9bb4cc',width:2,curveness:0},
+    edgeLabel:{show:false},
+    data:[
+      {name:'拿到本章题',x:400,y:10,itemStyle:{color:'#d97706'}},
+      {name:'给了具体数字矩阵？',x:400,y:80,itemStyle:{color:'#1e3a5f'}},
+      {name:'A1 解|λE-A|=0\n( r=1 用速算)',x:150,y:160,itemStyle:{color:'#2c5282'}},
+      {name:'抽象/给Aα=?',x:650,y:160,itemStyle:{color:'#2c5282'}},
+      {name:'A2 定义/相似背景',x:650,y:230,itemStyle:{color:'#4a7ba6'}},
+      {name:'含参求重根？',x:150,y:250,itemStyle:{color:'#1e3a5f'}},
+      {name:'A3 解参+D3判秩',x:150,y:330,itemStyle:{color:'#4a7ba6'}},
+      {name:'实对称矩阵？',x:400,y:310,itemStyle:{color:'#1e3a5f'}},
+      {name:'E1/E2/E3\n正交对角化+Schmidt',x:400,y:390,itemStyle:{color:'#d97706'}},
+      {name:'问Aⁿ/f(A)？',x:650,y:320,itemStyle:{color:'#1e3a5f'}},
+      {name:'G1/G2 对角化求幂',x:650,y:400,itemStyle:{color:'#4a7ba6'}}
+    ],
+    links:[
+      {source:'拿到本章题',target:'给了具体数字矩阵？'},
+      {source:'给了具体数字矩阵？',target:'A1 解|λE-A|=0\n( r=1 用速算)'},
+      {source:'给了具体数字矩阵？',target:'抽象/给Aα=?'},
+      {source:'抽象/给Aα=?',target:'A2 定义/相似背景'},
+      {source:'A1 解|λE-A|=0\n( r=1 用速算)',target:'含参求重根？'},
+      {source:'含参求重根？',target:'A3 解参+D3判秩'},
+      {source:'含参求重根？',target:'实对称矩阵？'},
+      {source:'实对称矩阵？',target:'E1/E2/E3\n正交对角化+Schmidt'},
+      {source:'E1/E2/E3\n正交对角化+Schmidt',target:'问Aⁿ/f(A)？'},
+      {source:'问Aⁿ/f(A)？',target:'G1/G2 对角化求幂'}
+    ]
+  }]
+});
+
+// ===== 附录表格（34行） =====
+var rows=[
+[1987,'试卷II',6,'B4','证 x₁+x₂ 不是特征向量'],
+[1988,'八题',8,'C1+D4','相似求 x,y 并求 P'],
+[1989,'八题',8,'B3','证 A⁻¹/A* 特征值'],
+[1992,'九题',7,'G1','已知特征值求 Aⁿβ'],
+[1995,'八题',7,'E3+F2','实对称正交补求 A'],
+[1997,'七(2)题',6,'A3+D3','已知特征向量求参判对角化'],
+[1998,'一(4)题',3,'B3+B2','(A*)²+E 特征值'],
+[1999,'一(4)题',3,'A1','全1矩阵特征值'],
+[1999,'十题',8,'F2/B3','A* 特征向量反求参数'],
+[2000,'十一题',8,'G1','熟练工转移求 Aⁿ'],
+[2001,'十题',8,'C1','P=[x,Ax,A²x] 反求 B'],
+[2002,'十题',8,'C2','相似与特征多项式逆命题'],
+[2003,'九题',10,'A1+B3+D4','A* 相似后求 B+2E'],
+[2004,'21题',9,'A3+D3','二重根讨论对角化'],
+[2006,'21题',9,'E2+E3','各行和3求正交Q'],
+[2007,'22题',11,'E3+F2+G2','矩阵多项式 B 反求'],
+[2008,'13题',4,'A2','抽象二阶非零特征值'],
+[2009,'13题',4,'A2','外积 βαᵀ 非零特征值'],
+[2010,'6题',4,'E1+B2','A²+A=O 定对角形'],
+[2011,'21题',11,'E3+F2','秩2实对称反求 A'],
+[2013,'6题',4,'E1+C2','实对称相似充要条件'],
+[2014,'21题',11,'C2+D','全1矩阵相似证明'],
+[2015,'21题',11,'C1+D4','相似求参求 P 对角化'],
+[2016,'5题',4,'C1+C2','相似保持性判别'],
+[2016,'21题',11,'G1','求 A⁹⁹'],
+[2017,'6题',4,'C3+D3','三矩阵相似关系'],
+[2018,'5题',4,'C3','找与 Jordan 块相似矩阵'],
+[2019,'21题',11,'C1+D4','相似求 P（非对角B）'],
+[2020,'21题',11,'C1+D2','抽象基反求相似矩阵'],
+[2021,'21题',12,'E2+G2','正交对角化+正定平方根'],
+[2022,'5题',5,'D1+D2','可对角化充分不必要条件'],
+[2023,'6题',5,'D3','不能对角化的矩阵'],
+[2024,'7题',5,'B1+D1','由秩与几何条件判迹'],
+[2024,'21题',12,'G1','三元递推求 Aⁿ 通项']
+];
+var tb=document.getElementById('appTable');
+rows.forEach(function(r){
+  var tr=document.createElement('tr');
+  r.forEach(function(c){var td=document.createElement('td');td.textContent=c;tr.appendChild(td);});
+  tb.appendChild(tr);
+});
+window.addEventListener('resize',function(){pie.resize();bar.resize();flow.resize();});
+</script>
+</body>
+</html>

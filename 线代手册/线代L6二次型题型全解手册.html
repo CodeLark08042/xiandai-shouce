@@ -1,0 +1,592 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>考研数学（一）· 线性代数「二次型」题型全解手册（1987—2025 真题）</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="../assets/tex-svg.js"></script>
+<script src="../assets/echarts.min.js"></script>
+<style>
+:root{
+  --ink:#222; --ink-soft:#4a5568; --paper:#fafaf6; --card:#ffffff;
+  --navy:#1e3a5f; --navy-2:#2a4d7a; --accent:#d97706; --accent-soft:#fbeede;
+  --good:#1e7a46; --warn:#b03a2e; --line:#e3e6ec;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Microsoft YaHei','PingFang SC',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.75}
+h1,h2,h3,h4{font-family:'Microsoft YaHei','PingFang SC',sans-serif;line-height:1.4}
+.layout{display:flex;min-height:100vh}
+.sidebar{width:260px;flex:0 0 260px;background:var(--navy);color:#dfe8f2;position:sticky;top:0;height:100vh;overflow-y:auto;padding:22px 0 60px;z-index:50}
+.sidebar::-webkit-scrollbar{width:6px}
+.sidebar::-webkit-scrollbar-thumb{background:#3d5a7a;border-radius:3px}
+.main{flex:1;min-width:0;padding:0 0 80px}
+.side-logo{padding:6px 24px 16px;border-bottom:1px solid #2c4a6b;margin-bottom:14px}
+.side-logo .big{font-size:18px;font-weight:700;color:#fff;letter-spacing:1px}
+.side-logo .sub{font-size:12px;color:#9db4cc;margin-top:2px}
+.nav-group{font-size:12px;color:#7f99b5;padding:14px 24px 6px;letter-spacing:1px}
+.nav-item{display:block;color:#c9d8e8;text-decoration:none;font-size:13px;padding:6px 24px;border-left:3px solid transparent;transition:all .15s}
+.nav-item:hover{background:#1e3c5e;color:#fff}
+.nav-item.active{background:#1e3c5e;color:#fff;border-left-color:var(--accent)}
+.main{padding:0 0 80px}
+.section{max-width:1060px;margin:0 auto;padding:48px 40px 8px}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;border-radius:14px;padding:44px 46px 38px;margin-top:30px;position:relative;overflow:hidden}
+.hero .kicker{display:inline-block;background:var(--accent);color:#fff;font-size:12px;letter-spacing:3px;padding:3px 12px;border-radius:4px;margin-bottom:16px}
+.hero h1{font-size:30px;font-weight:700;letter-spacing:1px}
+.hero .sub{color:#bcd0e4;font-size:14.5px;margin-top:10px}
+.stat-row{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 20px;text-align:center}
+.stat b{display:block;font-size:24px;color:#ffce8a}
+.stat span{font-size:12px;color:#c9d8e8}
+.chapter-head{display:flex;align-items:center;gap:14px;margin:40px 0 6px}
+.chapter-no{background:var(--navy);color:#fff;font-weight:700;font-size:20px;width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:0 0 48px}
+.chapter-head h2{font-size:24px;color:var(--navy);font-weight:700}
+.chapter-desc{color:var(--ink-soft);font-size:14px;margin:0 0 24px 62px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:22px 0 34px;overflow:hidden;box-shadow:0 1px 4px rgba(30,58,95,.05);break-inside:avoid}
+.qcard>.qhead{background:#fbf8f2;border-bottom:1px solid var(--line);padding:16px 24px}
+.qhead .tag{display:inline-block;font-size:11.5px;background:var(--accent-soft);color:var(--accent);border:1px solid #f0d3a3;border-radius:20px;padding:2px 12px;margin-right:8px}
+.qhead .zs{font-size:11.5px;background:#e8eef6;color:var(--navy);border:1px solid #cdd9e8;border-radius:20px;padding:2px 10px;margin-right:8px}
+.qhead h3{display:inline;font-size:18px;color:var(--navy);font-weight:700}
+.qbody{padding:8px 24px 24px}
+.idbox{background:#f0f5fa;border-left:4px solid var(--navy-2);border-radius:0 8px 8px 0;padding:12px 16px;margin:14px 0;font-size:14px}
+.idbox b{color:var(--navy-2)}
+.principle{background:#fdf6ea;border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:12px 16px;margin:14px 0;font-size:14px}
+.principle b{color:var(--accent)}
+.flow{margin:16px 0 6px}
+.flow-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:12px}
+.step{margin-bottom:10px}
+.step-card{border:1px solid var(--line);border-radius:10px;padding:11px 15px;background:#f8fafc}
+.step-card .do{font-weight:700;color:var(--ink);font-size:14px}
+.step-card .why{color:var(--ink-soft);font-size:13px;margin-top:3px}
+.step-card .why b{color:var(--good)}
+.step-card .mid{color:var(--navy-2);background:#eef3f9;border-radius:6px;padding:5px 11px;font-size:13.5px;margin-top:7px}
+details.exam{background:#fbfcfd;border:1px dashed #c9d4e0;border-radius:10px;margin:14px 0 8px;overflow:hidden}
+details.exam summary{cursor:pointer;padding:12px 16px;font-size:14px;color:var(--navy);font-weight:700;list-style:none}
+details.exam summary::before{content:'▸';color:var(--accent);margin-right:8px}
+details.exam[open] summary::before{content:'▾'}
+details.exam .exam-body{padding:4px 18px 16px;border-top:1px solid #eef2f6}
+.exam-meta{font-size:12.5px;color:var(--ink-soft);margin:10px 0 6px}
+.exam-meta b{color:var(--accent)}
+.solution{background:#fff;border:1px solid var(--line);border-radius:8px;padding:11px 15px;font-size:14px;margin-top:8px}
+.solution .ans{background:#eef7f0;border-left:4px solid var(--good);border-radius:0 6px 6px 0;padding:7px 11px;margin-top:8px;font-weight:700;color:#14532d}
+.pitfall{background:#fdf1f0;border-left:4px solid var(--warn);border-radius:0 8px 8px 0;padding:12px 16px;margin:14px 0;font-size:14px}
+.pitfall b{color:var(--warn)}
+.rule{margin:12px 0;font-size:14px;color:var(--ink-soft)}
+.rule b{color:var(--navy)}
+table.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+table.tbl th{background:var(--navy);color:#fff;padding:8px 11px;text-align:left;font-weight:500}
+table.tbl td{border:1px solid var(--line);padding:7px 11px;background:#fff;vertical-align:top}
+table.tbl tr:nth-child(even) td{background:#f8fafc}
+.chart-box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 16px 6px;margin:16px 0}
+.chart-box h4{font-size:15px;color:var(--navy);margin-bottom:4px}
+.chart-box .cap{font-size:12.5px;color:var(--ink-soft);margin-bottom:6px}
+.chart{width:100%;height:340px}
+.chart-row{display:flex;gap:16px;flex-wrap:wrap}
+.chart-row .chart-box{flex:1;min-width:320px}
+.note{background:#eef6ff;border:1px solid #cfe0f2;border-radius:10px;padding:12px 16px;font-size:13.5px;color:#23405f;margin:14px 0}
+.note b{color:var(--navy)}
+.foot{max-width:1060px;margin:30px auto 0;padding:20px 40px;color:var(--ink-soft);font-size:12.5px;border-top:1px solid var(--line)}
+#toTop{position:fixed;right:26px;bottom:30px;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;border:none;font-size:18px;cursor:pointer;display:none;box-shadow:0 2px 8px rgba(0,0,0,.25);z-index:99}
+#toTop:hover{background:var(--accent)}
+.flow-svg{width:100%;height:auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
+@media print{
+  .sidebar,#toTop{display:none!important}
+  .main{padding:0}
+  .section{max-width:100%;padding:10px 0}
+  .qcard{break-inside:avoid;box-shadow:none}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar">
+  <div class="side-logo">
+    <div class="big">线性代数 · L6</div>
+    <div class="sub">二次型题型全解手册（1987—2025 数一）</div>
+  </div>
+  <div class="nav-group">总览</div>
+  <a class="nav-item" href="#cover">封面与定位</a>
+  <a class="nav-item" href="#overview">0 · 本章真题总览</a>
+  <div class="nav-group">题型框架</div>
+  <a class="nav-item" href="#A">A · 二次型基本概念</a>
+  <a class="nav-item" href="#B1">B1 · 正交变换化标准形（数一主打）</a>
+  <a class="nav-item" href="#B2">B2 · 配方法</a>
+  <a class="nav-item" href="#B3">B3 · 标准形 vs 规范形</a>
+  <a class="nav-item" href="#C">C · 惯性定理与规范形</a>
+  <a class="nav-item" href="#D">D · 合同矩阵</a>
+  <a class="nav-item" href="#D3">D3 · 合同/相似/等价辨析</a>
+  <a class="nav-item" href="#E">E · 正定二次型/正定矩阵</a>
+  <div class="nav-group">收尾</div>
+  <a class="nav-item" href="#flow">本章解题决策流程</a>
+  <a class="nav-item" href="#appendix">附录 · 真题全清单（27）</a>
+</nav>
+<div class="main">
+
+<!-- ============ 封面 ============ -->
+<section class="section" id="cover">
+  <div class="hero">
+    <span class="kicker">考研数学一 · 线性代数</span>
+    <h1>第六章 二次型 · 题型全解手册</h1>
+    <div class="sub">真题范围 1987—2025（数学一）｜ 数据来源：《考研数学真题真刷 · 基础篇 + 提高篇》｜ 共抽取数一真题 27 道</div>
+    <div class="stat-row">
+      <div class="stat"><b>27</b><span>数一真题总数</span></div>
+      <div class="stat"><b>11+16</b><span>基础篇+提高篇</span></div>
+      <div class="stat"><b>B1/E</b><span>每年必考主线</span></div>
+      <div class="stat"><b>D3</b><span>选择常驻辨析</span></div>
+    </div>
+  </div>
+  <div class="note">
+    <b>本章在线代体系中的位置：</b>二次型是 L5 特征值（实对称矩阵正交对角化）的几何应用。化标准形的本质就是对二次型矩阵 $A$（实对称）做正交相似对角化 $Q^{-1}AQ=\Lambda$；正定、合同、惯性指数都建立在"特征值符号"与"正负惯性指数"之上。复习二次型务必与 L5 打通。<span style="color:var(--accent)">「正交变换」「向量空间/正交矩阵」是数一专属高频点。</span>
+  </div>
+</section>
+
+<!-- ============ 总览 ============ -->
+<section class="section" id="overview">
+  <div class="chapter-head"><div class="chapter-no">0</div><h2>本章真题总览</h2></div>
+  <div class="chapter-desc">考频统计表、ECharts 图表与宏观命题规律；三处数字（表=图=台账）一致。</div>
+
+  <table class="tbl">
+    <tr><th>题型编号</th><th>题型</th><th>题数</th><th>分值合计</th><th>首次出现</th><th>最近出现</th></tr>
+    <tr><td>A</td><td>基本概念（写矩阵 / 秩 / 反求）</td><td>融入各大题</td><td>—</td><td>1990</td><td>2022</td></tr>
+    <tr><td>B1</td><td>正交变换化标准形（含反求矩阵、二次曲面）</td><td>15</td><td>113</td><td>1990</td><td>2022</td></tr>
+    <tr><td>C</td><td>惯性定理 / 规范形 / 正负惯性指数</td><td>7</td><td>35</td><td>2008</td><td>2025</td></tr>
+    <tr><td>D</td><td>合同矩阵（含可逆变换、正交变换存在性）</td><td>3</td><td>19</td><td>2001</td><td>2023</td></tr>
+    <tr><td>E</td><td>正定二次型 / 正定矩阵</td><td>2</td><td>12</td><td>1991</td><td>1999</td></tr>
+    <tr><td colspan="2"><b>合计</b></td><td><b>27</b></td><td><b>—</b></td><td>1990</td><td>2025</td></tr>
+  </table>
+  <div class="note">说明：2010(21) 第(II)问"证 $A+E$ 正定"归入 B1 大题统计；2008(6) 由二次曲面反推正特征值个数，归入 C（惯性指数）。E 独立成题仅 1991、1999 两道证明题，其余年份正定以"小问"或"判定工具"形式嵌入 B1。</div>
+
+  <div class="chart-row">
+    <div class="chart-box"><h4>按年份题量（1990—2025）</h4><div class="cap">本章在有考年各出 1 题，呈"年年考点"态势。</div><div id="barYear" class="chart"></div></div>
+    <div class="chart-box"><h4>各题型题数占比</h4><div class="cap">B1 正交变换化标准形是绝对主力。</div><div id="pieType" class="chart"></div></div>
+  </div>
+  <div class="chart-box"><h4>近 10 年（2016—2025）本章分值趋势</h4><div class="cap">大题（11—12 分）与小题（4—5 分）交替出现。</div><div id="lineTrend" class="chart" style="height:300px"></div></div>
+
+  <div class="rule"><b>宏观命题规律：</b>
+  <ol style="margin-left:20px">
+    <li><b>B1 与 E 是双主线：</b>正交变换化标准形（B1）几乎每年必考一道大题；正定判定（E）作为工具或小问反复出现。</li>
+    <li><b>D3 是选择题常驻：</b>"合同 / 相似 / 等价"三者辨析在 2001、2007、2023 反复考，是送分但易错点。</li>
+    <li><b>二次曲面是数一特色：</b>1996、1998、2008、2011、2016 把二次型与解析几何（椭圆柱面、双叶双曲面等）结合，数二数三不涉及。</li>
+    <li><b>近十年考"反问题"与"含参讨论"：</b>由标准形/规范形反求矩阵或参数（2009、2010、2017、2020），含参分类讨论（2014、2018）。</li>
+    <li><b>跨章联动：</b>化标准形依赖 L5 实对称正交对角化；判秩/正定偶联 L2 矩阵秩、L4 方程组（$f=0$ 的解 = 解 $Ax=0$）。</li>
+  </ol>
+  </div>
+</section>
+
+<!-- ============ A 基本概念 ============ -->
+<section class="section" id="A">
+  <div class="chapter-head"><div class="chapter-no">A</div><h2>二次型基本概念</h2></div>
+  <div class="chapter-desc">写矩阵 $f=x^TAx$（A 必须对称）、二次型的秩、由矩阵反写表达式。</div>
+
+  <div class="qcard">
+    <div class="qhead"><span class="tag">A1+A2+A3</span><h3>写矩阵 · 秩 · 反求</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>① 识别特征：</b>
+        看到"写出二次型对应的矩阵"→ 想 A1；看到"二次型的秩为 k"→ 想 A2；看到"给出标准形/特征向量反求矩阵 A"→ 想 A3（反问题）。
+      </div>
+      <div class="principle"><b>② 核心原理：</b>
+        <div>· 二次型唯一对应一个<b>对称</b>矩阵 $A$：$f(x_1,\dots,x_n)=\sum_i\sum_j a_{ij}x_ix_j=x^TAx$，其中 $a_{ii}$ 取 $x_i^2$ 系数，$a_{ij}=a_{ji}$ 取 $x_ix_j$ 系数的一半。</div>
+        <div>· <b>二次型的秩 $=$ 矩阵 $A$ 的秩 $r(A)$</b>。</div>
+        <div>· 双和号写法（2022）：$f=\sum_{i,j}ij\,x_ix_j \Rightarrow A=(ij)$。</div>
+      </div>
+      <div class="flow">
+        <div class="flow-title">③ 解题链路</div>
+        <div class="step"><div class="step-card"><div class="do">Step1｜读系数写对称矩阵</div><div class="why">对角线放平方项系数，交叉项系数一分为二放到 $(i,j)$ 与 $(j,i)$。<b>陷阱：</b>直接把交叉项系数整个塞进非对角元，会得到不对称的错矩阵。</div></div></div>
+        <div class="step"><div class="step-card"><div class="do">Step2｜求秩 / 由秩定参</div><div class="why">若"秩为 r"，对 $A$ 做初等行变换或令 $|A|=0$（当 $r<n$）反解参数。</div><div class="mid">下一步：若题目还要化标准形 → 转 B1；若只求 $f=0$ 的解 → 解 $Ax=0$（L4）。</div></div></div>
+      </div>
+      <div class="flow-title">④ 真题演示</div>
+      <details class="exam" open><summary>【真题｜2022 数学一 第21题（12分）· 写矩阵】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>提高篇题目 p064 / 答案 p136</div>
+        <div class="solution">$f=\sum_{i=1}^{3}\sum_{j=1}^{3}ij\,x_ix_j$，故 $A=(ij)=\begin{pmatrix}1&2&3\\2&4&6\\3&6&9\end{pmatrix}$。注意每行成比例，$r(A)=1$。
+        <div class="ans">矩阵 $A=\begin{pmatrix}1&2&3\\2&4&6\\3&6&9\end{pmatrix}$（秩 1）。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2013 数学一 第21题（11分）· 证明矩阵表达式】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>提高篇 p061 / p131</div>
+        <div class="solution">$f=2(\alpha^Tx)^2+(\beta^Tx)^2=x^T(2\alpha\alpha^T+\beta\beta^T)x$，而 $2\alpha\alpha^T+\beta\beta^T$ 对称，故为二次型矩阵。
+        <div class="ans">$A=2\alpha\alpha^T+\beta\beta^T$。</div></div>
+      </div></details>
+      <div class="pitfall"><b>⑤ 易错点：</b>交叉项系数必须取一半；二次型矩阵必须对称；"秩为 2"不要误读成"有两个非零特征值"之外忽略 $|A|=0$。</div>
+      <div class="rule"><b>⑥ 命题规律：</b>写矩阵/求秩极少单独成题，几乎都是大题第(I)问（2005、2012、2022），是送分起步步。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ B1 正交变换 ============ -->
+<section class="section" id="B1">
+  <div class="chapter-head"><div class="chapter-no">B1</div><h2>正交变换法化标准形（数一主打）</h2></div>
+  <div class="chapter-desc">$x=Qy$，本质 = L5 实对称矩阵正交对角化；标准形系数即 $A$ 的特征值。</div>
+
+  <div class="qcard">
+    <div class="qhead"><span class="tag">B1 核心</span><span class="zs">数一专属</span><h3>正交变换化标准形</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>① 识别特征：</b>
+        "用正交变换化二次型为标准形""求正交矩阵 $Q$""标准形为 $\lambda_1y_1^2+\cdots$" → 立刻判定本题型。数一几乎年年考。
+      </div>
+      <div class="principle"><b>② 核心原理（可直接套用）：</b>
+        <div>设 $A$ 为 3 阶实对称矩阵，必存在正交矩阵 $Q$ 使 $Q^{-1}AQ=Q^TAQ=\Lambda=\mathrm{diag}(\lambda_1,\lambda_2,\lambda_3)$。</div>
+        <div>作 $x=Qy$，则 $f=x^TAx=(Qy)^TA(Qy)=y^T(Q^TAQ)y=\lambda_1y_1^2+\lambda_2y_2^2+\lambda_3y_3^2$。</div>
+        <div><b>两个结论：</b>① 标准形平方项系数 = $A$ 的特征值；② 所用正交矩阵 $Q$ 的列 = 对应的单位正交特征向量。<b>适用前提：$A$ 必须实对称。</b></div>
+      </div>
+      <div class="flow">
+        <div class="flow-title">③ 完整解题链路（决策树）</div>
+        <div class="step"><div class="step-card"><div class="do">Step1｜写出二次型矩阵 $A$（对称）</div><div class="why">按 A1 规则；若题目给的是 $x^T(A^TA)x$（如2012），先算 $B=A^TA$。</div></div></div>
+        <div class="step"><div class="step-card"><div class="do">Step2｜求特征值：解 $|\lambda E-A|=0$</div><div class="why">标准形系数即特征值，先把特征值求出。<b>若题目已给"标准形只有两项"→ 说明 $\lambda_3=0$，即 $|A|=0$，可反求参数。</b></div></div></div>
+        <div class="step"><div class="step-card"><div class="do">Step3｜求特征向量：对每个 $\lambda_i$ 解 $(\lambda_iE-A)x=0$</div><div class="why">实对称矩阵不同特征值的特征向量天然正交；重根特征向量需 Schmidt 正交化。</div></div></div>
+        <div class="step"><div class="step-card"><div class="do">Step4｜单位化 → 拼成正交矩阵 $Q=(\gamma_1,\gamma_2,\gamma_3)$</div><div class="why">正交变换矩阵要求列向量单位正交。<b>列的顺序必须与特征值顺序对应。</b></div><div class="mid">下一步：若题目给"曲面方程"→ 按特征值正负号判曲面类型（椭球面/单叶/双叶/柱面）；若反求 $A$（已知 $Q$ 列）→ 由 $A=Q\Lambda Q^T$ 反算。</div></div></div>
+      </div>
+
+      <div class="flow-title">④ 真题演示（覆盖各年代）</div>
+      <details class="exam" open><summary>【真题｜2005 数学一 第20题（9分）】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>基础篇 p196 / p176</div>
+        <div class="solution">$f=(1-a)x_1^2+(1-a)x_2^2+2x_3^2+2(1+a)x_1x_2$ 秩为 2。
+        (I) $A=\begin{pmatrix}1-a&1+a&0\\1+a&1-a&0\\0&0&2\end{pmatrix}$，$r(A)=2\Rightarrow|A|=-8a=0\Rightarrow a=0$。
+        (II) $a=0$ 时 $|\lambda E-A|=\lambda(\lambda-2)^2$，特征值 $2,2,0$；单位化后 $Q$，标准形 $f=2y_1^2+2y_2^2$。
+        (III) $f=0\Leftrightarrow2y_1^2+2y_2^2=0\Rightarrow y_1=y_2=0$，$x=Q(0,0,y_3)^T=k(1,-1,0)^T$。
+        <div class="ans">$a=0$；标准形 $2y_1^2+2y_2^2$；$f=0$ 的解 $x=k(1,-1,0)^T$。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2017 数学一 第21题（11分）】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>提高篇 p062 / p133</div>
+        <div class="solution">$f=2x_1^2-x_2^2+a x_3^2+2x_1x_2-8x_1x_3+2x_2x_3$，标准形 $\lambda_1y_1^2+\lambda_2y_2^2$（仅两项）说明 $\lambda_3=0\Rightarrow|A|=-3(a-2)=0\Rightarrow a=2$。特征值 $6,-3,0$，标准形 $6y_1^2-3y_2^2$。
+        <div class="ans">$a=2$；正交变换下 $f=6y_1^2-3y_2^2$。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2010 数学一 第21题（11分）· 反求矩阵】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>提高篇 p060 / p129</div>
+        <div class="solution">标准形 $y_1^2+y_2^2\Rightarrow$ 特征值 $1,1,0$；$Q$ 第3列 $(\frac{\sqrt2}{2},0,\frac{\sqrt2}{2})^T$ 是 $\lambda=0$ 的特征向量。与它正交且对应 $\lambda=1$ 的两向量单位化后，由 $A=Q\Lambda Q^T$ 得 $A=\begin{pmatrix}1/2&0&-1/2\\0&1&0\\-1/2&0&1/2\end{pmatrix}$。
+        <div class="ans">$A=\begin{pmatrix}1/2&0&-1/2\\0&1&0\\-1/2&0&1/2\end{pmatrix}$。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜1990 数学一 第八题（8分）· 早期经典】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>基础篇 p194 / p173</div>
+        <div class="solution">$A=\begin{pmatrix}1&-2&2\\-2&4&-4\\2&-4&4\end{pmatrix}$，$|\lambda E-A|=\lambda^2(\lambda-9)$，特征值 $0,0,9$；重根特征向量 Schmidt 正交化后单位化。
+        <div class="ans">标准形 $f=9y_3^2$。</div></div>
+      </div></details>
+
+      <div class="pitfall"><b>⑤ 易错点：</b>
+        <div>· 正交矩阵 $Q$ 的列顺序必须与特征值顺序一一对应；</div>
+        <div>· 重根（如 $\lambda=2$ 二重）的特征向量必须先 Schmidt 正交化再单位化，不能直接单位化；</div>
+        <div>· 混淆"标准形系数"与"特征值"：正交变换下二者一致，但配方法下系数不是特征值；</div>
+        <div>· 反求 $A$ 时，$A=Q\Lambda Q^T$（$Q$ 正交故 $Q^{-1}=Q^T$），不要写成 $Q\Lambda Q^{-T}$。</div>
+      </div>
+      <div class="rule"><b>⑥ 命题规律：</b>1990—2022 几乎每年一道大题，分值 6—12 分；常与二次曲面（1996/1998/2008/2011/2016）、反求参数（2002/2009/2017/2020）、正定小问（2010）联合。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ B2 配方法 ============ -->
+<section class="section" id="B2">
+  <div class="chapter-head"><div class="chapter-no">B2</div><h2>配方法化标准形</h2></div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">B2</span><h3>配方法</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>① 识别特征：</b>题目只要求"化规范形/标准形"且不要求正交矩阵，或由"平方和形式"快速判惯性指数（2014、2018、2021、2025）。</div>
+      <div class="principle"><b>② 核心原理：</b>逐个把含 $x_i$ 的项配成完全平方（+ 配方余项），得可逆线性替换；配方后正平方项个数即 $p$，负平方项个数即 $q$。</div>
+      <div class="flow">
+        <div class="flow-title">③ 解题链路</div>
+        <div class="step"><div class="step-card"><div class="do">Step1｜按 $x_1,x_2,x_3$ 顺序配方</div><div class="why">把 $x_1$ 的所有项凑成 $(x_1+\cdots)^2$，余下对 $x_2$ 继续。</div></div></div>
+        <div class="step"><div class="step-card"><div class="do">Step2｜数正、负平方项个数</div><div class="why">系数 $>0$ 计正项，$<0$ 计负项。<b>注意：</b>配方得到的系数不是特征值，但正负个数 = 惯性指数。</div></div></div>
+      </div>
+      <details class="exam"><summary>【真题｜2014 数学一 第13题（4分）】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>提高篇 p061 / p132</div>
+        <div class="solution">$f=x_1^2-x_2^2+2a x_1x_3+4x_2x_3=(x_1+a x_3)^2-(x_2-2x_3)^2+(4-a^2)x_3^2$。负惯性指数为 1 即负平方项已恰为 1 个，故剩余 $(4-a^2)\ge0$。
+        <div class="ans">$a\in[-2,2]$。</div></div>
+      </div></details>
+      <div class="pitfall"><b>⑤ 易错点：</b>配方时一次只能消一个变量；含参时参数可能使某平方项变号，必须讨论系数符号。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ B3 标准形 vs 规范形 ============ -->
+<section class="section" id="B3">
+  <div class="chapter-head"><div class="chapter-no">B3</div><h2>标准形不唯一，规范形唯一</h2></div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">B3</span><h3>标准形 vs 规范形</h3></div>
+    <div class="qbody">
+      <div class="principle"><b>核心结论：</b>
+        <div>· <b>标准形</b>：$d_1y_1^2+\cdots+d_ny_n^2$，系数随方法（正交变换/配方）和缩放而<b>不唯一</b>；</div>
+        <div>· <b>规范形</b>：$z_1^2+\cdots+z_p^2-z_{p+1}^2-\cdots-z_{p+q}^2$，系数只取 $\pm1$，由惯性定理<b>唯一</b>。</div>
+        <div>· 正交变换下标准形系数 = 特征值；配方法下标准形系数是另一组数，但正负惯性指数相同。</div>
+      </div>
+      <table class="tbl">
+        <tr><th>对比</th><th>标准形</th><th>规范形</th></tr>
+        <tr><td>系数</td><td>任意实数（特征值或配方系数）</td><td>仅 $+1,-1,0$</td></tr>
+        <tr><td>唯一性</td><td>不唯一</td><td>唯一（惯性定理）</td></tr>
+        <tr><td>决定量</td><td>依赖变换方法</td><td>只由 $p,q$ 决定</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ C 惯性定理 ============ -->
+<section class="section" id="C">
+  <div class="chapter-head"><div class="chapter-no">C</div><h2>惯性定理与规范形</h2></div>
+  <div class="chapter-desc">正负惯性指数 $p,q$、规范形、由特征值/标准形反推 $p,q$。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">C1+C2+C3</span><h3>惯性指数与规范形</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>① 识别特征：</b>"规范形为…""正/负惯性指数为…""由二次曲面反推正特征值个数" → 本章小题（选择/填空）高频。</div>
+      <div class="principle"><b>② 核心原理：</b>
+        <div>· <b>惯性定理：</b>二次型经任意可逆线性替换，正惯性指数 $p$、负惯性指数 $q$ 不变。</div>
+        <div>· $p$ = 正特征值个数 = 规范形中正平方项个数；$q$ = 负特征值个数；$r(A)=p+q$。</div>
+        <div>· 求 $p,q$ 最快的方法：求 $A$ 的特征值，数正、负、零的个数。</div>
+      </div>
+      <div class="flow">
+        <div class="flow-title">③ 解题链路</div>
+        <div class="step"><div class="step-card"><div class="do">Step1｜求 $A$ 特征值（或配方数平方项）</div><div class="why">实对称矩阵特征值即标准形系数，符号即 $p,q$。</div></div></div>
+        <div class="step"><div class="step-card"><div class="do">Step2｜按题意反推</div><div class="why">若给规范形 $y_1^2+y_2^2$ → 说明 $p=2,q=0$，特征值符号必为 $+,+,0$，据此反求参数。</div><div class="mid">下一步：若给二次曲面图形（双叶双曲面）→ 由曲面标准方程反推 $p,q$。</div></div></div>
+      </div>
+      <div class="flow-title">④ 真题演示</div>
+      <details class="exam" open><summary>【真题｜2019 数学一 第5题（4分）】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>提高篇 p063 / p135</div>
+        <div class="solution">$A^2+A=2E\Rightarrow\lambda^2+\lambda-2=0\Rightarrow\lambda=1$ 或 $-2$；再由 $|A|=4$（三个特征值乘积）得 $1\times(-2)\times(-2)=4$，故特征值 $1,-2,-2$，$p=1,q=2$。
+        <div class="ans">规范形 $y_1^2-y_2^2-y_3^2$，选 C。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2021 数学一 第5题（5分）】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>提高篇 p063 / p136</div>
+        <div class="solution">$f=(x_1+x_2)^2+(x_2+x_3)^2-(x_3-x_1)^2$。注意这三个平方和的替换矩阵行列式为 0，不是可逆变换，不能直接数"3 个平方项"。化简得 $A=\begin{pmatrix}0&1&1\\1&2&1\\1&1&0\end{pmatrix}$，特征值 $3,-1,0$。
+        <div class="ans">$p=1,q=1$，选 B。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2025 数学一 第5题（5分）】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>提高篇 p064 / p138</div>
+        <div class="solution">$f=x_1^2+2x_1x_2+2x_1x_3=(x_1+x_2+x_3)^2-(x_2+x_3)^2$，正平方项 1 个。
+        <div class="ans">正惯性指数 $p=1$，选 B。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2008 数学一 第6题（4分）· 二次曲面反推】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>基础篇 p196 / p177</div>
+        <div class="solution">$x^TAx=1$ 的标准方程图形为双叶双曲面 $\frac{x^2}{a^2}-\frac{y^2}{b^2}-\frac{z^2}{c^2}=1$，正平方项 1 个。
+        <div class="ans">$A$ 正特征值个数为 1，选 B。</div></div>
+      </div></details>
+      <div class="pitfall"><b>⑤ 易错点：</b>"平方和形式 $=k$"不等于可逆替换（2021 的陷阱）；双叶双曲面是 1 正 2 负，别记成 2 正 1 负。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ D 合同 ============ -->
+<section class="section" id="D">
+  <div class="chapter-head"><div class="chapter-no">D</div><h2>合同矩阵</h2></div>
+  <div class="chapter-desc">定义 $C^TAC=B$、合同 $\Leftrightarrow$ 正负惯性指数相同、可逆变换化二次型。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">D1+D2</span><h3>合同的判定</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>① 识别特征：</b>"$A$ 与 $B$ 是否合同""求可逆变换 $x=Py$ 将 $f$ 化为 $g$" → 本题型。</div>
+      <div class="principle"><b>② 核心原理：</b>
+        <div>· <b>定义：</b>存在可逆矩阵 $C$ 使 $C^TAC=B$，称 $A$ 与 $B$ 合同。</div>
+        <div>· <b>充要条件（实对称）：</b>$A\simeq B\iff p_A=p_B$ 且 $q_A=q_B$（正负惯性指数分别相同）。</div>
+        <div>· 求 $p,q$ 最快靠特征值。</div>
+      </div>
+      <details class="exam"><summary>【真题｜2023 数学一 第21题（12分）· 可逆变换化合同】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>提高篇 p064 / p137</div>
+        <div class="solution">$f=x_1^2+2x_2^2+2x_3^2+2x_1x_2-2x_1x_3$，$g=y_1^2+y_2^2+y_3^2+2y_2y_3$。两式配方法化规范形均为 $z_1^2+z_2^2$（$p=2,q=0$），故合同，存在可逆 $P=\begin{pmatrix}1&-1&1\\0&1&0\\0&0&1\end{pmatrix}$ 使 $x=Py$ 化 $f$ 为 $g$。
+        <div class="ans">(I) $P=\begin{pmatrix}1&-1&1\\0&1&0\\0&0&1\end{pmatrix}$；(II) 见 D3。</div></div>
+      </div></details>
+    </div>
+  </div>
+
+  <div class="qcard" id="D3">
+    <div class="qhead"><span class="tag">D3 高频辨析</span><h3>合同 vs 相似 vs 等价</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>① 识别特征：</b>选择题"$A$ 与 $B$：(A)合同且相似 (B)合同不相似 (C)相似不合同 (D)既不合同也不相似" → 本题型，常驻选择。</div>
+      <table class="tbl">
+        <tr><th>关系</th><th>定义式</th><th>等价条件</th><th>保持的不变量</th><th>强度</th></tr>
+        <tr><td><b>等价</b> $\cong$</td><td>$PAQ=B$（$P,Q$ 可逆）</td><td>$r(A)=r(B)$</td><td>秩</td><td>最弱</td></tr>
+        <tr><td><b>合同</b> $\simeq$</td><td>$C^TAC=B$（$C$ 可逆）</td><td>$p_A=p_B,\ q_A=q_B$</td><td>正负惯性指数（正定性）</td><td>中</td></tr>
+        <tr><td><b>相似</b> $\sim$</td><td>$P^{-1}AP=B$（$P$ 可逆）</td><td>特征值全相同</td><td>特征值、迹、行列式、秩</td><td>中强</td></tr>
+      </table>
+      <div class="principle"><b>关键推论（实对称矩阵）：</b>
+        <div>· <b>相似 $\Rightarrow$ 合同：</b>实对称 $A\sim B\Rightarrow$ 特征值相同 $\Rightarrow p,q$ 相同 $\Rightarrow$ 合同。</div>
+        <div>· <b>合同 $\nRightarrow$ 相似：</b>合同只要求 $p,q$ 相同，不要求特征值数值相同。</div>
+        <div>· <b>判相似先看迹：</b>$\sum a_{ii}=\sum b_{ii}$ 是相似的必要条件，不等则必不相似。</div>
+      </div>
+      <div class="flow-title">真题演示</div>
+      <details class="exam" open><summary>【真题｜2007 数学一 第8题（4分）】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>基础篇 p199 / p179</div>
+        <div class="solution">$A$ 三对角 $(2,-1;-1,2,-1;-1,2)$，$B=\mathrm{diag}(1,1,0)$。迹 $\sum a_{ii}=6\ne\sum b_{ii}=2$，故不相似；$A$ 特征值 $3,3,0$（$p=2,q=0$）与 $B$ 同 $p,q$，故合同。
+        <div class="ans">合同但不相似，选 B。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2001 数学一 二(4)题（3分）】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>基础篇 p199 / p179</div>
+        <div class="solution">$A$ 为 4 阶全 1 矩阵，$B=\mathrm{diag}(4,0,0,0)$。$A$ 特征值 $4,0,0,0$，与 $B$ 完全相同 → 相似；实对称相似必合同。
+        <div class="ans">合同且相似，选 A。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2023 数学一 第21题(II)（12分）】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>提高篇 p064 / p137</div>
+        <div class="solution">若存在正交变换 $x=Qy$ 化 $f$ 为 $g$，则 $B=Q^TAQ=Q^{-1}AQ$，即 $A\sim B$。但 $B$ 特征值 $0,1,2$，而 $|A-E|\ne0$ 说明 $1$ 不是 $A$ 的特征值，不相似。
+        <div class="ans">不存在这样的正交变换。</div></div>
+      </div></details>
+      <div class="pitfall"><b>⑤ 易错点：</b>① 判相似先比迹，迹不同直接排除相似；② 合同不要求特征值相等；③ 正交变换 = 相似变换（$Q^{-1}=Q^T$），故"正交变换化二次型"比"可逆变换化二次型"条件强得多。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ E 正定 ============ -->
+<section class="section" id="E">
+  <div class="chapter-head"><div class="chapter-no">E</div><h2>正定二次型 / 正定矩阵</h2></div>
+  <div class="chapter-desc">定义、特征值全正、顺序主子式（赫尔维茨）、$p=n$、必要条件、含参讨论。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">E1—E6</span><h3>正定判定体系</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>① 识别特征：</b>"证明 $A$ 正定""$f$ 正定求参数范围""$B^TAB$ 是否正定" → 本题型。</div>
+      <div class="principle"><b>② 正定等价条件（$A$ 为 $n$ 阶实对称矩阵）：</b>
+        <div>(E1 定义) $\forall x\ne0,\ x^TAx>0$；</div>
+        <div>(E2) $A$ 的特征值全大于 $0$；</div>
+        <div>(E3 <b>赫尔维茨定理</b>) $A$ 的各阶顺序主子式全大于 $0$；</div>
+        <div>(E4) 正惯性指数 $p=n$；</div>
+        <div>(E5 <b>必要条件</b>，非充分) $a_{ii}>0$ 且 $|A|>0$；</div>
+        <div>(E6) 含参讨论：让上述条件（常用顺序主子式）列出不等式组解参数。</div>
+      </div>
+      <div class="flow">
+        <div class="flow-title">③ 解题链路（选哪个判定？）</div>
+        <div class="step"><div class="step-card"><div class="do">Step1｜先看已知条件选工具</div><div class="why">已知特征值/能求特征值 → 用 E2；给出具体数字矩阵判正定 → 用 E3 顺序主子式；抽象证明题（如 $B^TAB$）→ 用 E1 定义法。</div></div></div>
+        <div class="step"><div class="step-card"><div class="do">Step2｜抽象题用定义法</div><div class="why">$\forall x\ne0,\ x^T(B^TAB)x=(Bx)^TA(Bx)$；当 $A$ 正定且 $Bx\ne0$ 时 $>0$。</div><div class="mid">下一步：含参 → 列出 $\Delta_k>0$ 不等式组，取交集。</div></div></div>
+      </div>
+      <div class="flow-title">④ 真题演示</div>
+      <details class="exam" open><summary>【真题｜1991 数学一 第八题（6分）· 特征值法证明】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>基础篇 p197 / p177</div>
+        <div class="solution">$A$ 正定 → 特征值 $\lambda_i>0$；$A+E$ 特征值为 $\lambda_i+1>1$。
+        <div class="ans">$|A+E|=\prod(\lambda_i+1)>1$，得证。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜1999 数学一 第十一题（6分）· 定义法充要条件】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>基础篇 p197 / p178</div>
+        <div class="solution">$A$ 正定，$B$ 为 $m\times n$。证 $B^TAB$ 正定 $\iff r(B)=n$。
+        必要性：$\forall x\ne0,\ (Bx)^TA(Bx)>0\Rightarrow Bx\ne0$，故 $Bx=0$ 只有零解，$r(B)=n$。
+        充分性：$r(B)=n\Rightarrow Bx=0$ 只有零解，$\forall x\ne0$ 有 $Bx\ne0$，由 $A$ 正定得 $(Bx)^TA(Bx)>0$。
+        <div class="ans">$B^TAB$ 正定 $\iff r(B)=n$。</div></div>
+      </div></details>
+      <details class="exam"><summary>【真题｜2010 数学一 第21题(II)（11分）· 小问正定】</summary><div class="exam-body">
+        <div class="exam-meta"><b>来源：</b>提高篇 p060 / p130</div>
+        <div class="solution">$A$ 特征值 $1,1,0$，则 $A+E$ 特征值 $2,2,1$，全大于 $0$。
+        <div class="ans">$A+E$ 正定。</div></div>
+      </div></details>
+      <div class="note"><b>赫尔维茨定理例题（E3 工具演示）：</b>对 $f=2x_1^2+x_2^2+x_3^2+2x_1x_2+t x_2x_3$，顺序主子式 $\Delta_1=2>0,\ \Delta_2=\begin{vmatrix}2&1\\1&1\end{vmatrix}=1>0,\ \Delta_3=|A|=1-\frac{t^2}{2}$。正定要求 $\Delta_3>0\Rightarrow|t|<\sqrt2$。（此为教材数三习题示范，数一掌握该方法即可。）</div>
+      <div class="pitfall"><b>⑤ 易错点：</b>① $a_{ii}>0$、$|A|>0$ 只是<b>必要不充分</b>，不能据此判正定；② 用顺序主子式必须"各阶全大于 0"，漏阶即错；③ 抽象正定证明优先用定义法，不要硬算行列式。</div>
+      <div class="rule"><b>⑥ 命题规律：</b>独立正定大题仅 1991、1999；近年正定多以小问（2010 证 $A+E$）或判定工具嵌入 B1/E3 计算。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 决策流程 ============ -->
+<section class="section" id="flow">
+  <div class="chapter-head"><div class="chapter-no">流</div><h2>本章解题决策流程图</h2></div>
+  <div class="chapter-desc">拿到本章任意题，按判据分流到末级题型。</div>
+  <svg class="flow-svg" viewBox="0 0 1000 430" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <style>
+        .nb{fill:#fff;stroke:#1e3a5f;stroke-width:1.5;rx:8}
+        .nb2{fill:#fbeede;stroke:#d97706;stroke-width:1.5;rx:8}
+        .t{font-family:'Microsoft YaHei';font-size:13px;fill:#1e3a5f;text-anchor:middle}
+        .ts{font-family:'Microsoft YaHei';font-size:11px;fill:#4a5568;text-anchor:middle}
+        .ln{stroke:#9aa8bd;stroke-width:1.4;fill:none;marker-end:url(#ar)}
+      </style>
+      <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#9aa8bd"/></marker>
+    </defs>
+    <rect class="nb" x="380" y="10" width="240" height="40"/><text class="t" x="500" y="35">拿到二次型题</text>
+    <path class="ln" d="M500,50 V70"/>
+    <rect class="nb" x="330" y="70" width="340" height="44"/><text class="t" x="500" y="89">最终目标是什么？</text><text class="ts" x="500" y="105">（按最终求解目标归口，非过程）</text>
+    <path class="ln" d="M400,114 V140 H150 V160"/>
+    <path class="ln" d="M460,114 V160"/>
+    <path class="ln" d="M540,114 V140 H720 V160"/>
+    <path class="ln" d="M600,114 V140 H880 V160"/>
+    <rect class="nb2" x="60" y="160" width="180" height="56"/><text class="t" x="150" y="183">化标准形</text><text class="ts" x="150" y="200">要正交矩阵 → B1</text><text class="ts" x="150" y="213">不要 → B2 配方法</text>
+    <rect class="nb2" x="370" y="160" width="180" height="56"/><text class="t" x="460" y="183">规范形/惯性指数</text><text class="ts" x="460" y="200">给规范形反求参 / 判 p,q</text><text class="ts" x="460" y="213">→ C</text>
+    <rect class="nb2" x="630" y="160" width="180" height="56"/><text class="t" x="720" y="183">合同/相似辨析</text><text class="ts" x="720" y="200">比 p,q（合同）/比迹（相似）</text><text class="ts" x="720" y="213">→ D / D3</text>
+    <rect class="nb2" x="810" y="160" width="160" height="56"/><text class="t" x="890" y="183">正定判定/证明</text><text class="ts" x="890" y="200">特征值/顺序主子式/定义</text><text class="ts" x="890" y="213">→ E</text>
+    <path class="ln" d="M150,216 V260"/>
+    <path class="ln" d="M460,216 V260"/>
+    <path class="ln" d="M720,216 V260"/>
+    <path class="ln" d="M890,216 V260"/>
+    <rect class="nb" x="60" y="260" width="180" height="50"/><text class="ts" x="150" y="281">写对称矩阵A → 求特征值</text><text class="ts" x="150" y="297">→ 特征向量单位化拼Q</text>
+    <rect class="nb" x="370" y="260" width="180" height="50"/><text class="ts" x="460" y="281">数特征值正/负/零个数</text><text class="ts" x="460" y="297">= p / q / r(A)</text>
+    <rect class="nb" x="630" y="260" width="180" height="50"/><text class="ts" x="720" y="281">可逆变换化合同；</text><text class="ts" x="720" y="297">正交变换 ⇒ 相似</text>
+    <rect class="nb" x="810" y="260" width="160" height="50"/><text class="ts" x="890" y="281">实对称 + 特征值全正</text><text class="ts" x="890" y="297">或顺序主子式全>0</text>
+    <rect class="nb" x="300" y="340" width="400" height="60"/><text class="ts" x="500" y="363">跨章提示：化标准形 = L5 实对称正交对角化；</text><text class="ts" x="500" y="381">f=0 的解 = 解 Ax=0（L4）；二次曲面 = 数一几何应用</text>
+  </svg>
+</section>
+
+<!-- ============ 附录 ============ -->
+<section class="section" id="appendix">
+  <div class="chapter-head"><div class="chapter-no">录</div><h2>附录 · 本章真题全清单</h2></div>
+  <div class="chapter-desc">共 27 行，与本章台账.csv 行数一致。</div>
+  <table class="tbl">
+    <tr><th>年份</th><th>题号</th><th>分值</th><th>题型</th><th>来源页码</th></tr>
+    <tr><td>1990</td><td>八</td><td>8</td><td>B1 正交变换化标准形</td><td>p194/p173</td></tr>
+    <tr><td>1991</td><td>八</td><td>6</td><td>E 正定矩阵证明</td><td>p197/p177</td></tr>
+    <tr><td>1993</td><td>七</td><td>8</td><td>B1 反求参数与正交矩阵</td><td>p194/p174</td></tr>
+    <tr><td>1996</td><td>九</td><td>8</td><td>B1 秩/特征值/二次曲面</td><td>p194/p175</td></tr>
+    <tr><td>1998</td><td>十</td><td>6</td><td>B1 二次曲面正交变换</td><td>p195/p175</td></tr>
+    <tr><td>1999</td><td>十一</td><td>6</td><td>E 正定充要条件</td><td>p197/p178</td></tr>
+    <tr><td>2001</td><td>二(4)</td><td>3</td><td>D3 合同且相似</td><td>p199/p179</td></tr>
+    <tr><td>2002</td><td>一(4)</td><td>3</td><td>B1 标准形反求参数</td><td>p195/p176</td></tr>
+    <tr><td>2005</td><td>20</td><td>9</td><td>B1 秩/正交变换/f=0解</td><td>p196/p176</td></tr>
+    <tr><td>2007</td><td>8</td><td>4</td><td>D3 合同不相似</td><td>p199/p179</td></tr>
+    <tr><td>2008</td><td>6</td><td>4</td><td>C 二次曲面判正特征值</td><td>p196/p177</td></tr>
+    <tr><td>2009</td><td>21</td><td>11</td><td>C 规范形反求参数</td><td>p059/p129</td></tr>
+    <tr><td>2010</td><td>21</td><td>11</td><td>B1 反求矩阵+证正定</td><td>p060/p129</td></tr>
+    <tr><td>2011</td><td>13</td><td>4</td><td>B1 二次曲面反求参数</td><td>p060/p130</td></tr>
+    <tr><td>2012</td><td>21</td><td>11</td><td>B1 A^TA秩/正交变换</td><td>p060/p130</td></tr>
+    <tr><td>2013</td><td>21</td><td>11</td><td>B1 矩阵证明/标准形</td><td>p061/p131</td></tr>
+    <tr><td>2014</td><td>13</td><td>4</td><td>C 负惯性指数求范围</td><td>p061/p132</td></tr>
+    <tr><td>2015</td><td>6</td><td>4</td><td>B1 标准形列变换</td><td>p061/p132</td></tr>
+    <tr><td>2016</td><td>6</td><td>4</td><td>B1 二次曲面类型</td><td>p062/p133</td></tr>
+    <tr><td>2017</td><td>21</td><td>11</td><td>B1 求a及正交矩阵Q</td><td>p062/p133</td></tr>
+    <tr><td>2018</td><td>20</td><td>11</td><td>C f=0解/规范形含参</td><td>p062/p134</td></tr>
+    <tr><td>2019</td><td>5</td><td>4</td><td>C 矩阵方程定规范形</td><td>p063/p135</td></tr>
+    <tr><td>2020</td><td>20</td><td>11</td><td>B1 反求a,b,Q</td><td>p063/p135</td></tr>
+    <tr><td>2021</td><td>5</td><td>5</td><td>C 正负惯性指数</td><td>p063/p136</td></tr>
+    <tr><td>2022</td><td>21</td><td>12</td><td>B1 写矩阵/正交变换/f=0解</td><td>p064/p136</td></tr>
+    <tr><td>2023</td><td>21</td><td>12</td><td>D 合同可逆变换/正交存在性</td><td>p064/p137</td></tr>
+    <tr><td>2025</td><td>5</td><td>5</td><td>C 正惯性指数</td><td>p064/p138</td></tr>
+  </table>
+</section>
+
+<div class="foot">线性代数 L6 二次型题型全解手册 · 真题范围 1987—2025 数学一 · 共 27 题 · 配色 深蓝#1e3a5f / 米白#fafaf6 / 橙#d97706 · 公式 MathJax(tex-svg)、图表 ECharts，本地 assets 离线可用。</div>
+
+</div>
+</div>
+
+<button id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+// 回到顶部
+window.addEventListener('scroll',function(){document.getElementById('toTop').style.display=(document.documentElement.scrollTop>400)?'block':'none';});
+// 目录高亮
+var secs=document.querySelectorAll('section[id]');
+var navItems=document.querySelectorAll('.nav-item');
+window.addEventListener('scroll',function(){
+  var cur='';
+  secs.forEach(function(s){if(window.scrollY>=s.offsetTop-120)cur=s.id;});
+  navItems.forEach(function(n){n.classList.toggle('active',n.getAttribute('href')==='#'+cur);});
+});
+// ECharts
+var years=[1990,1991,1993,1996,1998,1999,2001,2002,2005,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2025];
+var navy='#1e3a5f',orange='#d97706';
+echarts.init(document.getElementById('barYear')).setOption({
+  grid:{left:40,right:20,top:20,bottom:40},
+  tooltip:{},
+  xAxis:{type:'category',data:years,axisLabel:{rotate:60,fontSize:10}},
+  yAxis:{type:'value',minInterval:1},
+  series:[{type:'bar',data:years.map(function(){return 1;}),itemStyle:{color:navy},barWidth:14}]
+});
+echarts.init(document.getElementById('pieType')).setOption({
+  tooltip:{},
+  legend:{bottom:0,textStyle:{fontSize:11}},
+  series:[{type:'pie',radius:['38%','66%'],data:[
+    {value:15,name:'B1 正交变换化标准形',itemStyle:{color:navy}},
+    {value:7,name:'C 惯性/规范形',itemStyle:{color:orange}},
+    {value:3,name:'D 合同辨析',itemStyle:{color:'#5b7ba6'}},
+    {value:2,name:'E 正定',itemStyle:{color:'#9bb8d8'}}
+  ],label:{fontSize:11}}]
+});
+echarts.init(document.getElementById('lineTrend')).setOption({
+  grid:{left:40,right:20,top:20,bottom:30},
+  tooltip:{},
+  xAxis:{type:'category',data:[2016,2017,2018,2019,2020,2021,2022,2023,2024,2025]},
+  yAxis:{type:'value',name:'分值'},
+  series:[{type:'line',data:[4,11,11,4,11,5,12,12,0,5],smooth:true,itemStyle:{color:orange},lineStyle:{width:3},areaStyle:{opacity:.12},label:{show:true,fontSize:10}}]
+});
+</script>
+</body>
+</html>

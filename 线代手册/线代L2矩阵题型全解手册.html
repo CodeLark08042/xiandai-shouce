@@ -1,0 +1,1046 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>考研数学（一）· 线性代数「L2 矩阵」题型全解手册（1987—2025 真题）</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231e3a5f'/><text x='50' y='70' font-size='52' text-anchor='middle' fill='%23d97706' font-family='serif' font-weight='bold'>M</text></svg>">
+<script src="../assets/tex-svg.js"></script>
+<script src="../assets/echarts.min.js"></script>
+<style>
+:root{
+  --ink:#222; --ink-soft:#4a5568; --paper:#fafaf6; --card:#ffffff;
+  --navy:#1e3a5f; --navy-2:#2c5282; --accent:#d97706; --accent-soft:#fdf0db;
+  --good:#1e7a46; --warn:#b03a2e; --line:#e2e7ee;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Microsoft YaHei','PingFang SC',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.75}
+h1,h2,h3,h4{font-family:'Microsoft YaHei','PingFang SC',sans-serif;line-height:1.4}
+.layout{display:flex;min-height:100vh}
+.sidebar{width:260px;flex:0 0 260px;background:var(--navy);color:#dfe8f2;position:sticky;top:0;height:100vh;overflow-y:auto;padding:22px 0 60px;z-index:50}
+.sidebar::-webkit-scrollbar{width:6px}
+.sidebar::-webkit-scrollbar-thumb{background:#3d5a7a;border-radius:3px}
+.main{flex:1;min-width:0;padding:0 0 80px}
+.side-logo{padding:6px 24px 16px;border-bottom:1px solid #2c4a6b;margin-bottom:14px}
+.side-logo .big{font-size:18px;font-weight:900;color:#fff;letter-spacing:1px}
+.side-logo .sub{font-size:12px;color:#9db4cc;margin-top:2px}
+.nav-group{font-size:12px;color:#7f99b5;padding:14px 24px 6px;letter-spacing:2px}
+.nav-item{display:block;color:#c9d8e8;text-decoration:none;font-size:13px;padding:6px 24px;border-left:3px solid transparent;transition:all .15s}
+.nav-item:hover{background:#2c5282;color:#fff}
+.nav-item.active{background:#2c5282;color:#fff;border-left-color:var(--accent)}
+.main{flex:1;min-width:0;padding:0 0 80px}
+.section{max-width:1080px;margin:0 auto;padding:40px 40px 8px}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;border-radius:14px;padding:40px 44px;margin-top:24px;position:relative;overflow:hidden}
+.hero::after{content:'[A]';position:absolute;right:-10px;bottom:-40px;font-size:200px;color:rgba(255,255,255,.06);font-weight:700;font-family:Georgia,serif}
+.hero .kicker{display:inline-block;background:var(--accent);color:#fff;font-size:12px;letter-spacing:3px;padding:3px 12px;border-radius:4px;margin-bottom:14px}
+.hero h1{font-size:30px;font-weight:900;letter-spacing:1px}
+.hero .sub{color:#bcd0e4;font-size:14.5px;margin-top:10px}
+.stat-row{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 18px;text-align:center}
+.stat b{display:block;font-size:22px;color:#ffce8a}
+.stat span{font-size:12px;color:#c9d8e8}
+.lead{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 26px;margin-top:22px}
+.lead h2{font-size:18px;color:var(--navy);margin-bottom:10px}
+.lead p{color:var(--ink-soft);font-size:14px}
+.lead ol{margin:8px 0 0 20px;color:var(--ink-soft);font-size:14px}
+.chapter-head{display:flex;align-items:center;gap:14px;margin:36px 0 6px}
+.chapter-no{background:var(--navy);color:#fff;font-weight:900;font-size:20px;width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:0 0 46px}
+.chapter-head h2{font-size:24px;color:var(--navy);font-weight:900}
+.chapter-desc{color:var(--ink-soft);font-size:14px;margin:0 0 20px 60px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:20px 0 32px;overflow:hidden;box-shadow:0 1px 3px rgba(30,58,95,.05)}
+.qcard>.qhead{background:#fbf7f1;border-bottom:1px solid var(--line);padding:14px 22px}
+.qhead .tag{display:inline-block;font-size:11.5px;background:var(--accent-soft);color:var(--accent);border:1px solid #f2cf9f;border-radius:20px;padding:2px 10px;margin-right:8px}
+.qhead h3{display:inline;font-size:17px;color:var(--navy);font-weight:900}
+.qbody{padding:6px 22px 22px}
+.idbox{background:#f2f6fb;border-left:4px solid var(--navy-2);border-radius:0 8px 8px 0;padding:12px 16px;margin:14px 0}
+.idbox b{color:var(--navy-2)}
+.principle{background:#fdf8ef;border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:12px 16px;margin:14px 0}
+.principle b{color:var(--accent)}
+.flow{margin:16px 0 6px}
+.flow-title{font-size:14.5px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.step{display:flex;gap:12px;margin-bottom:10px}
+.step-num{flex:0 0 34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:14px;z-index:1}
+.step-card{flex:1;min-width:0;background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:10px 14px}
+.step-card .do{font-weight:700;color:var(--ink);font-size:14px;background:#eaf2fb;padding:4px 8px;border-radius:4px}
+.step-card .why{color:var(--ink-soft);font-size:13px;margin-top:6px;background:#fdf6e3;padding:4px 8px;border-radius:4px}
+.step-card .next{color:var(--navy-2);background:#e8f5e9;padding:4px 8px;border-radius:4px;font-size:13px;margin-top:6px}
+details.exam{background:#fbfcfd;border:1px dashed #c9d4e0;border-radius:8px;margin:12px 0 8px;overflow:hidden}
+details.exam summary{cursor:pointer;padding:11px 16px;font-size:13.5px;color:var(--navy);font-weight:700;list-style:none;display:flex;align-items:center;gap:8px}
+details.exam summary::before{content:'▸';color:var(--accent);font-size:14px;transition:transform .15s}
+details.exam[open] summary::before{transform:rotate(90deg)}
+details.exam .exam-body{padding:4px 18px 16px;border-top:1px solid #eef2f6}
+.exam-meta{font-size:12.5px;color:var(--ink-soft);margin-bottom:8px}
+.exam-meta b{color:var(--accent)}
+.solution{background:#fff;border:1px solid var(--line);border-radius:6px;padding:10px 14px;font-size:13.5px;margin-top:6px}
+.solution .sline{padding:2px 0}
+.solution .ans{background:#eef7f0;border-left:4px solid var(--good);border-radius:0 6px 6px 0;padding:7px 10px;margin-top:8px;font-weight:700;color:#14532d}
+.pitfall{background:#fdf1f0;border-left:4px solid var(--warn);border-radius:0 8px 8px 0;padding:12px 16px;margin:14px 0}
+.pitfall b{color:var(--warn)}
+.rule{margin:12px 0;font-size:13.5px;color:var(--ink-soft)}
+.rule b{color:var(--navy)}
+.fm-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;table-layout:fixed}
+.fm-table th{background:var(--navy);color:#fff;padding:8px 10px;text-align:left;font-weight:500}
+.fm-table td{border:1px solid var(--line);padding:7px 10px;background:#fff}
+.fm-table tr:nth-child(even) td{background:#f8fafc}
+.chart-box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 16px 6px;margin:16px 0}
+.chart-box h4{font-size:14.5px;color:var(--navy);margin-bottom:4px}
+.chart-box .cap{font-size:12px;color:var(--ink-soft);margin-bottom:4px}
+.chart{width:100%;height:340px}
+.zt-table{width:100%;border-collapse:collapse;font-size:12.5px;table-layout:fixed;margin:12px 0}
+.zt-table th{background:var(--navy);color:#fff;padding:7px 8px;text-align:left;font-weight:500}
+.zt-table td{border:1px solid var(--line);padding:6px 8px;background:#fff;vertical-align:top}
+.zt-table tr:nth-child(even) td{background:#f8fafc}
+.note{background:#eef6ff;border:1px solid #cfe0f2;border-radius:8px;padding:12px 16px;font-size:13px;color:#23405f;margin:12px 0}
+.note b{color:var(--navy)}
+.back-top{position:fixed;right:24px;bottom:24px;background:var(--navy);color:#fff;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:18px;box-shadow:0 4px 12px rgba(30,58,95,.3);z-index:60}
+.mjx-container{max-width:100%}
+.mjx-container[jax="SVG"]>svg{max-width:100%;overflow-x:auto;overflow-y:hidden}
+.tag-ys{display:inline-block;background:#fff3cd;color:#856404;border:1px solid #ffeaa7;border-radius:4px;padding:1px 8px;font-size:11.5px;margin-left:6px}
+@media(max-width:900px){
+  .layout{flex-direction:column}
+  .sidebar{width:100%;flex:none;height:auto;position:relative;padding:12px 0}
+  .nav-item{font-size:12.5px;padding:5px 10px;border-left:none;border-bottom:2px solid transparent}
+  .section{padding:28px 16px 6px}
+  .hero{padding:28px 20px}
+  .hero h1{font-size:22px}
+  .zt-table{font-size:11px}
+}
+@media print{
+  body{background:#fff;color:#000;line-height:1.5}
+  .sidebar{display:none!important}
+  .back-top{display:none!important}
+  .layout{display:block}
+  .main{padding:0}
+  .qcard{break-inside:avoid;box-shadow:none}
+  .chart-box{break-inside:avoid}
+  details.exam{open:true}
+  details.exam:not([open]) .exam-body{display:block}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="side-logo">
+    <div class="big">线代 L2 · 矩阵</div>
+    <div class="sub">题型全解手册 · 1987—2025 数一</div>
+  </div>
+  <div class="nav-group">总览</div>
+  <a class="nav-item" href="#cover">封面</a>
+  <a class="nav-item" href="#overview">0 · 本章真题总览</a>
+  <div class="nav-group">A 矩阵运算</div>
+  <a class="nav-item" href="#A1">A1 乘法 / 转置 / 方阵幂</a>
+  <div class="nav-group">B 逆矩阵</div>
+  <a class="nav-item" href="#B1">B1 定义法 AB=E</a>
+  <a class="nav-item" href="#B3">B3 初等行变换求逆</a>
+  <a class="nav-item" href="#B4">B4 分块求逆</a>
+  <a class="nav-item" href="#B5">B5 抽象矩阵求逆</a>
+  <div class="nav-group">C 初等变换与初等矩阵</div>
+  <a class="nav-item" href="#C1">C1 左行右列</a>
+  <a class="nav-item" href="#C2">C2 反推初等矩阵</a>
+  <div class="nav-group">D 矩阵的秩</div>
+  <a class="nav-item" href="#D1">D1 化阶梯形求秩</a>
+  <a class="nav-item" href="#D2">D2 含参秩讨论</a>
+  <a class="nav-item" href="#D3">D3 秩不等式</a>
+  <a class="nav-item" href="#D4">D4 由方程组/向量组反推秩</a>
+  <div class="nav-group">E 伴随矩阵</div>
+  <a class="nav-item" href="#E1">E1 AA*=|A|E</a>
+  <a class="nav-item" href="#E3">E3 (A*)⁻¹ 公式链</a>
+  <div class="nav-group">F 矩阵方程</div>
+  <a class="nav-item" href="#F1">F1 AX=B</a>
+  <a class="nav-item" href="#F2">F2 XA=B</a>
+  <a class="nav-item" href="#F4">F4 含 A*/A⁻¹ 混合</a>
+  <div class="nav-group">收尾</div>
+  <a class="nav-item" href="#flow">解题决策流程图</a>
+  <a class="nav-item" href="#appendix">附录 · 真题全清单</a>
+</aside>
+
+<main class="main">
+
+<!-- ========== 封面 ========== -->
+<section class="section" id="cover">
+  <div class="hero">
+    <span class="kicker">LINEAR ALGEBRA · CHAPTER 2</span>
+    <h1>线性代数 L2 · 矩阵</h1>
+    <div class="sub">题型全解手册 · 数学一 · 1987—2025 真题精讲</div>
+    <div class="stat-row">
+      <div class="stat"><b>36</b><span>真题总数</span></div>
+      <div class="stat"><b>7</b><span>题型大类</span></div>
+      <div class="stat"><b>15</b><span>末级题型</span></div>
+      <div class="stat"><b>1987—2025</b><span>覆盖年份</span></div>
+    </div>
+  </div>
+  <div class="lead">
+    <h2>本章在线代体系中的位置</h2>
+    <p>矩阵是线性代数的"通用语言"：行列式(L1)是方阵的数值标签，方程组(L4)是矩阵的线性作用，特征值(L5)是矩阵在相似下的不变量，二次型(L6)是对称矩阵的合同分类。本章以矩阵本身为研究对象——运算规则、可逆性、初等变换、秩、伴随、矩阵方程——是后续四章的工具底座。B(逆)、D(秩)、F(矩阵方程)在数一历年试卷中几乎每年必考，选择填空为主，偶有 10 分证明大题。</p>
+  </div>
+</section>
+
+<!-- ========== 0 总览 ========== -->
+<section class="section" id="overview">
+  <div class="chapter-head"><div class="chapter-no">0</div><h2>本章真题总览</h2></div>
+  <div class="chapter-desc">考频统计 = ECharts 图表 = 台账行数 = 附录清单行数，四处一致。</div>
+
+  <table class="fm-table">
+    <thead><tr><th style="width:14%">题型编号</th><th style="width:30%">题型名称</th><th style="width:10%">题数</th><th style="width:12%">分值合计</th><th style="width:17%">首次出现</th><th style="width:17%">最近出现</th></tr></thead>
+    <tbody>
+      <tr><td>A1</td><td>乘法 / 转置 / 方阵幂</td><td>2</td><td>9</td><td>1988</td><td>1994</td></tr>
+      <tr><td>B1</td><td>定义法 AB=E 判逆 / 求逆</td><td>2</td><td>7</td><td>1991</td><td>2008</td></tr>
+      <tr><td>B3</td><td>初等行变换求逆</td><td>1</td><td>3</td><td>1989</td><td>1989</td></tr>
+      <tr><td>B4</td><td>分块求逆</td><td>1</td><td>3</td><td>1991</td><td>1991</td></tr>
+      <tr><td>B5</td><td>抽象矩阵求逆 / 判可逆</td><td>4</td><td>18</td><td>1996</td><td>2022</td></tr>
+      <tr><td>C1</td><td>初等变换 = 左行右列</td><td>4</td><td>14</td><td>1995</td><td>2020</td></tr>
+      <tr><td>C2</td><td>反推初等矩阵 / 行+列合成</td><td>3</td><td>14</td><td>1997</td><td>2012</td></tr>
+      <tr><td>D1</td><td>化阶梯形 / 特殊阵求秩</td><td>2</td><td>7</td><td>1992</td><td>2007</td></tr>
+      <tr><td>D2</td><td>含参秩讨论</td><td>2</td><td>6</td><td>1993</td><td>1997</td></tr>
+      <tr><td>D3</td><td>秩不等式 (Sylvester/Frobenius)</td><td>6</td><td>33</td><td>2008</td><td>2025</td></tr>
+      <tr><td>D4</td><td>由方程组/几何反推秩</td><td>3</td><td>10</td><td>1996</td><td>2012</td></tr>
+      <tr><td>E1</td><td>AA*=|A|E 核心公式</td><td>1</td><td>4</td><td>2005</td><td>2005</td></tr>
+      <tr><td>E3</td><td>(A*)⁻¹ 等公式链 / 分块伴随</td><td>1</td><td>4</td><td>2009</td><td>2009</td></tr>
+      <tr><td>F1</td><td>AX=B 型矩阵方程</td><td>2</td><td>7</td><td>1987</td><td>1995</td></tr>
+      <tr><td>F2</td><td>XA=B / 转置分块化简</td><td>1</td><td>6</td><td>1990</td><td>1990</td></tr>
+      <tr><td>F4</td><td>含 A*、A⁻¹ 混合方程</td><td>1</td><td>6</td><td>2000</td><td>2000</td></tr>
+      <tr style="font-weight:700;background:#eef3f9"><td colspan="2">合计</td><td>36</td><td>141</td><td>1987</td><td>2025</td></tr>
+    </tbody>
+  </table>
+
+  <div class="chart-box"><h4>图 0.1 · 本章按年份题量（1987—2025，数一）</h4><div class="cap">每个柱子 = 该年本章命题数；2009 年后选择题比重显著上升。</div><div id="ch_year" class="chart"></div></div>
+  <div class="chart-box"><h4>图 0.2 · 各末级题型题量占比</h4><div class="cap">D3 秩不等式近 18 年密集出现，B5 抽象求逆在 2017/2022 再现。</div><div id="ch_pie" class="chart"></div></div>
+  <div class="chart-box"><h4>图 0.3 · 近 10 年（2016—2025）本章分值趋势</h4><div class="cap">2021/2023/2025 连续三道 5 分秩不等式选择，是当前最热考点。</div><div id="ch_trend" class="chart"></div></div>
+
+  <div class="lead">
+    <h2>宏观命题规律（5 条）</h2>
+    <ol>
+      <li><b>秩(D)是绝对主角</b>：36 题中 13 题直接考秩，近 10 年尤其密集（2018/2021/2023/2025 连续考分块矩阵秩与 Frobenius 不等式）。</li>
+      <li><b>初等矩阵(C)是送分题</b>：几乎每 2—3 年一道，套路固定为"左行右列 + 初等矩阵自逆/逆为 -1 倍"，必须拿满。</li>
+      <li><b>抽象求逆(B5)与特征值(L5)联动</b>：$E-\alpha\alpha^T$ 类题既可用定义/单位阵恒等变形做，也可用"特征值为 1,0,…,0"秒答，是跨章题。</li>
+      <li><b>矩阵方程(F)在数一近 25 年只考 4 次</b>（1987/1990/1995/2000），之后转移到数二数三；数一复习时会化简即可，不必死练计算。</li>
+      <li><b>伴随矩阵(E)是"小考点大公式"</b>：$AA^*=|A|E$、$r(A^*)$ 三情形、$(A^*)^{-1}=A/|A|$ 必须条件反射。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== A1 ========== -->
+<section class="section" id="A1">
+  <div class="chapter-head"><div class="chapter-no">A1</div><h2>矩阵乘法 / 转置 / 方阵幂</h2></div>
+  <div class="chapter-desc">看到"给 α,β 求 (α^Tβ)^n"或"AP=PB 求 A^n"，立刻走秩 1 分解 / 相似对角化两条捷径。</div>
+
+  <div class="qcard">
+    <div class="qhead"><span class="tag">题型 A1</span><h3>方阵幂的两条捷径</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>
+        <div>· 题干给出两个列向量 $\alpha,\beta$，$A=\alpha^T\beta$，求 $A^n$ → 秩 1 矩阵。</div>
+        <div>· 题干给出 $AP=P\Lambda$（$P$ 可逆，$\Lambda$ 对角），求 $A^n$ → 相似对角化。</div>
+        <div>· 出现 $A^n-2A^{n-1}$ 类多项式 → 先化简为 $(A-2E)A^{n-1}$，再观察是否零化。</div>
+      </div>
+      <div class="principle"><b>核心原理：</b>
+        <div>秩 1 矩阵：$A=\alpha^T\beta$，则 $\beta\alpha^T=k$（一个数），$A^n=k^{n-1}A$。</div>
+        <div>相似：$P^{-1}AP=\Lambda$（对角）$\Rightarrow A^n=P\Lambda^nP^{-1}$。</div>
+      </div>
+      <div class="flow">
+        <div class="flow-title">解题链路</div>
+        <div class="step"><div class="step-num">1</div><div class="step-card"><div class="do">做什么：判定 $A$ 是否秩 1（即 $A=\alpha^T\beta$ 形式）。</div><div class="why">为什么：秩 1 矩阵的幂可以缩成一个数。</div><div class="next">下一步：若是 → 走 Step 2；若否 → 走 Step 3。</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><div class="do">做什么：算 $\beta\alpha^T=k$（数），写 $A^n=k^{n-1}\alpha^T\beta$。</div><div class="why">为什么：结合律把中间 $\beta\alpha^T$ 缩成数。</div><div class="next">停止并输出。</div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-card"><div class="do">做什么：若 $AP=P\Lambda$，则 $A=P\Lambda P^{-1}$，$A^n=P\Lambda^n P^{-1}$。</div><div class="why">为什么：中间 $P^{-1}P$ 全部消去。</div><div class="next">若 $\Lambda$ 对角则幂就是对角元各自乘方。</div></div></div>
+      </div>
+
+      <details class="exam" open><summary>【真题｜1994 数学一 一(5) 3 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p145 / 答案 p128</div>
+        <div class="solution">
+          <div class="sline">$\alpha=(1,2,3)^T,\ \beta=(1,\frac12,\frac13)^T,\ A=\alpha^T\beta$。</div>
+          <div class="sline">$\beta\alpha^T=1\cdot1+\frac12\cdot2+\frac13\cdot3=3$（一个数）。</div>
+          <div class="sline">$A^n=\underbrace{(\alpha^T\beta)\cdots(\alpha^T\beta)}_{n\text{ 个}}=\alpha^T(\beta\alpha^T)^{n-1}\beta=3^{n-1}A$。</div>
+          <div class="ans">$A^n=3^{n-1}\begin{pmatrix}1&\frac12&\frac13\\2&1&\frac23\\3&\frac32&1\end{pmatrix}$。</div>
+        </div>
+      </div></details>
+
+      <details class="exam" open><summary>【真题｜1988 数学一 七题 6 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p145 / 答案 p128</div>
+        <div class="solution">
+          <div class="sline">$|P|=-1\ne0$，$A=PBP^{-1}$，$B=\mathrm{diag}(1,0,-1)$。</div>
+          <div class="sline">$A^5=PB^5P^{-1}=PBP^{-1}=A$（因为 $B^5=B$）。</div>
+          <div class="sline">求 $P^{-1}=\begin{pmatrix}1&0&0\\2&-1&0\\-4&1&1\end{pmatrix}$，乘出 $A=PBP^{-1}=\begin{pmatrix}1&0&0\\2&0&0\\6&-1&-1\end{pmatrix}$。</div>
+          <div class="ans">$A=\begin{pmatrix}1&0&0\\2&0&0\\6&-1&-1\end{pmatrix}$，$A^5=A$。</div>
+        </div>
+      </div></details>
+
+      <div class="pitfall"><b>易错点：</b>
+        <div>· $\alpha\beta^T$ 是矩阵，$\beta^T\alpha$ 是数，两个符号千万别搞反。</div>
+        <div>· 矩阵乘法没有交换律：$(AB)^n\ne A^nB^n$，除非 $AB=BA$。</div>
+        <div>· 求 $P^{-1}$ 时别漏第三行；1988 年此题 $P^{-1}$ 的 (3,1) 元是 -4 不是 2。</div>
+      </div>
+      <div class="rule"><b>命题规律：</b>1988—1994 两题均为解答/填空；近 20 年纯考 $A^n$ 的数一选择题几乎消失，因为它已经被"特征值求 $A^n$"（L5）吸收。但秩 1 矩阵 $A=\alpha\beta^T$ 在 D3（秩不等式）、B5（$E-\alpha\alpha^T$）中反复出现。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== B1 ========== -->
+<section class="section" id="B1">
+  <div class="chapter-head"><div class="chapter-no">B1</div><h2>定义法求逆 / 判可逆（AB=E）</h2></div>
+  <div class="chapter-desc">没有给具体元素、给的是矩阵等式时，"凑出 AB=E"就是最快的路。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">题型 B1</span><h3>从等式出发凑逆矩阵</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>
+        <div>· 题干给出 $ABC=E$ 或类似连乘等式，问"哪个也等于 E"。</div>
+        <div>· 题干给出 $A^3=O$ 或 $f(A)=O$，问 $E\pm A$ 是否可逆。</div>
+        <div>· 没有给出 $A$ 的具体元素——用定义法，别去硬算行列式。</div>
+      </div>
+      <div class="principle"><b>核心原理：</b>
+        <div>· $AB=E\Leftrightarrow A,B$ 互逆。$ABC=E\Rightarrow AB C=E\Rightarrow BC=A^{-1}\Rightarrow BCA=E$（循环移位）。</div>
+        <div>· $A^k=O$ 时：$(E-A)(E+A+\cdots+A^{k-1})=E$，$(E+A)(E-A+A^2-\cdots+(-A)^{k-1})=E$。</div>
+      </div>
+      <div class="flow">
+        <div class="flow-title">解题链路</div>
+        <div class="step"><div class="step-num">1</div><div class="step-card"><div class="do">做什么：看等式里矩阵个数。若 $ABC=E$ → 三个矩阵都可逆。</div><div class="why">为什么：$|ABC|=1\Rightarrow|A||B||C|=1$。</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><div class="do">做什么：把 $ABC=E$ 看成 $A(BC)=E$，则 $BC=A^{-1}$，左乘 $A$ 得 $BCA=E$。</div><div class="why">为什么：互逆关系可循环移位。</div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-card"><div class="do">做什么：若是 $A^k=O$，凑 $(E\pm A)(\text{多项式})=E$。</div><div class="why">为什么：等比数列求和公式 $(1-x)(1+x+\cdots+x^{k-1})=1-x^k$。</div><div class="next">凑出乘积为 E 即证可逆。</div></div></div>
+      </div>
+
+      <details class="exam" open><summary>【真题｜1991 数学一 二(5) 3 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p150 / 答案 p132</div>
+        <div class="solution">
+          <div class="sline">$ABC=E\Rightarrow A^{-1}=BC$，两边左乘 $A$：$BCA=E$。</div>
+          <div class="ans">选 (D) $BCA=E$。</div>
+        </div>
+      </div></details>
+
+      <details class="exam" open><summary>【真题｜2008 数学一 第 5 题 4 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p151 / 答案 p132</div>
+        <div class="solution">
+          <div class="sline">$A^3=O$。由 $(E-A)(E+A+A^2)=E-A^3=E$，故 $E-A$ 可逆。</div>
+          <div class="sline">由 $(E+A)(E-A+A^2)=E+A^3=E$，故 $E+A$ 可逆。</div>
+          <div class="ans">选 (C) $E-A$ 可逆，$E+A$ 可逆。</div>
+        </div>
+      </div></details>
+
+      <div class="pitfall"><b>易错点：</b>
+        <div>· $ABC=E$ 时不能选 $ACB=E$——矩阵乘法不可交换。</div>
+        <div>· $A^3=O$ 只说明 $A$ 的特征值全为 0，但 $E\pm A$ 的特征值为 $\pm1$，必可逆。</div>
+      </div>
+      <div class="rule"><b>命题规律：</b>定义法是"送分但易错"题，90 年代两道，2008 年再现。近年多以 B5（抽象矩阵）形式包装。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== B3 ========== -->
+<section class="section" id="B3">
+  <div class="chapter-head"><div class="chapter-no">B3</div><h2>初等行变换求逆 (A|E)→(E|A⁻¹)</h2></div>
+  <div class="chapter-desc">给定具体数字矩阵求逆，最稳妥的方法；也可一步到位解矩阵方程。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">题型 B3</span><h3>具体数字矩阵求逆</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>题干给出具体数字矩阵 $A$，问 $A^{-1}$ 或 $(A-kE)^{-1}$。</div>
+      <div class="principle"><b>核心原理：</b>对 $(A\mid E)$ 作初等行变换，当左边化为 $E$ 时，右边就是 $A^{-1}$。若为解 $AX=B$，对 $(A\mid B)$ 行变换到 $(E\mid X)$。</div>
+      <div class="flow">
+        <div class="flow-title">解题链路</div>
+        <div class="step"><div class="step-num">1</div><div class="step-card"><div class="do">做什么：若 $A$ 可分块对角，优先分块求逆。</div><div class="why">为什么：对角块各求逆比整体快。</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><div class="do">做什么：否则构造增广矩阵 $(A\mid E)$ 行变换。</div><div class="why">为什么：行变换 = 左乘初等矩阵，等价于 $P(A\mid E)=(PA\mid P)$，若 $PA=E$ 则 $P=A^{-1}$。</div></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜1989 数学一 一(5) 3 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p149 / 答案 p131</div>
+        <div class="solution">
+          <div class="sline">$A-2E=\begin{pmatrix}1&0&0\\1&2&0\\0&0&1\end{pmatrix}$，分块为 $\begin{pmatrix}1&0\\1&2\end{pmatrix}$ 与 $[1]$。</div>
+          <div class="sline">2 阶块逆：$\begin{pmatrix}1&0\\1&2\end{pmatrix}^{-1}=\frac12\begin{pmatrix}2&0\\-1&1\end{pmatrix}=\begin{pmatrix}1&0\\-\frac12&\frac12\end{pmatrix}$。</div>
+          <div class="ans">$(A-2E)^{-1}=\begin{pmatrix}1&0&0\\-\frac12&\frac12&0\\0&0&1\end{pmatrix}$。</div>
+        </div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>二阶矩阵伴随"主对调、副变号"：$\begin{pmatrix}a&b\\c&d\end{pmatrix}^*=\begin{pmatrix}d&-b\\-c&a\end{pmatrix}$，别搞反。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== B4 ========== -->
+<section class="section" id="B4">
+  <div class="chapter-head"><div class="chapter-no">B4</div><h2>分块求逆与分块行列式</h2></div>
+  <div class="chapter-desc">看到矩阵天然分成对角小块，立即用分块公式，不要整体硬算。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">题型 B4 / G2</span><h3>分块对角与分块反对角</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>矩阵中有大量 0，非零元聚在对角块或反对角块。</div>
+      <div class="principle"><b>核心公式：</b>
+        <div>$\begin{pmatrix}A&O\\O&B\end{pmatrix}^{-1}=\begin{pmatrix}A^{-1}&O\\O&B^{-1}\end{pmatrix}$，行列式 $|C|=|A||B|$。</div>
+        <div>$\begin{pmatrix}O&A\\B&O\end{pmatrix}^{-1}=\begin{pmatrix}O&B^{-1}\\A^{-1}&O\end{pmatrix}$，行列式 $|C|=(-1)^{mn}|A||B|$。</div>
+      </div>
+      <details class="exam" open><summary>【真题｜1991 数学一 一(5) 3 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p149 / 答案 p131-132</div>
+        <div class="solution">
+          <div class="sline">$A=\begin{pmatrix}A_1&O\\O&A_2\end{pmatrix}$，$A_1=\begin{pmatrix}5&2\\2&1\end{pmatrix}$，$A_2=\begin{pmatrix}1&-2\\1&1\end{pmatrix}$。</div>
+          <div class="sline">$A_1^{-1}=\begin{pmatrix}1&-2\\-2&5\end{pmatrix}$，$A_2^{-1}=\frac13\begin{pmatrix}1&2\\-1&1\end{pmatrix}=\begin{pmatrix}\frac13&\frac23\\-\frac13&\frac13\end{pmatrix}$。</div>
+          <div class="ans">$A^{-1}=\begin{pmatrix}1&-2&0&0\\-2&5&0&0\\0&0&\frac13&\frac23\\0&0&-\frac13&\frac13\end{pmatrix}$。</div>
+        </div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>反对角分块行列式要乘 $(-1)^{mn}$，$m,n$ 是两块阶数；2×2 时 $(-1)^4=1$，别多此一举加负号（2009 题就是坑）。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== B5 ========== -->
+<section class="section" id="B5">
+  <div class="chapter-head"><div class="chapter-no">B5</div><h2>抽象矩阵求逆 / 判可逆</h2></div>
+  <div class="chapter-desc">给的是 $f(A)=O$ 或 $A=E-\xi\xi^T$ 这类抽象结构，"凑单位阵恒等变形"是唯一出路。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">题型 B5</span><h3>单位矩阵恒等变形</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>
+        <div>· 题干给出矩阵多项式 $A^2+pA+qE=O$，求 $(A+kE)^{-1}$。</div>
+        <div>· 题干出现 $E-\alpha\alpha^T$、$E-\xi\xi^T$ 这类"秩 1 修正"。</div>
+        <div>· 题干出现 $(E-A)^{-1}B=A$ 这类方程，问 $B-A$。</div>
+      </div>
+      <div class="principle"><b>核心原理：</b>
+        <div>· 把 $f(A)=O$ 改写成 $(A+kE)\cdot g(A)=lE$，则 $(A+kE)^{-1}=\frac1l g(A)$。</div>
+        <div>· $\xi\xi^T$ 是秩 1 矩阵：$(\xi\xi^T)^2=(\xi^T\xi)(\xi\xi^T)$。</div>
+        <div>· $\alpha$ 为单位列向量时，$E-\alpha\alpha^T$ 的特征值为 $0,1,\cdots,1$，故不可逆。</div>
+      </div>
+      <div class="flow">
+        <div class="flow-title">解题链路</div>
+        <div class="step"><div class="step-num">1</div><div class="step-card"><div class="do">做什么：拿到多项式 $f(A)=O$，做因式分解，凑出目标因子。</div><div class="why">为什么：题目问的 $(A+kE)^{-1}$ 就是因子之一。</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><div class="do">做什么：遇到 $E-\xi\xi^T$，展开平方时利用 $(\xi^T\xi)$ 是数。</div><div class="why">为什么：结合律把 $(\xi\xi^T)(\xi\xi^T)=\xi(\xi^T\xi)\xi^T=(\xi^T\xi)\xi\xi^T$。</div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-card"><div class="do">做什么：若要判可逆，既可以凑 $AB=E$，也可以算行列式 / 特征值。</div><div class="why">为什么：$E-\alpha\alpha^T$ 有零特征值 ⟺ 不可逆。</div></div></div>
+      </div>
+
+      <details class="exam" open><summary>【真题｜2001 数学一 一(4) 3 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p150 / 答案 p132</div>
+        <div class="solution">
+          <div class="sline">$A^2+A-4E=O$ 改写：$(A-E)(A+2E)=2E$。</div>
+          <div class="sline">故 $(A-E)\cdot\frac{A+2E}{2}=E$。</div>
+          <div class="ans">$(A-E)^{-1}=\frac12(A+2E)$。</div>
+        </div>
+      </div></details>
+
+      <details class="exam" open><summary>【真题｜1996 数学一 八题 6 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p150 / 答案 p132</div>
+        <div class="solution">
+          <div class="sline">(1) $A^2=(E-\xi\xi^T)^2=E-2\xi\xi^T+\xi(\xi^T\xi)\xi^T=A+(\xi^T\xi-1)\xi\xi^T$。</div>
+          <div class="sline">$A^2=A\Leftrightarrow(\xi^T\xi-1)\xi\xi^T=O$，由 $\xi\ne0$ 得 $\xi^T\xi=1$。</div>
+          <div class="sline">(2) 反证：若 $A$ 可逆，则 $A=A^{-1}A^2=A^{-1}A=E$，与 $A=E-\xi\xi^T\ne E$ 矛盾。</div>
+          <div class="ans">证毕。</div>
+        </div>
+      </div></details>
+
+      <details class="exam" open><summary>【真题｜2017 数学一 第 5 题 4 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：提高篇题目 p013 / 答案 p079</div>
+        <div class="solution">
+          <div class="sline">$\alpha$ 单位列向量 $\Rightarrow\alpha^T\alpha=1$。$\alpha\alpha^T$ 是秩 1 矩阵，特征值 $1,0,\cdots,0$。</div>
+          <div class="sline">$E-\alpha\alpha^T$ 的特征值为 $0,1,\cdots,1$，有零特征值。</div>
+          <div class="ans">选 (A) $E-\alpha\alpha^T$ 不可逆。</div>
+        </div>
+      </div></details>
+
+      <details class="exam" open><summary>【真题｜2022 数学一 第 15 题 5 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：提高篇题目 p014 / 答案 p079</div>
+        <div class="solution">
+          <div class="sline">记 $C=E-(E-A)^{-1}$，则 $CB=A$。</div>
+          <div class="sline">$C(E-A)=(E-A)-(E-A)^{-1}(E-A)=E-A-E=-A$，故 $C=-A(E-A)^{-1}$。</div>
+          <div class="sline">$B=C^{-1}A=-(E-A)A^{-1}A=-(E-A)$，故 $B-A=-E+A-A=-E$。</div>
+          <div class="ans">$B-A=-E$。</div>
+        </div>
+      </div></details>
+
+      <div class="pitfall"><b>易错点：</b>
+        <div>· 不要试图先求 $A^{-1}$ 再算 $B$——抽象矩阵没有元素，求逆路被堵死。</div>
+        <div>· $E-\alpha\alpha^T$ 当 $\alpha$ 为<b>单位</b>向量时特征值才有 0；若非单位，特征值为 $1-\alpha^T\alpha,1,\cdots,1$。</div>
+        <div>· 1996 年证明 $A$ 不可逆时用反证法最干净，不要硬算 $|A|$。</div>
+      </div>
+      <div class="rule"><b>命题规律：</b>1996/2001 是 90—00 年代代表；2017/2022 在 20 年后再现，说明"秩 1 修正矩阵"是数一最爱考的抽象结构。常与 L5 特征值联动。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== C1 ========== -->
+<section class="section" id="C1">
+  <div class="chapter-head"><div class="chapter-no">C1</div><h2>初等变换 = 左行右列</h2></div>
+  <div class="chapter-desc">"行变换左乘、列变换右乘"——本类题的唯一口诀。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">题型 C1</span><h3>左行右列判定</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>
+        <div>· 题干描述"将 A 的第 i 行/列..."，给两个初等矩阵 $P_1,P_2$，问 $P_1P_2A=B$ 还是 $AP_1P_2=B$。</div>
+        <div>· 题干问"A 经初等列变换得 B"等价于哪个等式。</div>
+      </div>
+      <div class="principle"><b>核心原理：</b>
+        <div>· 对 $A$ 作一次行变换 ⟺ 左乘一个初等矩阵 $P$。</div>
+        <div>· 对 $A$ 作一次列变换 ⟺ 右乘一个初等矩阵 $Q$。</div>
+        <div>· 初等矩阵都可逆，其逆仍是同类型初等矩阵。</div>
+      </div>
+      <div class="flow">
+        <div class="flow-title">解题链路</div>
+        <div class="step"><div class="step-num">1</div><div class="step-card"><div class="do">做什么：把每次变换翻译成"左乘 P"或"右乘 Q"。</div><div class="why">为什么：行左列右。</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><div class="do">做什么：按变换顺序从左到右写乘积。</div><div class="why">为什么：先做的变换靠近 A。</div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-card"><div class="do">做什么：与选项比对。</div><div class="why">为什么：注意选项里是 $P_1P_2$ 还是 $P_2P_1$——顺序反了就错。</div></div></div>
+      </div>
+
+      <details class="exam" open><summary>【真题｜1995 数学一 二(5) 3 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p145 / 答案 p129</div>
+        <div class="solution">
+          <div class="sline">$B$ 的第 1,2 行互换（来自 $P_1$），且第 3 行 = 原第 3 行 + 原第 1 行（来自 $P_2$）。</div>
+          <div class="sline">都是行变换 → 左乘。先做"第1行加到第3行"=$P_2$，再做"一二行互换"=$P_1$。</div>
+          <div class="sline">故 $B=P_1P_2A$。</div>
+          <div class="ans">选 (C) $P_1P_2A=B$。</div>
+        </div>
+      </div></details>
+
+      <details class="exam" open><summary>【真题｜2006 数学一 第 12 题 4 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p147 / 答案 p130</div>
+        <div class="solution">
+          <div class="sline">第2行加到第1行：$B=PA$，$P=\begin{pmatrix}1&1&0\\0&1&0\\0&0&1\end{pmatrix}$。</div>
+          <div class="sline">第 -1 倍加到第2列：$C=BP^{-1}=PAP^{-1}$。</div>
+          <div class="ans">选 (B) $C=PAP^{-1}$。</div>
+        </div>
+      </div></details>
+
+      <details class="exam" open><summary>【真题｜2020 数学一 第 5 题 4 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：提高篇题目 p011 / 答案 p076</div>
+        <div class="solution">
+          <div class="sline">$A$ 经列变换得 $B$：$B=AP_1P_2\cdots P_t$。</div>
+          <div class="sline">每个 $P_i$ 可逆，故 $A=B(P_t\cdots P_1)^{-1}=BP$，其中 $P=(P_t\cdots P_1)^{-1}$ 可逆。</div>
+          <div class="ans">选 (B) 存在 $P$ 使 $BP=A$。</div>
+        </div>
+      </div></details>
+
+      <div class="pitfall"><b>易错点：</b>
+        <div>· 行变换左乘、列变换右乘——写反就全错。</div>
+        <div>· 多个初等矩阵相乘的顺序：先发生的变换靠近 $A$。</div>
+        <div>· 2004 年题：列变换 = 右乘，所以 $Q$ 是两个右乘初等矩阵的乘积，别写成 $Q$ 在左边。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== C2 ========== -->
+<section class="section" id="C2">
+  <div class="chapter-head"><div class="chapter-no">C2</div><h2>反推初等矩阵 / 行+列合成</h2></div>
+  <div class="chapter-desc">知道结果矩阵，反推用了哪个初等矩阵；或已知 P，求 PAQ 的对角阵。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">题型 C2</span><h3>由 B 反推 P，或由 P 合成 Q</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>
+        <div>· $A$ 经多次变换得 $B$，$P_1,P_2$ 给定，问 $A=?$ 或 $Q=?$。</div>
+        <div>· $P^{-1}AP=\Lambda$，$Q=P$ 经列变换，求 $Q^{-1}AQ$。</div>
+      </div>
+      <div class="principle"><b>核心原理：</b>初等矩阵逆：
+        <div>· 对换矩阵 $E_{ij}$：$E_{ij}^{-1}=E_{ij}$（自逆）。</div>
+        <div>· 倍乘 $E_i(k)$：$E_i(k)^{-1}=E_i(1/k)$。</div>
+        <div>· 倍加 $E_{ij}(k)$：$E_{ij}(k)^{-1}=E_{ij}(-k)$。</div>
+      </div>
+      <details class="exam" open><summary>【真题｜2004 数学一 第 11 题 4 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p146 / 答案 p129</div>
+        <div class="solution">
+          <div class="sline">第1列与第2列交换：$B=A\begin{pmatrix}0&1&0\\1&0&0\\0&0&1\end{pmatrix}$。</div>
+          <div class="sline">第2列加到第3列：$C=B\begin{pmatrix}1&0&0\\0&1&1\\0&0&1\end{pmatrix}$。</div>
+          <div class="sline">$Q=\begin{pmatrix}0&1&0\\1&0&0\\0&0&1\end{pmatrix}\begin{pmatrix}1&0&0\\0&1&1\\0&0&1\end{pmatrix}=\begin{pmatrix}0&1&1\\1&0&0\\0&0&1\end{pmatrix}$。</div>
+          <div class="ans">选 (D)。</div>
+        </div>
+      </div></details>
+
+      <details class="exam" open><summary>【真题｜2011 数学一 第 5 题 4 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：提高篇题目 p010 / 答案 p076</div>
+        <div class="solution">
+          <div class="sline">第2列加到第1列：$AP_1=B$，$P_1=\begin{pmatrix}1&0&0\\1&1&0\\0&0&1\end{pmatrix}$。</div>
+          <div class="sline">交换第2,3行：$P_2B=E$，$P_2=\begin{pmatrix}1&0&0\\0&0&1\\0&1&0\end{pmatrix}$。</div>
+          <div class="sline">$P_2AP_1=E\Rightarrow A=P_2^{-1}P_1^{-1}=P_2P_1^{-1}$（$P_2$ 对换自逆）。</div>
+          <div class="ans">选 (D) $P_2P_1^{-1}$。</div>
+        </div>
+      </div></details>
+
+      <details class="exam" open><summary>【真题｜2012 数学一 第 6 题 4 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：提高篇题目 p011 / 答案 p076</div>
+        <div class="solution">
+          <div class="sline">$Q=[\alpha_1+\alpha_2,\alpha_2,\alpha_3]=P\begin{pmatrix}1&0&0\\1&1&0\\0&0&1\end{pmatrix}=PE_{21}(1)$。</div>
+          <div class="sline">$Q^{-1}AQ=E_{21}(1)^{-1}P^{-1}APE_{21}(1)=\begin{pmatrix}1&0&0\\-1&1&0\\0&0&1\end{pmatrix}\begin{pmatrix}1&0&0\\0&1&0\\0&0&2\end{pmatrix}\begin{pmatrix}1&0&0\\1&1&0\\0&0&1\end{pmatrix}$。</div>
+          <div class="sline">乘出仍为 $\begin{pmatrix}1&0&0\\0&1&0\\0&0&2\end{pmatrix}$（因为 $\alpha_1+\alpha_2$ 仍是属于特征值 1 的特征向量）。</div>
+          <div class="ans">选 (B)。</div>
+        </div>
+      </div></details>
+
+      <div class="pitfall"><b>易错点：</b>
+        <div>· 反推时记得两边都要取逆：$AP_1=B\Rightarrow A=BP_1^{-1}$，别漏逆。</div>
+        <div>· 1997 八题：$B=E_{ij}A$，则 $AB^{-1}=A(E_{ij}A)^{-1}=AA^{-1}E_{ij}^{-1}=E_{ij}$，不是 $E_{ij}^{-1}$（虽然两者相等，但顺序不能错）。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== D1 ========== -->
+<section class="section" id="D1">
+  <div class="chapter-head"><div class="chapter-no">D1</div><h2>化阶梯形 / 特殊矩阵求秩</h2></div>
+  <div class="chapter-desc">给具体矩阵，直接初等行变换化阶梯形；或识别秩 1、幂零 Jordan 块。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">题型 D1</span><h3>由矩阵结构直接读秩</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>
+        <div>· 矩阵形如 $a_i b_j$（每行成比例）→ 秩 1。</div>
+        <div>· 矩阵是幂零 Jordan 块（次对角全 1）→ 乘幂后秩递减。</div>
+      </div>
+      <div class="principle"><b>核心原理：</b>
+        <div>· $A=\alpha\beta^T$ ⟹ $r(A)=1$（只要 $\alpha,\beta$ 非零）。</div>
+        <div>· $J=\begin{pmatrix}0&1&&\\&0&1&\\&&0&1\\&&&0\end{pmatrix}$，则 $J^2$ 次对角右移一列，$J^3$ 只剩右上角一个 1。</div>
+      </div>
+      <details class="exam" open><summary>【真题｜1992 数学一 一(5) 3 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p153 / 答案 p134</div>
+        <div class="solution">
+          <div class="sline">$A=\begin{pmatrix}a_1\\a_2\\\vdots\\a_n\end{pmatrix}(b_1,b_2,\cdots,b_n)=\alpha\beta^T$。</div>
+          <div class="sline">$r(A)\le\min(r(\alpha),r(\beta))=1$，又 $a_1b_1\ne0$，故 $r(A)\ge1$。</div>
+          <div class="ans">$r(A)=1$。</div>
+        </div>
+      </div></details>
+      <details class="exam" open><summary>【真题｜2007 数学一 第 15 题 4 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p154 / 答案 p135</div>
+        <div class="solution">
+          <div class="sline">$A$ 是 4 阶幂零 Jordan 块：$A^2=\begin{pmatrix}0&0&1&0\\0&0&0&1\\0&0&0&0\\0&0&0&0\end{pmatrix}$。</div>
+          <div class="sline">$A^3=\begin{pmatrix}0&0&0&1\\0&0&0&0\\0&0&0&0\\0&0&0&0\end{pmatrix}$。</div>
+          <div class="ans">$r(A^3)=1$。</div>
+        </div>
+      </div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== D2 ========== -->
+<section class="section" id="D2">
+  <div class="chapter-head"><div class="chapter-no">D2</div><h2>含参秩讨论 / AB=O 型</h2></div>
+  <div class="chapter-desc">AB=O 是核心条件，立刻想到 $r(A)+r(B)\le n$ 和 $B$ 的列是 Ax=0 的解。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">题型 D2</span><h3>AB=O 夹逼求参数</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>题干出现 $AB=O$、$PQ=O$，$B$ 或 $P$ 非零，含参数 $t$。</div>
+      <div class="principle"><b>核心公式：</b>$AB=O$，$A$ 是 $m\times n$，$B$ 是 $n\times s$，则 $r(A)+r(B)\le n$。若 $B\ne O$，则 $r(B)\ge1$，故 $r(A)<n$，即 $|A|=0$（方阵情形）。</div>
+      <details class="exam" open><summary>【真题｜1997 数学一 一(4) 3 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p147 / 答案 p130</div>
+        <div class="solution">
+          <div class="sline">$AB=O$ 且 $B\ne O\Rightarrow |A|=0$。</div>
+          <div class="sline">$|A|=\begin{vmatrix}1&2&-2\\4&t&3\\3&-1&1\end{vmatrix}=7(t+3)=0$。</div>
+          <div class="ans">$t=-3$。</div>
+        </div>
+      </div></details>
+      <details class="exam" open><summary>【真题｜1993 数学一 二(5) 3 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p153 / 答案 p134</div>
+        <div class="solution">
+          <div class="sline">$Q=\begin{pmatrix}1&2&3\\2&4&t\\3&6&9\end{pmatrix}$。$t=6$ 时 $r(Q)=1$，由 $r(P)+r(Q)\le3$ 得 $r(P)\le2$（可能是 1 或 2）。</div>
+          <div class="sline">$t\ne6$ 时 $r(Q)=2$，故 $r(P)\le1$，又 $P\ne O$，故 $r(P)=1$。</div>
+          <div class="ans">选 (C) $t\ne6$ 时 $P$ 的秩必为 1。</div>
+        </div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>$AB=O$ 不能推出 $A=O$ 或 $B=O$（矩阵环有零因子），但能推出 $r(A)+r(B)\le n$。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== D3 ========== -->
+<section class="section" id="D3">
+  <div class="chapter-head"><div class="chapter-no">D3</div><h2>秩不等式（Sylvester / Frobenius）</h2></div>
+  <div class="chapter-desc">近 18 年数一最热考点。分块矩阵秩、不等式夹逼，必须条件反射。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">题型 D3</span><h3>秩不等式体系</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>
+        <div>· 题干给分块矩阵 $\begin{pmatrix}A&O\\O&B\end{pmatrix}$ 或 $\begin{pmatrix}A&AB\\O&A^T\end{pmatrix}$，问秩。</div>
+        <div>· 题干给 $ABC=O$ 或 $r(A)+r(B)+r(C)=r(ABC)+2n$，问结论。</div>
+      </div>
+      <div class="principle"><b>必背不等式：</b>
+        <div>· $r(A+B)\le r(A)+r(B)$。</div>
+        <div>· $r(AB)\le\min(r(A),r(B))$。</div>
+        <div>· Sylvester：$r(AB)\ge r(A)+r(B)-n$（$A$ 是 $m\times n$，$B$ 是 $n\times s$）。</div>
+        <div>· Frobenius：$r(AB)+r(BC)\le r(ABC)+r(B)$。</div>
+        <div>· $A$ 列满秩 ⟹ $r(AB)=r(B)$；$B$ 行满秩 ⟹ $r(AB)=r(A)$。</div>
+        <div>· 分块对角：$r\begin{pmatrix}A&O\\O&B\end{pmatrix}=r(A)+r(B)$。</div>
+        <div>· $r(A,AB)=r(A)$（$AB$ 列可由 $A$ 列表出）。</div>
+      </div>
+      <div class="flow">
+        <div class="flow-title">解题链路</div>
+        <div class="step"><div class="step-num">1</div><div class="step-card"><div class="do">做什么：看到分块矩阵，先用"广义初等变换"消元。</div><div class="why">为什么：左乘分块初等矩阵不改变秩。</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><div class="do">做什么：看到 $AB=E$、$ABC=O$，立刻套 Sylvester / Frobenius。</div><div class="why">为什么：这是唯一能夹住秩的工具。</div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-card"><div class="do">做什么：选择题找反例时，取最简单的 $2\times2$ 矩阵试。</div><div class="why">为什么：$A=\begin{pmatrix}0&1\\0&0\end{pmatrix}$ 是万能反例。</div></div></div>
+      </div>
+
+      <details class="exam" open><summary>【真题｜2010 数学一 第 5 题 4 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：提高篇题目 p017 / 答案 p082</div>
+        <div class="solution">
+          <div class="sline">$AB=E_m$ ⟹ $r(AB)=m$。</div>
+          <div class="sline">$r(AB)\le\min(r(A),r(B))$ ⟹ $r(A)\ge m,r(B)\ge m$。</div>
+          <div class="sline">又 $A$ 是 $m\times n$ ⟹ $r(A)\le m$；$B$ 是 $n\times m$ ⟹ $r(B)\le m$。</div>
+          <div class="ans">选 (A) $r(A)=m,r(B)=m$。</div>
+        </div>
+      </div></details>
+
+      <details class="exam" open><summary>【真题｜2008 数学一 第 20 题 10 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p154 / 答案 p135-136</div>
+        <div class="solution">
+          <div class="sline">(I) $\alpha\alpha^T$ 是秩 1 矩阵，$r(\alpha\alpha^T)\le1$；同理 $r(\beta\beta^T)\le1$。</div>
+          <div class="sline">$r(A)=r(\alpha\alpha^T+\beta\beta^T)\le r(\alpha\alpha^T)+r(\beta\beta^T)\le2$。</div>
+          <div class="sline">(II) 若 $\alpha,\beta$ 线性相关，不妨设 $\alpha=k\beta$，则 $A=(1+k^2)\beta\beta^T$，$r(A)\le r(\beta)=1<2$。</div>
+          <div class="ans">证毕。</div>
+        </div>
+      </div></details>
+
+      <details class="exam" open><summary>【真题｜2018 数学一 第 6 题 4 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：提高篇题目 p018 / 答案 p083</div>
+        <div class="solution">
+          <div class="sline">$(A,AB)$ 的列 = $A$ 的列 ∪ $AB$ 的列，而 $AB$ 的列是 $A$ 的列的线性组合。</div>
+          <div class="sline">故 $(A,AB)$ 与 $A$ 列等价，秩相同。</div>
+          <div class="ans">选 (A) $r(A\ AB)=r(A)$。</div>
+        </div>
+      </div></details>
+
+      <details class="exam" open><summary>【真题｜2021 数学一 第 7 题 5 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：提高篇题目 p018 / 答案 p083-084</div>
+        <div class="solution">
+          <div class="sline">(A) $\begin{pmatrix}A&O\\O&A^TA\end{pmatrix}$：$r(A^TA)=r(A)$，故秩为 $2r(A)$，成立。</div>
+          <div class="sline">(B) $\begin{pmatrix}A&AB\\O&A^T\end{pmatrix}$：列变换消去 $AB$，秩 = $r(A)+r(A^T)=2r(A)$，成立。</div>
+          <div class="sline">(C) $\begin{pmatrix}A&BA\\O&AA^T\end{pmatrix}$：取 $A=\begin{pmatrix}0&1\\0&0\end{pmatrix},B=\begin{pmatrix}0&1\\1&0\end{pmatrix}$，则 $BA=\begin{pmatrix}0&0\\0&1\end{pmatrix},AA^T=\begin{pmatrix}1&0\\0&0\end{pmatrix}$，该分块矩阵化为 $\begin{pmatrix}0&1&0&0\\0&0&0&1\\0&0&1&0\\0&0&0&0\end{pmatrix}$，秩 = 3，但 $2r(A)=2$，矛盾。</div>
+          <div class="ans">选 (C)。</div>
+        </div>
+      </div></details>
+
+      <details class="exam" open><summary>【真题｜2023 数学一 第 5 题 5 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：提高篇题目 p018 / 答案 p084</div>
+        <div class="solution">
+          <div class="sline">记 $I_1=\begin{pmatrix}O&A\\BC&E\end{pmatrix},I_2=\begin{pmatrix}AB&C\\O&E\end{pmatrix},I_3=\begin{pmatrix}E&AB\\AB&O\end{pmatrix}$。</div>
+          <div class="sline">广义初等变换：$I_1\to\begin{pmatrix}O&O\\BC&E\end{pmatrix}$，由 $ABC=O$ 消去，$r_1=n$。</div>
+          <div class="sline">$I_2\to\begin{pmatrix}AB&O\\O&E\end{pmatrix}$，$r_2=r(AB)+n$。</div>
+          <div class="sline">$I_3\to\begin{pmatrix}E&O\\O&-(AB)^2\end{pmatrix}$，$r_3=n+r((AB)^2)$。</div>
+          <div class="sline">由 $r((AB)^2)\le r(AB)$ 得 $r_3\le r_2$；又 $r_1=n$。</div>
+          <div class="ans">选 (B) $r_1\le r_3\le r_2$。</div>
+        </div>
+      </div></details>
+
+      <details class="exam" open><summary>【真题｜2025 数学一 第 7 题 5 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：提高篇题目 p019 / 答案 p085</div>
+        <div class="solution">
+          <div class="sline">Frobenius：$r(AB)+r(C)\le r(ABC)+n$（即①的 ≤ 方向）。</div>
+          <div class="sline">题设 $r(A)+r(B)+r(C)=r(ABC)+2n$。Sylvester 给 $r(A)+r(B)\le r(AB)+n$。</div>
+          <div class="sline">两式相加：$r(A)+r(B)+r(C)\le r(AB)+r(C)+n\le r(ABC)+2n$。</div>
+          <div class="sline">题设恰为上界，故两处不等号都取等：① $r(AB)+r(C)=r(ABC)+n$；② $r(A)+r(B)=r(AB)+n$。</div>
+          <div class="sline">③④不一定（取 $A=O,B,C$ 可逆即反例）。</div>
+          <div class="ans">选 (A) ①②正确。</div>
+        </div>
+      </div></details>
+
+      <div class="pitfall"><b>易错点：</b>
+        <div>· $r(A^TA)=r(A)$ 只在实矩阵成立，且是常用结论。</div>
+        <div>· 分块矩阵秩公式 $r\begin{pmatrix}A&O\\O&B\end{pmatrix}=r(A)+r(B)$ 是等式；但 $\begin{pmatrix}A&B\\C&D\end{pmatrix}$ 的秩没有简单公式。</div>
+        <div>· 选择题用反例时，$A=\begin{pmatrix}0&1\\0&0\end{pmatrix}$ 几乎万能。</div>
+      </div>
+      <div class="rule"><b>命题规律：</b>2008/2010/2018/2021/2023/2025 六道题，近 8 年考了 5 道，是当前数一选择压轴的常客。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== D4 ========== -->
+<section class="section" id="D4">
+  <div class="chapter-head"><div class="chapter-no">D4</div><h2>由方程组 / 几何 / 特征值反推秩</h2></div>
+  <div class="chapter-desc">看到 r(AB) 且 B 可逆 → 秩不变；看到两直线位置 → 方向向量秩。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">题型 D4</span><h3>秩的传递与几何应用</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>
+        <div>· $B$ 可逆，求 $r(AB)$ → 直接等于 $r(A)$。</div>
+        <div>· 两直线位置关系与满秩矩阵 → 方向向量组的秩。</div>
+        <div>· $E-\alpha\alpha^T$ 的秩 → 特征值法。</div>
+      </div>
+      <div class="principle"><b>核心：</b>左乘/右乘可逆矩阵不改变秩；$E-\alpha\alpha^T$（$\alpha$ 单位）特征值 $0,1,\cdots,1$，秩为 $n-1$。</div>
+      <details class="exam" open><summary>【真题｜1996 数学一 一(5) 3 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p153 / 答案 p134</div>
+        <div class="solution">
+          <div class="sline">$|B|=\begin{vmatrix}1&0&2\\0&2&0\\-1&0&3\end{vmatrix}=8\ne0$，$B$ 可逆。</div>
+          <div class="ans">$r(AB)=r(A)=2$。</div>
+        </div>
+      </div></details>
+      <details class="exam" open><summary>【真题｜1998 数学一 二(4) 3 分】<span class="tag-ys">数一专属·解析几何综合</span></summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p154 / 答案 p135</div>
+        <div class="solution">
+          <div class="sline">满秩矩阵 → 行向量 $(a_i,b_i,c_i)$ 线性无关。</div>
+          <div class="sline">方向向量 $v_1=(a_1-a_2,b_1-b_2,c_1-c_2)$，$v_2=(a_2-a_3,b_2-b_3,c_2-c_3)$ 线性无关（不平行）。</div>
+          <div class="sline">两点连线 $v=(a_3-a_1,b_3-b_1,c_3-c_1)$，注意 $v+v_1+v_2=0$，故 $v,v_1,v_2$ 共面，两直线相交。</div>
+          <div class="ans">选 (A) 相交于一点。</div>
+        </div>
+      </div></details>
+      <details class="exam" open><summary>【真题｜2012 数学一 第 13 题 4 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：提高篇题目 p017 / 答案 p083</div>
+        <div class="solution">
+          <div class="sline">$\alpha$ 三维单位列向量，$\alpha\alpha^T$ 特征值 $1,0,0$。</div>
+          <div class="sline">$E-\alpha\alpha^T$ 特征值 $0,1,1$，实对称可对角化。</div>
+          <div class="ans">$r(E-\alpha\alpha^T)=2$。</div>
+        </div>
+      </div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== E1 ========== -->
+<section class="section" id="E1">
+  <div class="chapter-head"><div class="chapter-no">E1</div><h2>AA*=|A|E 核心公式</h2></div>
+  <div class="chapter-desc">伴随矩阵的一切问题，最后都回到 $AA^*=A^*A=|A|E$。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">题型 E1</span><h3>初等变换伴随矩阵</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>题干同时出现 $A,B$ 与 $A^*,B^*$，问行变换后伴随矩阵怎么变。</div>
+      <div class="principle"><b>核心：</b>$B=PA$（$P$ 初等矩阵）⟹ $B^*=|B|B^{-1}=|P||A|\cdot A^{-1}P^{-1}=|P|A^*P^{-1}$。</div>
+      <details class="exam" open><summary>【真题｜2005 数学一 第 12 题 4 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p146 / 答案 p129-130</div>
+        <div class="solution">
+          <div class="sline">$B=P_{12}A$（对换第 1,2 行），$|B|=-|A|$。</div>
+          <div class="sline">$B^*=|B|B^{-1}=-|A|\cdot A^{-1}P_{12}^{-1}=-A^*P_{12}$。</div>
+          <div class="sline">$P_{12}$ 自逆。右乘 $P_{12}$ = 列变换：交换 $A^*$ 第 1,2 列。</div>
+          <div class="ans">选 (C) 交换 $A^*$ 第 1 列与第 2 列得 $-B^*$。</div>
+        </div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>行变换（左乘 $P$）作用在 $A^*$ 上变成<b>列</b>变换（右乘 $P^{-1}$），且多一个负号因为对换矩阵 $|P|=-1$。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== E3 ========== -->
+<section class="section" id="E3">
+  <div class="chapter-head"><div class="chapter-no">E3</div><h2>(A*)⁻¹ 公式链 / 分块伴随</h2></div>
+  <div class="chapter-desc">$A^*=|A|A^{-1}$ 是万能桥梁，分块反对角伴随也靠它。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">题型 E3</span><h3>分块反对角矩阵的伴随</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>题干给 $|A|,|B|$，问 $\begin{pmatrix}O&A\\B&O\end{pmatrix}^*$。</div>
+      <div class="principle"><b>核心：</b>$C^*=|C|C^{-1}$。对 $C=\begin{pmatrix}O&A\\B&O\end{pmatrix}$，$|C|=(-1)^{mn}|A||B|$，$C^{-1}=\begin{pmatrix}O&B^{-1}\\A^{-1}&O\end{pmatrix}$。</div>
+      <details class="exam" open><summary>【真题｜2009 数学一 第 6 题 4 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：提高篇题目 p013 / 答案 p079</div>
+        <div class="solution">
+          <div class="sline">$|A|=2,|B|=3$，均为二阶，$m=n=2$，$(-1)^{mn}=(-1)^4=1$。</div>
+          <div class="sline">$|C|=6$。$C^{-1}=\begin{pmatrix}O&B^{-1}\\A^{-1}&O\end{pmatrix}$。</div>
+          <div class="sline">$C^*=6\begin{pmatrix}O&B^{-1}\\A^{-1}&O\end{pmatrix}=\begin{pmatrix}O&6B^{-1}\\6A^{-1}&O\end{pmatrix}=\begin{pmatrix}O&2B^*\\3A^*&O\end{pmatrix}$。</div>
+          <div class="ans">选 (B)。</div>
+        </div>
+      </div></details>
+      <div class="pitfall"><b>易错点：</b>选项里 $2B^*$ 和 $3A^*$ 的位置别搞反：$C^{-1}$ 的右上角是 $B^{-1}$，乘 $|C|=6$ 得 $6B^{-1}=6\cdot\frac{B^*}{|B|}=2B^*$。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== F1 ========== -->
+<section class="section" id="F1">
+  <div class="chapter-head"><div class="chapter-no">F1</div><h2>矩阵方程 AX=B</h2></div>
+  <div class="chapter-desc">化简到 $AX=B$ 标准形，若 $A$ 可逆则 $X=A^{-1}B$；可用 $(A|B)\to(E|X)$ 一次到位。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">题型 F1</span><h3>AX=B 型</h3></div>
+    <div class="qbody">
+      <div class="idbox"><b>识别特征：</b>方程含 $AB$ 与 $B$ 的线性组合，把 $B$ 合并到一边。</div>
+      <div class="principle"><b>流程：</b>移项提公因子 → $(A-kE)B=A$ 或 $(A-kE)B=C$ → 验可逆 → 求 $B$。</div>
+      <details class="exam" open><summary>【真题｜1987 数学一 三(2) 4 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p156 / 答案 p137</div>
+        <div class="solution">
+          <div class="sline">$AB=A+2B\Rightarrow(A-2E)B=A$。</div>
+          <div class="sline">$|A-2E|=-1\ne0$，可逆。</div>
+          <div class="sline">对 $(A-2E\mid A)$ 行变换，得 $B=\begin{pmatrix}5&-2&-2\\4&-3&-2\\-2&2&3\end{pmatrix}$。</div>
+          <div class="ans">$B=\begin{pmatrix}5&-2&-2\\4&-3&-2\\-2&2&3\end{pmatrix}$。</div>
+        </div>
+      </div></details>
+      <details class="exam" open><summary>【真题｜1995 数学一 一(5) 3 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p156 / 答案 p137-138</div>
+        <div class="solution">
+          <div class="sline">$A^{-1}BA=6A+BA$，右乘 $A^{-1}$：$A^{-1}B=6E+B$，即 $(A^{-1}-E)B=6E$。</div>
+          <div class="sline">$A^{-1}=\mathrm{diag}(3,4,7)$，$A^{-1}-E=\mathrm{diag}(2,3,6)$。</div>
+          <div class="ans">$B=6\mathrm{diag}(\frac12,\frac13,\frac16)=\mathrm{diag}(3,2,1)$。</div>
+        </div>
+      </div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== F2 ========== -->
+<section class="section" id="F2">
+  <div class="chapter-head"><div class="chapter-no">F2</div><h2>XA=B / 转置分块化简</h2></div>
+  <div class="chapter-desc">看到 $(E-C^{-1}B)^TC^T$ 这种结构，立刻用 $(AB)^T=B^TA^T$ 化简。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">题型 F2</span><h3>转置把左变右</h3></div>
+    <div class="qbody">
+      <div class="principle"><b>关键恒等：</b>$(E-C^{-1}B)^T C^T=[C(E-C^{-1}B)]^T=(C-B)^T$。</div>
+      <details class="exam" open><summary>【真题｜1990 数学一 七题 6 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p157 / 答案 p138</div>
+        <div class="solution">
+          <div class="sline">$A(E-C^{-1}B)^TC^T=E$，化简 $(E-C^{-1}B)^TC^T=(C-B)^T$。</div>
+          <div class="sline">$A(C-B)^T=E\Rightarrow A=[(C-B)^T]^{-1}=[(C-B)^{-1}]^T$。</div>
+          <div class="sline">$C-B=\begin{pmatrix}1&2&3&4\\0&1&2&3\\0&0&1&2\\0&0&0&1\end{pmatrix}$，其逆为对角三角阵。</div>
+          <div class="ans">$A=\begin{pmatrix}1&0&0&0\\-2&1&0&0\\1&-2&1&0\\0&1&-2&1\end{pmatrix}$。</div>
+        </div>
+      </div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== F4 ========== -->
+<section class="section" id="F4">
+  <div class="chapter-head"><div class="chapter-no">F4</div><h2>含 A*、A⁻¹ 混合方程</h2></div>
+  <div class="chapter-desc">给 A* 求 |A|，再用 A*=|A|A⁻¹ 把 A* 换成 A⁻¹。</div>
+  <div class="qcard">
+    <div class="qhead"><span class="tag">题型 F4</span><h3>从 A* 反推 A</h3></div>
+    <div class="qbody">
+      <div class="flow">
+        <div class="flow-title">解题链路</div>
+        <div class="step"><div class="step-num">1</div><div class="step-card"><div class="do">做什么：由 $|A^*|=|A|^{n-1}$ 求 $|A|$。</div><div class="why">为什么：这是联系 A* 与 A 的唯一桥梁。</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-card"><div class="do">做什么：方程两边左乘 $A$ 或 $A^*$，把 $A^{-1}$ 消掉。</div><div class="why">为什么：$AA^{-1}=E$。</div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-card"><div class="do">做什么：把 $A^*$ 换成 $|A|A^{-1}$，化为普通线性方程。</div><div class="why">为什么：$A^*=|A|A^{-1}$。</div></div></div>
+      </div>
+      <details class="exam" open><summary>【真题｜2000 数学一 十题 6 分】</summary><div class="exam-body">
+        <div class="exam-meta">来源：基础篇题目 p157 / 答案 p138</div>
+        <div class="solution">
+          <div class="sline">$|A^*|=|A|^3=8\Rightarrow|A|=2$。</div>
+          <div class="sline">$ABA^{-1}=BA^{-1}+3E$，右乘 $A$：$(A-E)B=3A$。</div>
+          <div class="sline">左乘 $A^*$，用 $A^*A=2E$：$(2E-A^*)B=6E$。</div>
+          <div class="sline">$B=6(2E-A^*)^{-1}$，代入 $A^*$ 计算。</div>
+          <div class="ans">$B=\begin{pmatrix}6&0&0&0\\0&6&0&0\\6&0&6&0\\0&3&0&-1\end{pmatrix}$。</div>
+        </div>
+      </div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 决策流程图 ========== -->
+<section class="section" id="flow">
+  <div class="chapter-head"><div class="chapter-no">★</div><h2>本章解题总决策流程图</h2></div>
+  <div class="chapter-desc">拿到矩阵题，先看最终问什么，再按判据分流。</div>
+  <div class="chart-box"><div id="ch_flow" class="chart" style="height:480px"></div></div>
+</section>
+
+<!-- ========== 附录 ========== -->
+<section class="section" id="appendix">
+  <div class="chapter-head"><div class="chapter-no">附</div><h2>附录 · 本章真题全清单（36 题）</h2></div>
+  <div class="chapter-desc">本附录行数 = 本章台账行数 = 36。</div>
+  <table class="zt-table">
+    <thead><tr><th style="width:6%">#</th><th style="width:10%">年份</th><th style="width:14%">题号</th><th style="width:8%">分值</th><th style="width:10%">题型</th><th>题目摘要</th><th style="width:14%">来源页码</th></tr></thead>
+    <tbody id="ztbody"></tbody>
+  </table>
+</section>
+
+<a class="back-top" href="#cover">↑</a>
+</main>
+</div>
+
+<script>
+// 数据
+const rows = [
+[1988,"七题",6,"A1","AP=PB B对角阵 求A及A^5","p145/p128"],
+[1994,"一(5)",3,"A1","A=α^Tβ 求A^n","p145/p128"],
+[1995,"二(5)",3,"C1","初等矩阵P1P2 选等式","p145/p129"],
+[1997,"八题",5,"C2","对换行得B 证可逆求AB^{-1}","p146/p129"],
+[2004,"11题",4,"C1","列变换反推Q","p146/p129"],
+[2005,"12题",4,"E1","行变换后伴随矩阵关系","p146/p129-130"],
+[2006,"12题",4,"C1","行+列变换合成PAP^{-1}","p147/p130"],
+[1997,"一(4)",3,"D2","AB=O B非零 求t","p147/p130"],
+[1989,"一(5)",3,"B3","初等行变换求(A-2E)^{-1}","p149/p131"],
+[1991,"一(5)",3,"B4","四阶分块求逆","p149/p131-132"],
+[1991,"二(5)",3,"B1","ABC=E 循环移位","p150/p132"],
+[1996,"八题",6,"B5","A=E-ξξ^T 幂等与不可逆","p150/p132"],
+[2001,"一(4)",3,"B5","A²+A-4E=O 求(A-E)^{-1}","p150/p132"],
+[2008,"5题",4,"B1","A³=O 判E±A可逆","p151/p132"],
+[1992,"一(5)",3,"D1","秩1矩阵求r(A)","p153/p134"],
+[1993,"二(5)",3,"D2","PQ=O 含参r(P)","p153/p134"],
+[1996,"一(5)",3,"D4","右乘可逆阵保秩r(AB)","p153/p134"],
+[2007,"15题",4,"D1","幂零Jordan块求r(A³)","p154/p135"],
+[1998,"二(4)",3,"D4","满秩矩阵判两直线位置","p154/p135"],
+[2008,"20题",10,"D3","A=αα^T+ββ^T 证秩","p154/p135-136"],
+[1987,"三(2)",4,"F1","AB=A+2B 求B","p156/p137"],
+[1995,"一(5)",3,"F1","A^{-1}BA=6A+BA 求B","p156/p137-138"],
+[1990,"七题",6,"F2","转置分块化简求A","p157/p138"],
+[2000,"十题",6,"F4","含A*混合矩阵方程求B","p157/p138"],
+[2011,"5题",4,"C2","初等变换反推A","p010/p076"],
+[2012,"6题",4,"C2","Q^{-1}AQ对角阵","p011/p076"],
+[2020,"5题",4,"C1","初等列变换等价命题","p011/p076"],
+[2009,"6题",4,"E3","分块反对角伴随矩阵","p013/p079"],
+[2017,"5题",4,"B5","E-aa^T不可逆判定","p013/p079"],
+[2022,"15题",5,"B5","(E-A)^{-1}B=A 求B-A","p014/p079"],
+[2010,"5题",4,"D3","AB=E判r(A)r(B)","p017/p082"],
+[2012,"13题",4,"D4","求r(E-aa^T)","p017/p083"],
+[2018,"6题",4,"D3","分块矩阵秩等式","p018/p083"],
+[2021,"7题",5,"D3","分块矩阵秩找不成立","p018/p083-084"],
+[2023,"5题",5,"D3","ABC=O三分块秩排序","p018/p084"],
+[2025,"7题",5,"D3","Frobenius不等式夹逼","p019/p085"]
+];
+const tb=document.getElementById('ztbody');
+rows.forEach((r,i)=>{
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td>${i+1}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td>`;
+  tb.appendChild(tr);
+});
+
+// 图 0.1 按年份题量
+const yearData={};
+rows.forEach(r=>{yearData[r[0]]=(yearData[r[0]]||0)+1;});
+const years=Object.keys(yearData).sort();
+const yvals=years.map(y=>yearData[y]);
+echarts.init(document.getElementById('ch_year')).setOption({
+  tooltip:{trigger:'axis'},
+  grid:{left:50,right:20,top:30,bottom:40},
+  xAxis:{type:'category',data:years,axisLabel:{rotate:45,fontSize:10}},
+  yAxis:{type:'value',name:'题数',minInterval:1},
+  series:[{type:'bar',data:yvals,itemStyle:{color:'#1e3a5f'}}]
+});
+
+// 图 0.2 题型占比
+const typeCount={};
+rows.forEach(r=>{typeCount[r[3]]=(typeCount[r[3]]||0)+1;});
+const pieData=Object.entries(typeCount).map(([k,v])=>({name:k,value:v}));
+echarts.init(document.getElementById('ch_pie')).setOption({
+  tooltip:{trigger:'item',formatter:'{b}: {c} 题 ({d}%)'},
+  legend:{bottom:0,type:'scroll'},
+  series:[{type:'pie',radius:['38%','65%'],data:pieData,
+    label:{formatter:'{b} {c}'},
+    color:['#1e3a5f','#2c5282','#d97706','#3b6fa8','#e8a04c','#5a7fa8','#c97a2e','#7a9ab8','#b8803a','#4a6fa5','#a0522d','#6b8cae','#8b6f3a','#3a5a8a','#c9a06a']
+  }]
+});
+
+// 图 0.3 近10年分值
+const recentYears=[2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+const recentScore=recentYears.map(y=>{
+  let s=0;rows.forEach(r=>{if(r[0]===y)s+=r[2];});return s;
+});
+echarts.init(document.getElementById('ch_trend')).setOption({
+  tooltip:{trigger:'axis'},
+  grid:{left:50,right:20,top:30,bottom:30},
+  xAxis:{type:'category',data:recentYears},
+  yAxis:{type:'value',name:'分值'},
+  series:[{type:'line',data:recentScore,smooth:true,itemStyle:{color:'#d97706'},areaStyle:{color:'rgba(217,119,6,.15)'}}]
+});
+
+// 决策流程图
+echarts.init(document.getElementById('ch_flow')).setOption({
+  tooltip:{},
+  series:[{
+    type:'graph',layout:'none',
+    symbolSize:40,
+    roam:false,
+    label:{show:true,fontSize:11,color:'#fff'},
+    edgeSymbol:['none','arrow'],edgeSymbolSize:8,
+    lineStyle:{color:'#888',width:1.5,curveness:0},
+    itemStyle:{color:'#1e3a5f'},
+    data:[
+      {name:'拿到\n矩阵题',x:400,y:20,itemStyle:{color:'#d97706'}},
+      {name:'给具体\n数字矩阵?',x:400,y:100,itemStyle:{color:'#2c5282'}},
+      {name:'问\nA^{-1}?',x:150,y:190},
+      {name:'问 r(A)?',x:400,y:190},
+      {name:'问 AX=B\n型方程?',x:650,y:190},
+      {name:'B3/B4\n行变换或分块',x:80,y:290,itemStyle:{color:'#5a7fa8'}},
+      {name:'D1化阶梯\nD2含参|A|=0',x:330,y:290,itemStyle:{color:'#5a7fa8'}},
+      {name:'F1/F2/F4\n化简求X',x:650,y:290,itemStyle:{color:'#5a7fa8'}},
+      {name:'抽象矩阵\nf(A)=O?',x:400,y:370,itemStyle:{color:'#2c5282'}},
+      {name:'B5凑AB=E\nB1循环移位',x:200,y:450,itemStyle:{color:'#5a7fa8'}},
+      {name:'初等变换\n描述?',x:600,y:450,itemStyle:{color:'#5a7fa8'}},
+      {name:'C1左行右列\nC2反推P',x:600,y:520,itemStyle:{color:'#5a7fa8'}},
+      {name:'分块矩阵\n秩不等式?',x:400,y:520,itemStyle:{color:'#5a7fa8'}}
+    ],
+    links:[
+      {source:'拿到\n矩阵题',target:'给具体\n数字矩阵?'},
+      {source:'给具体\n数字矩阵?',target:'问\nA^{-1}?'},
+      {source:'给具体\n数字矩阵?',target:'问 r(A)?'},
+      {source:'给具体\n数字矩阵?',target:'问 AX=B\n型方程?'},
+      {source:'问\nA^{-1}?',target:'B3/B4\n行变换或分块'},
+      {source:'问 r(A)?',target:'D1化阶梯\nD2含参|A|=0'},
+      {source:'问 AX=B\n型方程?',target:'F1/F2/F4\n化简求X'},
+      {source:'给具体\n数字矩阵?',target:'抽象矩阵\nf(A)=O?'},
+      {source:'抽象矩阵\nf(A)=O?',target:'B5凑AB=E\nB1循环移位'},
+      {source:'抽象矩阵\nf(A)=O?',target:'初等变换\n描述?'},
+      {source:'初等变换\n描述?',target:'C1左行右列\nC2反推P'},
+      {source:'问 r(A)?',target:'分块矩阵\n秩不等式?'}
+    ]
+  }]
+});
+</script>
+</body>
+</html>

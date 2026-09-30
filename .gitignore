@@ -1,0 +1,11 @@
+# 本仓库仅用于托管 线代手册/ 与 assets/ 两个文件夹（保持相对层级）
+# 根目录下其余内容一律忽略，不进入仓库
+/*
+!/.gitignore
+!/线代手册/
+!/assets/
+
+# 系统/编辑器杂项
+Thumbs.db
+.DS_Store
+desktop.ini

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>线性代数 L3 向量题型全解手册（数学一 1987—2025）</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+  svg: { fontCache: 'global' },
+  options: { processHtmlClass: 'tex' }
+};
+</script>
+<script src="../assets/tex-svg.js"></script>
+<script src="../assets/echarts.min.js"></script>
+<style>
+:root{
+  --navy:#1e3a5f; --navy-2:#2a4d7a; --ink:#222; --paper:#fafaf6;
+  --accent:#d97706; --line:#e3e0d6; --card:#ffffff;
+  --step-do:#e8f1fb; --step-why:#fdf6e3; --step-next:#e9f6ec;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Microsoft YaHei','PingFang SC',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.8}
+.layout{display:flex;min-height:100vh}
+/* sidebar */
+.sidebar{width:260px;flex:0 0 260px;background:var(--navy);color:#dce6f1;position:sticky;top:0;height:100vh;overflow-y:auto;padding:20px 0 60px}
+.sidebar::-webkit-scrollbar{width:6px}
+.sidebar::-webkit-scrollbar-thumb{background:#3d5a7a;border-radius:3px}
+.side-head{padding:4px 20px 14px;border-bottom:1px solid #2c4a6b;margin-bottom:12px}
+.side-head .t{font-size:17px;font-weight:800;color:#fff;letter-spacing:1px}
+.side-head .s{font-size:12px;color:#9fb4cc;margin-top:4px}
+.sidebar a{display:block;color:#cddcea;text-decoration:none;font-size:13.5px;padding:6px 20px;border-left:3px solid transparent}
+.sidebar a:hover{background:#27496f;border-left-color:var(--accent)}
+.sidebar a.lvl2{padding-left:36px;font-size:12.5px;color:#b6c6da}
+.main{flex:1;min-width:0;padding:0 0 80px}
+.wrap{max-width:980px;margin:0 auto;padding:0 34px}
+/* header */
+.topbar{background:var(--navy);color:#fff;padding:16px 34px}
+.crumb{font-size:13px;color:#b9cbe0}
+.hero{background:linear-gradient(180deg,#1e3a5f,#24486f);color:#fff;padding:38px 0 30px}
+.hero h1{font-size:30px;font-weight:800;letter-spacing:1px}
+.hero .sub{margin-top:10px;font-size:14px;color:#cddcea}
+.hero .badges{margin-top:16px}
+.badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:3px 10px;font-size:12px;margin-right:8px}
+.badge.es{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+h2.sec{font-size:23px;color:var(--navy);margin:42px 0 16px;padding-left:12px;border-left:6px solid var(--navy)}
+h3.sub{font-size:18px;color:var(--navy-2);margin:28px 0 12px}
+/* cards */
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin:14px 0;break-inside:avoid}
+.card h4{font-size:16.5px;color:var(--navy);margin-bottom:10px}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;border-radius:3px;padding:1px 7px;margin-right:6px;vertical-align:middle}
+.tag.es{background:var(--accent);color:#fff}
+.tag.k{background:var(--navy);color:#fff}
+.tag.why{background:var(--accent);color:#fff}
+.tag.err{background:#b03a2e;color:#fff}
+h5.blk{font-size:14px;color:var(--navy);margin:14px 0 6px;font-weight:800}
+ul,ol{margin:6px 0 6px 22px}
+li{margin:3px 0}
+p{margin:6px 0}
+.step{border-radius:5px;padding:9px 13px;margin:7px 0;font-size:14px}
+.step.do{background:var(--step-do)}
+.step.why{background:var(--step-why)}
+.step.next{background:var(--step-next)}
+.step b.lab{font-weight:800;margin-right:6px}
+.q{background:#f6f8fb;border-left:3px solid var(--navy-2);padding:8px 12px;margin:8px 0;font-size:14px;border-radius:0 4px 4px 0}
+.q .yh{color:var(--accent);font-weight:700}
+table.tbl{border-collapse:collapse;width:100%;font-size:13.5px;margin:10px 0}
+table.tbl th,table.tbl td{border:1px solid var(--line);padding:6px 9px;text-align:center}
+table.tbl th{background:var(--navy);color:#fff}
+table.tbl tr:nth-child(even) td{background:#f6f7f3}
+.chart{width:100%;height:340px;margin:14px 0}
+.note{background:#fff7ec;border:1px solid #f0d9b5;border-radius:5px;padding:10px 14px;font-size:13.5px;margin:10px 0}
+.warn-es{background:#fef3e2;border:1.5px dashed var(--accent);border-radius:6px;padding:10px 14px;color:#8a4b08;font-size:14px;margin:10px 0}
+.backtop{position:fixed;right:26px;bottom:30px;background:var(--navy);color:#fff;width:42px;height:42px;border-radius:50%;text-align:center;line-height:42px;text-decoration:none;font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.flowbox{background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px}
+@media print{
+  .sidebar,.backtop{display:none}
+  .main{padding:0}
+  .card{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar">
+    <div class="side-head"><div class="t">线代 L3 · 向量</div><div class="s">数学一 1987—2025 题型全解</div></div>
+    <a href="#top">封面 / 本章定位</a>
+    <a href="#overview">0 · 本章真题总览</a>
+    <a href="#A">A · 线性表示</a>
+    <a class="lvl2" href="#A1">A1 已知坐标判表出</a>
+    <a class="lvl2" href="#A2">A2 抽象表出推理</a>
+    <a class="lvl2" href="#A3">A3 反求参数</a>
+    <a href="#B">B · 线性相关/无关</a>
+    <a class="lvl2" href="#B1">B1 定义法</a>
+    <a class="lvl2" href="#B2">B2 秩法</a>
+    <a class="lvl2" href="#B3">B3 行列式法</a>
+    <a class="lvl2" href="#B4">B4 抽象证明</a>
+    <a class="lvl2" href="#B5">B5 经典结论</a>
+    <a href="#C">C · 极大无关组与秩</a>
+    <a class="lvl2" href="#C1">C1 行变换求秩</a>
+    <a class="lvl2" href="#C2">C2 秩的关系</a>
+    <a href="#D">D · 向量组等价</a>
+    <a class="lvl2" href="#D1">D1 等价判定/反求</a>
+    <a class="lvl2" href="#D2">D2 等秩≠等价</a>
+    <a href="#E">E · 数一专属向量空间</a>
+    <a class="lvl2" href="#E1">E1 基/维数</a>
+    <a class="lvl2" href="#E2">E2 过渡矩阵</a>
+    <a class="lvl2" href="#E3">E3 坐标</a>
+    <a class="lvl2" href="#E4">E4 Schmidt</a>
+    <a class="lvl2" href="#E5">E5 正交/内积</a>
+    <a href="#flow">解题总决策流程</a>
+    <a href="#appendix">附录 · 真题全清单</a>
+  </nav>
+
+  <div class="main">
+    <div class="topbar"><div class="crumb">线代 / 第三章 向量（含数一专属向量空间）</div></div>
+    <div class="hero" id="top">
+      <div class="wrap">
+        <h1>线性代数 L3 · 向量 题型全解手册</h1>
+        <div class="sub">真题范围：1987—2025 数学一 ｜ 共抽 32 题，合计 158 分 ｜ 数据源：真题真刷基础篇+提高篇（数学一）</div>
+        <div class="badges">
+          <span class="badge">B 相关性判定 · 14题 / 55分</span>
+          <span class="badge">E 向量空间 · 9题 / 52分</span>
+          <span class="badge es">E 类为数一专属，数二数三不考</span>
+        </div>
+        <div class="sub" style="margin-top:12px">本章在线代体系中的位置：向量组的"线性关系"是 L4 方程组（基础解系=解向量极大无关组）、L5 特征向量、L6 二次型标准形（Schmidt 正交）的公共概念底座。</div>
+      </div>
+    </div>
+
+    <div class="wrap">
+    <!-- ========== 0 总览 ========== -->
+    <h2 class="sec" id="overview">0 · 本章真题总览</h2>
+    <table class="tbl">
+      <tr><th>题型编号</th><th>题数</th><th>分值合计</th><th>首次出现</th><th>最近出现</th></tr>
+      <tr><td>A 线性表示</td><td>5</td><td>35</td><td>1991</td><td>2023</td></tr>
+      <tr><td>B 线性相关/无关</td><td>14</td><td>55</td><td>1988</td><td>2024</td></tr>
+      <tr><td>C 极大无关组与秩</td><td>2</td><td>7</td><td>1990</td><td>2017</td></tr>
+      <tr><td>D 向量组等价</td><td>2</td><td>9</td><td>2013</td><td>2022</td></tr>
+      <tr><td>E【数一专属】向量空间</td><td>9</td><td>52</td><td>1987</td><td>2023</td></tr>
+      <tr><th>合计</th><th>32</th><th>158</th><th>—</th><th>—</th></tr>
+    </table>
+
+    <div id="chartBar" class="chart"></div>
+    <div id="chartPie" class="chart"></div>
+    <div id="chartTrend" class="chart"></div>
+
+    <div class="note">
+      <b>宏观命题规律：</b>
+      <ol>
+        <li><b>B 是绝对主战场</b>：38% 的题量、35% 的分值，选择/填空/证明三种题型都出，且最爱与 L5 特征值（2005）、$AB=O/E$（1993、2004）综合。</li>
+        <li><b>E 是数一专属送分/拉分点</b>：过渡矩阵（2003、2009、2019）、Schmidt（1997、2021）、坐标与基（1987、2015、2019）几乎隔年出现，2015、2019 均为 11 分大题，数二数三不考，务必拿满。</li>
+        <li><b>A 类高频考"讨论+反求参数"</b>：1991、2011 都是大题，核心工具是"增广矩阵初等行变换 + 秩判有解"。</li>
+        <li><b>D 等价题是新趋势</b>：2013、2022 连考，本质仍是"两组互相表出=两个方向方程组都有解"。</li>
+        <li><b>近十年（2016—2025）</b>向量年均约 3—4 分，E 类大题（2019、2015）与 B 类小题（2024、2014、2012）交替出现。</li>
+      </ol>
+    </div>
+
+    <!-- ========== A ========== -->
+    <h2 class="sec" id="A">A · 线性表示（5题 / 35分）</h2>
+
+    <div class="card" id="A1">
+      <h4><span class="tag k">A1</span>β 能否由 α 组线性表示（已知坐标，含几何含义）</h4>
+      <h5 class="blk">① 识别特征</h5>
+      <ul>
+        <li>看到"$\beta$ 能否由 $\alpha_1,\dots,\alpha_s$ 线性表出/表示/线性组合" → A1。</li>
+        <li>给出了各向量<b>具体坐标</b> → 走方程组；给的是<b>抽象字母/条件</b> → 走秩与定义。</li>
+        <li>看到"直线相交于一点/平面共线共点" → 转化为列向量的表出关系（2020）。</li>
+        <li>看到"$\gamma$ 既能由甲组表出又能由乙组表出" → 联立两个表出等式。</li>
+      </ul>
+      <h5 class="blk">② 核心原理</h5>
+      <p>$\beta$ 可由 $\alpha_1,\dots,\alpha_s$ 表出 $\iff$ $x_1\alpha_1+\cdots+x_s\alpha_s=\beta$ 有解 $\iff$ $r(\alpha_1,\dots,\alpha_s)=r(\alpha_1,\dots,\alpha_s,\beta)$。</p>
+      <ul>
+        <li>唯一表示 $\iff$ 秩 $=s$（系数列满秩）；无穷多表示 $\iff$ 秩 $<s$；不能表出 $\iff$ 增广比系数秩多 1。</li>
+        <li>$n$ 个 $n$ 维向量时可直接算系数行列式 $|\alpha_1,\dots,\alpha_n|$：$\ne0$ 必唯一表出。</li>
+      </ul>
+      <h5 class="blk">③ 完整解题链路</h5>
+      <div class="step do"><b class="lab">做什么</b>把 $\alpha_1,\dots,\alpha_s,\beta$ 按列拼成增广矩阵 $[\alpha_1,\dots,\alpha_s\vdots\beta]$。</div>
+      <div class="step why"><b class="lab">为什么</b>表出问题就是非齐次方程组 $Ax=\beta$ 的解的问题。</div>
+      <div class="step next"><b class="lab">下一步</b>初等行变换化阶梯形。若最后一行是 $0\ \cdots\ 0\vdots d\ (d\ne0)$ → 无解，<b>停止</b>，答"不能表出"；若出现参数行，按参数是否使该行为 0 分支讨论。</div>
+      <div class="step do"><b class="lab">做什么</b>比较系数秩 $r(A)$ 与增广秩 $r(\bar A)$。</div>
+      <div class="step next"><b class="lab">下一步</b>$r(A)=r(\bar A)=s$ → 唯一表示，回代写出系数；$r(A)=r(\bar A)<s$ → 无穷表示，写通解。</div>
+      <h5 class="blk">④ 真题演示</h5>
+      <div class="q"><span class="yh">【真题｜2020 数学一 第6题（4分）】</span>两直线 $l_1,l_2$ 相交于一点，$\alpha_i=(a_i,b_i,c_i)^T$，哪个正确？<br>
+      <b>解：</b>三方向向量与连线向量共面且不平行 $\Rightarrow$ $|\alpha_1,\alpha_2,\alpha_3|=0$ 而 $\alpha_1,\alpha_2$ 无关，故 $\alpha_3$ 可由 $\alpha_1,\alpha_2$ 表出。<b>答案 C</b>。（提高篇 p023 / 答 p089）</div>
+      <div class="q"><span class="yh">【真题｜2023 数学一 第7题（5分）】</span>$\alpha_1=(1,2,3)^T,\alpha_2=(2,1,1)^T,\beta_1=(2,5,9)^T,\beta_2=(1,0,1)^T$，$\gamma$ 两组都能表出，求 $\gamma$。<br>
+      <b>解：</b>设 $\gamma=x_1\alpha_1+x_2\alpha_2=x_3\beta_1+x_4\beta_2$，即 $x_1\alpha_1+x_2\alpha_2-x_3\beta_1-x_4\beta_2=0$，对 $[\alpha_1,\alpha_2,-\beta_1,-\beta_2]$ 行变换得通解 $\gamma=k(1,5,8)^T$。<b>答案 D</b>。（提高篇 p024 / 答 p090）</div>
+      <h5 class="blk">⑤ 易错点</h5>
+      <ul>
+        <li>"能表出"≠"唯一表出"：$r(A)=r(\bar A)$ 只保证有解，列不满秩时仍有无穷多表示。</li>
+        <li>把"$\beta$ 不能表出"误判为"$\alpha$ 组相关"——必须用增广矩阵多出的那个秩来判。</li>
+        <li>几何题（直线/平面）忘记把方向向量、线上点坐标一起拼成行列式。</li>
+      </ul>
+      <h5 class="blk">⑥ 命题规律</h5>
+      <p>A1 小题常与解析几何（直线）、与 L4 方程组联合；1991、2011 为大题。近 5 年 2020、2023 连考小题。</p>
+    </div>
+
+    <div class="card" id="A2">
+      <h4><span class="tag k">A2</span>抽象向量组的表出推理（不给坐标）</h4>
+      <h5 class="blk">① 识别特征</h5>
+      <ul>
+        <li>题干只有"某组相关、某组无关"的定性条件，无具体数字，问"某向量能否由某组表出"。</li>
+      </ul>
+      <h5 class="blk">② 核心原理</h5>
+      <p><b>核心定理：</b>若 $\alpha_1,\dots,\alpha_s$ 线性无关，而 $\alpha_1,\dots,\alpha_s,\beta$ 线性相关，则 $\beta$ 可由 $\alpha_1,\dots,\alpha_s$ <b>唯一</b>表出。<br>
+      推论：无关组的任何部分组仍无关；相关组的任何扩大部分组仍相关。</p>
+      <h5 class="blk">③ 完整解题链路</h5>
+      <div class="step do"><b class="lab">做什么</b>从已知"大组无关"切出"小组必无关"，再与"小组相关"对比。</div>
+      <div class="step why"><b class="lab">为什么</b>无关组去掉向量仍无关；若 $\alpha_2,\alpha_3,\alpha_4$ 无关，则其子组 $\alpha_2,\alpha_3$ 必无关。</div>
+      <div class="step next"><b class="lab">下一步</b>发现 $\alpha_2,\alpha_3$ 无关而 $\alpha_1,\alpha_2,\alpha_3$ 相关 → 立得 $\alpha_1$ 可由 $\alpha_2,\alpha_3$ 表出。</div>
+      <div class="step do"><b class="lab">做什么</b>反向问题用反证：假设能表出，代入已得表出式，导出矛盾。</div>
+      <div class="step next"><b class="lab">下一步</b>若推出"某向量能由更小的无关组表出"与"该大组无关"矛盾 → 否定假设。</div>
+      <h5 class="blk">④ 真题演示</h5>
+      <div class="q"><span class="yh">【真题｜1992 数学一 第八题（7分）】</span>$\alpha_1,\alpha_2,\alpha_3$ 相关，$\alpha_2,\alpha_3,\alpha_4$ 无关。(1) $\alpha_1$ 能否由 $\alpha_2,\alpha_3$ 表出？(2) $\alpha_4$ 能否由 $\alpha_1,\alpha_2,\alpha_3$ 表出？<br>
+      <b>解：</b>(1) $\alpha_2,\alpha_3,\alpha_4$ 无关 $\Rightarrow$ $\alpha_2,\alpha_3$ 无关；又 $\alpha_1,\alpha_2,\alpha_3$ 相关 $\Rightarrow$ $\alpha_1$ <b>能</b>由 $\alpha_2,\alpha_3$ 表出，设 $\alpha_1=l_2\alpha_2+l_3\alpha_3$。<br>
+      (2) 反证：若 $\alpha_4=k_1\alpha_1+k_2\alpha_2+k_3\alpha_3$，代入上式得 $\alpha_4$ 可由 $\alpha_2,\alpha_3$ 表出，与 $\alpha_2,\alpha_3,\alpha_4$ 无关矛盾，故 <b>不能</b>。（基础篇 p159 / 答 p139）</div>
+      <h5 class="blk">⑤ 易错点</h5>
+      <ul><li>不能从"$\alpha_2,\alpha_3,\alpha_4$ 无关"直接跳到 $\alpha_4$ 与 $\alpha_1$ 的关系，必须借助 $\alpha_1$ 的表出式代入。</li></ul>
+      <h5 class="blk">⑥ 命题规律</h5><p>抽象证明题，80—90 年代风格，常与 B4 交叉。</p>
+    </div>
+
+    <div class="card" id="A3">
+      <h4><span class="tag k">A3</span>由"不能表出"反求参数</h4>
+      <h5 class="blk">① 识别特征</h5>
+      <ul><li>已知"$\alpha$ 组不能由 $\beta$ 组表出"，反求其中参数；再要求"反向把 $\beta$ 组用 $\alpha$ 组表出"。</li></ul>
+      <h5 class="blk">② 核心原理</h5>
+      <p>若 $\alpha$ 组已经线性无关（如 $n$ 个 $n$ 维行列式 $\ne0$），则它<b>不能</b>被 $\beta$ 组表出 $\iff$ $\beta$ 组必线性相关（否则 $\beta$ 组为 $\mathbb R^n$ 的基，可表出一切）。</p>
+      <h5 class="blk">③ 完整解题链路</h5>
+      <div class="step do"><b class="lab">做什么</b>先算 $\alpha$ 组行列式，确认其无关。</div>
+      <div class="step next"><b class="lab">下一步</b>令 $|\beta_1,\beta_2,\beta_3|=0$ 解出参数。</div>
+      <div class="step do"><b class="lab">做什么</b>把 $[\alpha_1,\alpha_2,\alpha_3\vdots\beta_1,\beta_2,\beta_3]$ 拼成一个大矩阵一起行变换（系数矩阵相同，一次做完）。</div>
+      <div class="step next"><b class="lab">下一步</b>左半化单位阵后，右半每一列就是对应 $\beta_j$ 在 $\alpha$ 组下的坐标。</div>
+      <h5 class="blk">④ 真题演示</h5>
+      <div class="q"><span class="yh">【真题｜2011 数学一 第20题（11分）】</span>$\alpha_1=(1,0,1)^T,\alpha_2=(0,1,1)^T,\alpha_3=(1,3,5)^T$ 不能由 $\beta_1=(1,1,1)^T,\beta_2=(1,2,3)^T,\beta_3=(3,4,a)^T$ 表出。(Ⅰ)求 $a$；(Ⅱ)把 $\beta$ 组用 $\alpha$ 组表出。<br>
+      <b>解：</b>$|\alpha_1,\alpha_2,\alpha_3|=1\ne0$ 故 $\alpha$ 组无关。$\alpha$ 组不能被表出 $\Rightarrow$ $\beta$ 组相关，$|\beta_1,\beta_2,\beta_3|=a-5=0\Rightarrow a=5$。对 $[\alpha\vdots\beta]$ 行变换得 $\beta_1=2\alpha_1+4\alpha_2-\alpha_3,\ \beta_2=\alpha_1+2\alpha_2,\ \beta_3=5\alpha_1+10\alpha_2-2\alpha_3$。（提高篇 p022 / 答 p088）</div>
+      <h5 class="blk">⑤ 易错点</h5><ul><li>漏想"$\alpha$ 组无关"这个前提，直接对 $\beta$ 组行列式为 0 会失去依据。</li></ul>
+      <h5 class="blk">⑥ 命题规律</h5><p>11 分大题，2011 典型；与 L4 方程组是同一套增广矩阵工具。</p>
+    </div>
+
+    <!-- ========== B ========== -->
+    <h2 class="sec" id="B">B · 线性相关 / 无关（14题 / 55分）<span class="tag err" style="font-size:12px;vertical-align:middle">本章第一大得分点</span></h2>
+
+    <div class="card" id="B1">
+      <h4><span class="tag k">B1</span>定义法：相关性概念辨析</h4>
+      <h5 class="blk">① 识别特征</h5>
+      <ul><li>四选项都是"存在一组不全为0""任意一个向量能否由其余表出"之类的<b>定义改写</b>。</li></ul>
+      <h5 class="blk">② 核心原理</h5>
+      <p>$\alpha_1,\dots,\alpha_s$ 线性无关 $\iff$ <b>对任意一组不全为0</b>的 $k_i$ 都有 $\sum k_i\alpha_i\ne0$ $\iff$ 只有全零组合才使 $\sum k_i\alpha_i=0$ $\iff$ 任意一个向量都不能由其余向量表出。</p>
+      <h5 class="blk">③ 完整解题链路</h5>
+      <div class="step do"><b class="lab">做什么</b>逐选项核对"存在/任意""一组/每一组"两个量词。</div>
+      <div class="step why"><b class="lab">为什么</b>相关是"存在不全为0使等于0"；无关是"对所有不全为0都不等于0"。量词颠倒即错。</div>
+      <div class="step next"><b class="lab">下一步</b>用反例排除："任意两个无关"推不出"整体无关"；"某一个不能表出"推不出"整体无关"。</div>
+      <h5 class="blk">④ 真题演示</h5>
+      <div class="q"><span class="yh">【真题｜1988 数学一 三(5)题（3分）】</span>$s$ 维向量组 $(3\le s\le n)$ 线性无关的充要条件？<br>
+      <b>解：</b>(A) 量词错（"有一组 $\ne0$"是相关的反面不是无关）；(B) 两两无关不保证整体无关；(C) "存在一个不能表出"太弱；(D) 任意一个都不能由其余表出，正确。<b>答案 D</b>。（基础篇 p161 / 答 p140）</div>
+      <h5 class="blk">⑤ 易错点</h5><ul><li>"存在不全为0使组合≠0"对任何含非零向量的组都成立，与无关无关。</li></ul>
+      <h5 class="blk">⑥ 命题规律</h5><p>定义题，早期(1988)经典，现在多融入 B5。</p>
+    </div>
+
+    <div class="card" id="B2">
+      <h4><span class="tag k">B2</span>秩法：带参数/任意常数的相关性判定</h4>
+      <h5 class="blk">① 识别特征</h5>
+      <ul><li>向量带任意常数 $c_i$（2012），或要求"整体相关但两两无关"反求参数（2024）。</li></ul>
+      <h5 class="blk">② 核心原理</h5>
+      <p>$\alpha_1,\dots,\alpha_s$ 相关 $\iff$ $r(\alpha_1,\dots,\alpha_s)<s$；$n$ 个 $n$ 维向量相关 $\iff$ 行列式 $=0$。</p>
+      <h5 class="blk">③ 完整解题链路</h5>
+      <div class="step do"><b class="lab">做什么</b>把向量按列拼成矩阵，做初等行变换（或算行列式）。</div>
+      <div class="step next"><b class="lab">下一步</b>若某子式对任意常数恒为 0（如两行成比例）→ 该组恒相关，直接选。</div>
+      <div class="step do"><b class="lab">做什么</b>"整体相关且两两无关"= 秩恰好等于 $s-1$。</div>
+      <div class="step next"><b class="lab">下一步</b>令整体秩 $<s$，同时保证任意删一个仍满秩，联立解参数。</div>
+      <h5 class="blk">④ 真题演示</h5>
+      <div class="q"><span class="yh">【真题｜2012 数学一 第5题（4分）】</span>$\alpha_1=(0,0,c_1)^T,\alpha_2=(0,1,c_2)^T,\alpha_3=(1,-1,c_3)^T,\alpha_4=(-1,1,c_4)^T$，哪组恒相关？<br>
+      <b>解：</b>$|\alpha_1,\alpha_3,\alpha_4|=\begin{vmatrix}0&1&-1\\0&-1&1\\c_1&c_3&c_4\end{vmatrix}=0$（前两行成比例），与 $c_i$ 无关。<b>答案 C</b>。（提高篇 p026 / 答 p092）</div>
+      <div class="q"><span class="yh">【真题｜2024 数学一 第6题（5分）】</span>$\alpha_1=(a,1,-1,1)^T,\alpha_2=(1,1,b,a)^T,\alpha_3=(1,a,-1,1)^T$，三者相关且任两者无关。<br>
+      <b>解：</b>行变换后由 $\alpha_1,\alpha_3$ 无关得 $a\ne1$；由整体相关得 $2-a-a^2=0$ 与 $2+b+ab=0$，解得 $a=-2,b=2$。<b>答案 D</b>。（提高篇 p027 / 答 p093）</div>
+      <h5 class="blk">⑤ 易错点</h5><ul><li>带任意常数时要找"与常数无关恒成立"的子式，不能只代一个数。</li></ul>
+      <h5 class="blk">⑥ 命题规律</h5><p>近年新宠（2012、2024），把行列式/秩与参数讨论结合。</p>
+    </div>
+
+    <div class="card" id="B3">
+      <h4><span class="tag k">B3</span>行列式法：抽象组合向量组的相关性</h4>
+      <h5 class="blk">① 识别特征</h5>
+      <ul><li>已知 $\alpha_1,\dots,\alpha_s$ 无关，问由它们<b>线性组合</b>而成的新组是否无关。</li></ul>
+      <h5 class="blk">② 核心原理</h5>
+      <p>若 $(\beta_1,\dots,\beta_s)=(\alpha_1,\dots,\alpha_s)C$ 且 $\alpha$ 组无关，则 $\beta$ 组无关 $\iff$ $|C|\ne0$。$C$ 的第 $j$ 列是 $\beta_j$ 用 $\alpha_i$ 表出的系数。</p>
+      <h5 class="blk">③ 完整解题链路</h5>
+      <div class="step do"><b class="lab">做什么</b>先观察能否一眼凑出系数和为 0 的线性关系。</div>
+      <div class="step next"><b class="lab">下一步</b>凑出如 $(\alpha_1-\alpha_2)+(\alpha_2-\alpha_3)+(\alpha_3-\alpha_1)=0$ → 立即判相关。</div>
+      <div class="step do"><b class="lab">做什么</b>凑不出时写出系数矩阵 $C$，算 $|C|$。</div>
+      <div class="step next"><b class="lab">下一步</b>$|C|\ne0$ 无关；$|C|=0$ 相关。</div>
+      <h5 class="blk">④ 真题演示</h5>
+      <div class="q"><span class="yh">【真题｜2007 数学一 第7题（4分）】</span>$\alpha_1,\alpha_2,\alpha_3$ 无关，哪组相关？<br>
+      <b>解：</b>(A) $(\alpha_1-\alpha_2)+(\alpha_2-\alpha_3)+(\alpha_3-\alpha_1)=0$，直接相关。(B)(C)(D) 的 $|C|$ 分别为 $2,-7,9$ 均 $\ne0$。<b>答案 A</b>。（基础篇 p163 / 答 p143）</div>
+      <div class="q"><span class="yh">【真题｜1994 数学一 二(5)题（3分）】</span>$\alpha_1,\dots,\alpha_4$ 无关，问四组组合哪组无关。<br>
+      <b>解：</b>(A)(B)(D) 都能凑出系数和为 0 的关系；(C) 系数行列式 $=2\ne0$。<b>答案 C</b>。（基础篇 p161 / 答 p141）</div>
+      <h5 class="blk">⑤ 易错点</h5><ul><li>$C$ 的列与行不要写反：$\beta_j$ 的系数是 $C$ 的第 $j$ 列。</li></ul>
+      <h5 class="blk">⑥ 命题规律</h5><p>选择小题高频（1994、2007），送分但要细心。</p>
+    </div>
+
+    <div class="card" id="B4">
+      <h4><span class="tag k">B4</span>抽象证明：向量组无关的严格推导</h4>
+      <h5 class="blk">① 识别特征</h5>
+      <ul><li>"证明：某向量组线性无关"大题，涉及矩阵幂、特征值、$AB=E$ 等结构。</li></ul>
+      <h5 class="blk">② 核心原理</h5>
+      <ul>
+        <li><b>定义法：</b>设 $\sum k_i v_i=0$，利用条件把系数逐个逼成 0。</li>
+        <li><b>秩法：</b>证 $r(v_1,\dots,v_s)=s$。常用 $r(B)\ge r(AB)=r(E)=n$ 结合 $r(B)\le n$。</li>
+        <li>与特征值结合：$A\alpha_i=\lambda_i\alpha_i$ 时 $(\alpha_i,A(\alpha_i+\alpha_j))$ 用过渡行列式判。</li>
+      </ul>
+      <h5 class="blk">③ 完整解题链路</h5>
+      <div class="step do"><b class="lab">做什么</b>设 $k_1\alpha+k_2 A\alpha+\cdots+k_k A^{k-1}\alpha=0$（幂零链类）。</div>
+      <div class="step why"><b class="lab">为什么</b>要用最高次幂 $A^{k-1}$ 左乘，把后面各项都消成 $0$。</div>
+      <div class="step next"><b class="lab">下一步</b>得 $l_1 A^{k-1}\alpha=0$，由 $A^{k-1}\alpha\ne0$ 得 $l_1=0$；逐次降幂归纳。</div>
+      <div class="step do"><b class="lab">做什么</b>$AB=E$ 类：直接用秩 $r(B)\ge r(AB)=n$ 且 $r(B)\le n$。</div>
+      <h5 class="blk">④ 真题演示</h5>
+      <div class="q"><span class="yh">【真题｜1998 数学一 第十一题（4分）】</span>$A^k\alpha=0,\ A^{k-1}\alpha\ne0$，证 $\alpha,A\alpha,\dots,A^{k-1}\alpha$ 无关。<br>
+      <b>解：</b>设 $\sum_{i=0}^{k-1}l_i A^i\alpha=0$，两边左乘 $A^{k-1}$，其余项均含 $A^k\alpha=0$，仅剩 $l_0 A^{k-1}\alpha=0\Rightarrow l_0=0$；递推得所有 $l_i=0$。（基础篇 p162 / 答 p141）</div>
+      <div class="q"><span class="yh">【真题｜1993 数学一 第八题（6分）】</span>$A_{n\times m}B_{m\times n},n<m,AB=E$，证 $B$ 列无关。<br>
+      <b>解：</b>$r(B)\le n$（$B$ 只有 $n$ 列），又 $r(B)\ge r(AB)=r(E)=n$，故 $r(B)=n$，$B$ 的 $n$ 列无关。（基础篇 p164 / 答 p143）</div>
+      <div class="q"><span class="yh">【真题｜2005 数学一 第11题（4分）】</span>不同特征值 $\lambda_1,\lambda_2$ 的特征向量 $\alpha_1,\alpha_2$，$\alpha_1,A(\alpha_1+\alpha_2)$ 无关充要条件。<br>
+      <b>解：</b>$A(\alpha_1+\alpha_2)=\lambda_1\alpha_1+\lambda_2\alpha_2$，$(\alpha_1,A(\alpha_1+\alpha_2))=(\alpha_1,\alpha_2)\begin{pmatrix}1&\lambda_1\\0&\lambda_2\end{pmatrix}$，无关 $\iff$ 行列式 $\lambda_2\ne0$。<b>答案 B</b>。（基础篇 p163 / 答 p142）</div>
+      <h5 class="blk">⑤ 易错点</h5><ul><li>幂零链题忘记"从最高次幂左乘"这个唯一突破口。</li></ul>
+      <h5 class="blk">⑥ 命题规律</h5><p>证明大题，与 L5 特征值高频综合（2005）。</p>
+    </div>
+
+    <div class="card" id="B5">
+      <h4><span class="tag k">B5</span>经典结论选择（AB=O/E、表出与秩、矩阵乘）</h4>
+      <h5 class="blk">① 识别特征</h5>
+      <ul><li>题干出现 $AB=O$、$AB=E$、"组 I 可由组 II 表出"、$A\alpha_i$ 等结论性表述，四选项考推论。</li></ul>
+      <h5 class="blk">② 核心原理（必背结论）</h5>
+      <ul>
+        <li>$\alpha_1,\dots,\alpha_s$ 可由 $\beta_1,\dots,\beta_t$ 表出 $\Rightarrow$ $r(\alpha)\le r(\beta)$；若 $s>t$ 则 $\alpha$ 组必相关。</li>
+        <li>$AB=O$ $\Rightarrow$ $r(A)+r(B)\le n$；$A$ 列相关 $\iff$ $r(A)<$列数，$B$ 行相关 $\iff$ $r(B)<$行数。</li>
+        <li>$(\alpha_1,\dots,\alpha_s)$ 相关 $\Rightarrow$ $(A\alpha_1,\dots,A\alpha_s)$ 必相关（乘 $A$ 不改变"相关"，但可能把"无关"压成相关）。</li>
+        <li>三条直线交于一点 $\iff$ $r(\alpha_1,\alpha_2)=r(\alpha_1,\alpha_2,\alpha_3)=2$。</li>
+      </ul>
+      <h5 class="blk">③ 完整解题链路</h5>
+      <div class="step do"><b class="lab">做什么</b>先判断本题对应哪条结论（表出-秩 / AB=O / 矩阵乘）。</div>
+      <div class="step next"><b class="lab">下一步</b>拿不准时用极端反例：令 $A=O$ 排除"无关"选项，令 $A=E$ 排除"相关"选项。</div>
+      <h5 class="blk">④ 真题演示</h5>
+      <div class="q"><span class="yh">【真题｜2004 数学一 第12题（4分）】</span>$AB=O,A,B$ 非零。<br><b>解：</b>$r(A)+r(B)\le n$ 且两者都非零，故 $r(A)<n\Rightarrow A$ 列相关，$r(B)<n\Rightarrow B$ 行相关。<b>答案 A</b>。（基础篇 p162 / 答 p142）</div>
+      <div class="q"><span class="yh">【真题｜2006 数学一 第11题（4分）】</span>$\alpha$ 组相关/无关时，$A\alpha_i$ 组如何？<br><b>解：</b>$\alpha$ 相关有不全为0的 $k_i$ 使 $\sum k_i\alpha_i=0$，左乘 $A$ 得 $\sum k_i A\alpha_i=0$，故 $A\alpha_i$ 相关。<b>答案 A</b>。（基础篇 p163 / 答 p142）</div>
+      <div class="q"><span class="yh">【真题｜2003 数学一 二(4)题（4分）】</span>组 I 可由组 II 表出。<br><b>解：</b>$r>s$ 时多数被少数表出，组 I 必相关。<b>答案 D</b>。（基础篇 p162 / 答 p141）</div>
+      <div class="q"><span class="yh">【真题｜2014 数学一 第6题（4分）】</span>对任意 $k,l$，$\alpha_1+k\alpha_3,\alpha_2+l\alpha_3$ 无关是 $\alpha_1,\alpha_2,\alpha_3$ 无关的？<br><b>解：</b>$\alpha$ 无关则 $[\alpha_1,\alpha_2,\alpha_3]$ 可逆，$r(\beta_1,\beta_2)=2$ 恒成立（必要）；反之取 $\alpha_3=0$ 也成立但 $\alpha$ 组相关（不充分）。<b>答案 A（必要非充分）</b>。（提高篇 p027 / 答 p092）</div>
+      <h5 class="blk">⑤ 易错点</h5><ul><li>"相关被 $A$ 乘后仍相关"成立，但"无关被 $A$ 乘后仍无关"<b>不</b>成立（$A$ 可奇异）。</li></ul>
+      <h5 class="blk">⑥ 命题规律</h5><p>小题主力，几乎每年 1 道；常借 AB=O/E 包装。</p>
+    </div>
+
+    <!-- ========== C ========== -->
+    <h2 class="sec" id="C">C · 极大无关组与秩（2题 / 7分）</h2>
+    <div class="card" id="C1">
+      <h4><span class="tag k">C1</span>初等行变换求秩 / 极大无关组</h4>
+      <h5 class="blk">① 识别特征</h5><ul><li>给出一组具体坐标向量，问秩或极大无关组。</li></ul>
+      <h5 class="blk">② 核心原理</h5><p>向量按列拼矩阵做初等行变换，秩不变；非零行数=秩；每行首非零元所在列对应极大无关组。</p>
+      <h5 class="blk">③ 完整解题链路</h5>
+      <div class="step do"><b class="lab">做什么</b>$\alpha_i$ 按列拼成 $A$，行变换化阶梯。</div>
+      <div class="step next"><b class="lab">下一步</b>数非零行数 = 秩；要表示其余向量时继续化行最简，主列即系数。</div>
+      <h5 class="blk">④ 真题演示</h5>
+      <div class="q"><span class="yh">【真题｜1990 数学一 一(5)题（3分）】</span>$\alpha_i=(i,i+1,i+2,i+3),i=1..4$，求秩。<br>
+      <b>解：</b>矩阵化为 $\begin{pmatrix}1&2&3&4\\0&1&2&3\\0&0&0&0\\0&0&0&0\end{pmatrix}$，秩 $=2$。（基础篇 p165 / 答 p145）</div>
+      <h5 class="blk">⑤ 易错点</h5><ul><li>行变换只能做行变换；求极大无关组要"列不动、行变换"，不要列变换后还认列。</li></ul>
+      <h5 class="blk">⑥ 命题规律</h5><p>纯 C 题少，更多是 L4 基础解系、L5 特征向量的中间步。</p>
+    </div>
+    <div class="card" id="C2">
+      <h4><span class="tag k">C2</span>向量组秩与矩阵秩的关系</h4>
+      <h5 class="blk">① 识别特征</h5><ul><li>$\alpha_1,\dots,\alpha_s$ 无关，求 $A\alpha_1,\dots,A\alpha_s$ 的秩。</li></ul>
+      <h5 class="blk">② 核心原理</h5><p>$[A\alpha_1,\dots,A\alpha_s]=A[\alpha_1,\dots,\alpha_s]$；若后者列满秩（可逆），则 $r(A\alpha_1,\dots,A\alpha_s)=r(A)$。</p>
+      <h5 class="blk">④ 真题演示</h5>
+      <div class="q"><span class="yh">【真题｜2017 数学一 第13题（4分）】</span>$A=\begin{pmatrix}1&0&1\\1&1&2\\0&1&1\end{pmatrix}$，$\alpha_1,\alpha_2,\alpha_3$ 无关，求 $A\alpha_1,A\alpha_2,A\alpha_3$ 秩。<br>
+      <b>解：</b>$[\alpha_1,\alpha_2,\alpha_3]$ 可逆，故秩 $=r(A)=2$。（提高篇 p029 / 答 p094）</div>
+      <h5 class="blk">⑤ 易错点</h5><ul><li>忘记先确认 $[\alpha_1,\dots,\alpha_s]$ 列满秩，否则不能直接把秩"约掉"。</li></ul>
+      <h5 class="blk">⑥ 命题规律</h5><p>2017 新考法，把秩的乘积关系小题化。</p>
+    </div>
+
+    <!-- ========== D ========== -->
+    <h2 class="sec" id="D">D · 向量组等价（2题 / 9分）</h2>
+    <div class="card" id="D1">
+      <h4><span class="tag k">D1</span>向量组等价的判定与反求参数</h4>
+      <h5 class="blk">① 识别特征</h5><ul><li>"向量组 I 与向量组 II 等价"、$AB=C$ 可逆下问哪组等价。</li></ul>
+      <h5 class="blk">② 核心原理</h5><p>两组等价 $\iff$ 能<b>互相</b>线性表出 $\iff$ 两个方向方程组都有解。$AB=C$ 且 $B$ 可逆 $\Rightarrow$ $A$ 与 $C$ 的<b>列</b>向量组等价（$CB^{-1}=A$）。</p>
+      <h5 class="blk">③ 完整解题链路</h5>
+      <div class="step do"><b class="lab">做什么</b>拆成两个方向：组 I→II 有解 且 II→I 有解。</div>
+      <div class="step next"><b class="lab">下一步</b>分别判秩，任一方向无解即不等价；参数题取使两方向都有解的范围。</div>
+      <h5 class="blk">④ 真题演示</h5>
+      <div class="q"><span class="yh">【真题｜2013 数学一 第5题（4分）】</span>$AB=C,B$ 可逆。<br><b>解：</b>按列分块，$C$ 的列由 $A$ 的列表出；$CB^{-1}=A$ 反向也成立，故 $A,C$ 列向量组等价。<b>答案 B</b>。（提高篇 p023 / 答 p088）</div>
+      <div class="q"><span class="yh">【真题｜2022 数学一 第7题（5分）】</span>$\{\alpha_1,\alpha_2,\alpha_3\}$ 与 $\{\alpha_1,\alpha_2,\alpha_4\}$ 等价，求 $\lambda$ 范围。<br>
+      <b>解：</b>$|\alpha_1,\alpha_2,\alpha_3|=(\lambda-1)^2(\lambda+2)$，$\lambda=-2$ 时方向①无解；$|\alpha_1,\alpha_2,\alpha_4|=(\lambda^2-1)^2$，$\lambda=-1$ 时方向②无解。故 $\lambda\ne-1,-2$。<b>答案 C</b>。（提高篇 p023 / 答 p089）</div>
+      <h5 class="blk">⑤ 易错点</h5><ul><li>等价要"双向"，只证一个方向不够。</li></ul>
+      <h5 class="blk">⑥ 命题规律</h5><p>2013、2022 新趋势，本质是 L4 方程组有解讨论。</p>
+    </div>
+    <div class="card" id="D2">
+      <h4><span class="tag k">D2</span>等秩 ≠ 等价（充要条件辨析）</h4>
+      <h5 class="blk">① 识别特征</h5><ul><li>问"两组向量组等价/矩阵等价"的充要条件。</li></ul>
+      <h5 class="blk">② 核心原理</h5><p>两个<b>同向量个数</b>的无关组等价 $\iff$ 它们所成矩阵<b>等秩</b>（都等于个数）。一般情形下，等秩推不出等价；等价必等秩。</p>
+      <h5 class="blk">④ 真题演示</h5>
+      <div class="q"><span class="yh">【真题｜2000 数学一 二(4)题（3分）】</span>$\alpha_1,\dots,\alpha_m$ 无关，$\beta_1,\dots,\beta_m$ 无关的充要条件。<br>
+      <b>解：</b>选 D——矩阵 $A=[\alpha]$ 与 $B=[\beta]$ 等价（即等秩）。(A)(B)(C) 只是充分。<b>答案 D</b>。（基础篇 p164 / 答 p144）</div>
+      <h5 class="blk">⑤ 易错点</h5><ul><li>混淆"向量组等价"与"矩阵等价"：矩阵等价只要求等秩。</li></ul>
+    </div>
+
+    <!-- ========== E ========== -->
+    <h2 class="sec" id="E"><span class="tag es" style="font-size:13px">数一专属</span> E · n 维向量空间（9题 / 52分）</h2>
+    <div class="warn-es">本章 E 整节为数一专属考点，<b>数二、数三不考</b>。包括：向量空间/子空间/基/维数、基变换与过渡矩阵、坐标、Schmidt 正交化、正交矩阵。2015、2019 各 11 分大题，务必拿满。</div>
+
+    <div class="card" id="E1">
+      <h4><span class="tag es">E1</span>空间 / 基 / 维数判定</h4>
+      <h5 class="blk">① 识别特征</h5><ul><li>"由 $\alpha_1,\dots,\alpha_s$ 生成的向量空间维数"、"证明 $\beta$ 组是 $\mathbb R^n$ 的基"。</li></ul>
+      <h5 class="blk">② 核心原理</h5><p>$\dim L(\alpha_1,\dots,\alpha_s)=r(\alpha_1,\dots,\alpha_s)$。$n$ 个 $n$ 维向量构成 $\mathbb R^n$ 的基 $\iff$ 它们线性无关 $\iff$ 行列式 $\ne0$。</p>
+      <h5 class="blk">③ 完整解题链路</h5>
+      <div class="step do"><b class="lab">做什么</b>把向量按列拼成矩阵，行变换求秩。</div>
+      <div class="step next"><b class="lab">下一步</b>维数=秩；要证是基就让行列式 $\ne0$。</div>
+      <h5 class="blk">④ 真题演示</h5>
+      <div class="q"><span class="yh">【真题｜2010 数学一 第13题（4分）】</span>$\alpha_1=(1,2,-1,0)^T,\alpha_2=(1,1,0,2)^T,\alpha_3=(2,1,1,a)^T$ 生成空间维数为二，求 $a$。<br>
+      <b>解：</b>维数=秩=2，行变换出现 $(a-6)$ 行，令 $a=6$。（提高篇 p033 / 答 p096）</div>
+      <div class="q"><span class="yh">【真题｜2015 数学一 第20题（11分）(Ⅰ)】</span>$\beta_1=2\alpha_1+2k\alpha_3,\beta_2=2\alpha_2,\beta_3=\alpha_1+(k+1)\alpha_3$，证 $\beta$ 组为 $\mathbb R^3$ 基。<br>
+      <b>解：</b>过渡矩阵行列式 $\begin{vmatrix}2&0&1\\0&2&0\\2k&0&k+1\end{vmatrix}=4\ne0$，故 $\beta$ 组无关，是基。（提高篇 p033 / 答 p097）</div>
+      <h5 class="blk">⑤ 易错点</h5><ul><li>混淆"向量维数"（分量个数）与"空间维数"（基里向量个数）。</li></ul>
+      <h5 class="blk">⑥ 命题规律</h5><p>1997(解空间维数)、2010、2015，常作大题第一问。</p>
+    </div>
+
+    <div class="card" id="E2">
+      <h4><span class="tag es">E2</span>基变换与过渡矩阵（必考完整例题）</h4>
+      <h5 class="blk">① 识别特征</h5><ul><li>"由基(I) 到基(II) 的过渡矩阵"、"求两组基之间的过渡矩阵"。</li></ul>
+      <h5 class="blk">② 核心原理</h5>
+      <p>若 $[\beta_1,\dots,\beta_n]=[\alpha_1,\dots,\alpha_n]C$，则 $C$ 是<b>由基 $\alpha$ 到基 $\beta$</b> 的过渡矩阵，$C=[\alpha]^{-1}[\beta]$。方向不要搞反：<b>新基=旧基×过渡矩阵</b>。</p>
+      <h5 class="blk">③ 完整解题链路</h5>
+      <div class="step do"><b class="lab">做什么</b>把 $\alpha_i,\beta_j$ 分别按列拼成 $A,B$。</div>
+      <div class="step why"><b class="lab">为什么</b>$\beta_j$ 用 $\alpha_i$ 表出的系数就是 $C$ 的第 $j$ 列。</div>
+      <div class="step next"><b class="lab">下一步</b>$C=A^{-1}B$；或对增广 $[A\vdots B]$ 行变换，左半化为 $E$ 时右半即 $C$。</div>
+      <div class="step do"><b class="lab">做什么</b>简单题用"观察法"：把 $\beta_j$ 直接凑成 $\alpha_i$ 的线性组合。</div>
+      <h5 class="blk">④ 真题演示（完整例题）</h5>
+      <div class="q"><span class="yh">【完整例题｜1993 试卷II（数二，仅作过渡矩阵计算示范）】</span>$\alpha_1=(1,1,1)^T,\alpha_2=(1,0,-1)^T,\alpha_3=(1,0,1)^T$；$\beta_1=(1,2,1)^T,\beta_2=(2,3,1)^T,\beta_3=(3,4,3)^T$。求由 $\alpha$ 基到 $\beta$ 基的过渡矩阵 $P$。<br>
+      <b>解：</b>$P=A^{-1}B$，$A^{-1}=\begin{pmatrix}0&1&0\\\frac12&0&-\frac12\\\frac12&-1&\frac12\end{pmatrix}$，乘 $B$ 得 $P=\begin{pmatrix}2&3&4\\0&-1&0\\-1&0&-1\end{pmatrix}$。<br>
+      <i>（同型数一真题：2003 一(4) $C=\begin{pmatrix}2&3\\-1&-2\end{pmatrix}$；2009 五题选 A $\begin{pmatrix}1&0&1\\2&2&0\\0&3&3\end{pmatrix}$；2019 二十(II) $C=\begin{pmatrix}1&1&0\\-\frac12&0&1\\\frac12&0&0\end{pmatrix}$）</i>
+      <br>（基础篇 p168 / 答 p146；数一真题 p096、p098）</div>
+      <div class="q"><span class="yh">【真题｜2009 数学一 第5题（4分）】</span>由基 $\alpha_1,\frac12\alpha_2,\frac13\alpha_3$ 到基 $\alpha_1+\alpha_2,\alpha_2+\alpha_3,\alpha_3+\alpha_1$ 的过渡矩阵。<br>
+      <b>解：</b>$[\alpha_1+\alpha_2,\alpha_2+\alpha_3,\alpha_3+\alpha_1]=[\alpha_1,\frac12\alpha_2,\frac13\alpha_3]\begin{pmatrix}1&0&1\\2&2&0\\0&3&3\end{pmatrix}$。<b>答案 A</b>。（提高篇 p032 / 答 p096）</div>
+      <h5 class="blk">⑤ 易错点</h5><ul><li>方向反了：是"新基=旧基 $C$"，不是"旧基=新基 $C$"。</li><li>基里有缩放（$\frac12\alpha_2$）时，写 $C$ 的列要把缩放系数一并算进去。</li></ul>
+      <h5 class="blk">⑥ 命题规律</h5><p>数一高频小题（2003、2009）+ 大题末问（2019），2015 还考过"两组基下坐标相同"。</p>
+    </div>
+
+    <div class="card" id="E3">
+      <h4><span class="tag es">E3</span>坐标计算</h4>
+      <h5 class="blk">① 识别特征</h5><ul><li>"向量 $\xi$ 在基 $\alpha_1,\dots,\alpha_n$ 下的坐标"。</li></ul>
+      <h5 class="blk">② 核心原理</h5><p>$\xi=x_1\alpha_1+\cdots+x_n\alpha_n$，解线性方程组 $[\alpha_1,\dots,\alpha_n]x=\xi$ 得坐标 $x$。</p>
+      <h5 class="blk">④ 真题演示</h5>
+      <div class="q"><span class="yh">【真题｜1987 数学一 一(5)题（3分）】</span>基 $\alpha_1=(1,1,0),\alpha_2=(1,0,1),\alpha_3=(0,1,1)$，求 $u=(2,0,0)$ 的坐标。<br>
+      <b>解：</b>解方程组得 $(x_1,x_2,x_3)=(1,1,-1)$。（基础篇 p167 / 答 p146）</div>
+      <div class="q"><span class="yh">【真题｜2019 数学一 第20题（11分）(Ⅰ)】</span>$\beta=(1,1,1)^T$ 在 $\alpha_1=(1,2,1)^T,\alpha_2=(1,3,2)^T,\alpha_3=(1,a,3)^T$ 下坐标为 $(b,c,1)^T$，求 $a,b,c$。<br>
+      <b>解：</b>$b\alpha_1+c\alpha_2+\alpha_3=\beta$，解出 $a=3,b=2,c=-2$。（提高篇 p033 / 答 p098）</div>
+      <h5 class="blk">⑤ 易错点</h5><ul><li>坐标是列向量；坐标变换公式 $x_\beta=C^{-1}x_\alpha$ 别用反。</li></ul>
+    </div>
+
+    <div class="card" id="E4">
+      <h4><span class="tag es">E4</span>Schmidt 正交化（构造规范正交基）</h4>
+      <h5 class="blk">① 识别特征</h5><ul><li>"求解空间的一个标准正交基"、"使 $\beta_1,\beta_2,\beta_3$ 两两正交求系数"。</li></ul>
+      <h5 class="blk">② 核心原理</h5>
+      <p>Schmidt：$\beta_1=\alpha_1$；$\beta_2=\alpha_2-\dfrac{(\alpha_2,\beta_1)}{(\beta_1,\beta_1)}\beta_1$；$\beta_3=\alpha_3-\dfrac{(\alpha_3,\beta_1)}{(\beta_1,\beta_1)}\beta_1-\dfrac{(\alpha_3,\beta_2)}{(\beta_2,\beta_2)}\beta_2$。再单位化 $\gamma_i=\beta_i/\|\beta_i\|$。</p>
+      <h5 class="blk">③ 完整解题链路</h5>
+      <div class="step do"><b class="lab">做什么</b>先从解空间/无关组中选出一组<b>线性无关</b>的基。</div>
+      <div class="step next"><b class="lab">下一步</b>维数 $=n-r(A)$，据此选够 $n-r(A)$ 个无关解向量。</div>
+      <div class="step do"><b class="lab">做什么</b>逐次减投影正交化，再单位化。</div>
+      <h5 class="blk">④ 真题演示</h5>
+      <div class="q"><span class="yh">【真题｜1997 数学一 七(1)题（5分）】</span>$B$ 秩 2 的 $5\times4$ 矩阵，$\alpha_1,\alpha_2,\alpha_3$ 是 $Bx=0$ 解，求解空间标准正交基。<br>
+      <b>解：</b>解空间维数 $4-2=2$，取 $\alpha_1,\alpha_2$。正交化 $\beta_2=\alpha_2-\frac5{15}\alpha_1=\frac23(-2,1,5,-3)^T$；单位化 $\gamma_1=\frac1{\sqrt{15}}(1,1,2,3)^T,\gamma_2=\frac1{\sqrt{39}}(-2,1,5,-3)^T$。（基础篇 p168 / 答 p147）</div>
+      <div class="q"><span class="yh">【真题｜2021 数学一 第6题（5分）】</span>$\alpha_1=(1,0,1)^T,\alpha_2=(1,2,1)^T,\alpha_3=(3,1,2)^T$，$\beta_1=\alpha_1,\beta_2=\alpha_2-k\beta_1,\beta_3=\alpha_3-l_1\beta_1-l_2\beta_2$ 两两正交，求 $l_1,l_2$。<br>
+      <b>解：</b>$k=\frac22=1$，$l_1=\frac{(\alpha_3,\beta_1)}{(\beta_1,\beta_1)}=\frac52$，$l_2=\frac{(\alpha_3,\beta_2)}{(\beta_2,\beta_2)}=\frac12$。<b>答案 A</b>。（提高篇 p031 / 答 p096）</div>
+      <h5 class="blk">⑤ 易错点</h5><ul><li>正交化用的是<b>已正交化的 $\beta$</b> 做内积分母，不是原 $\alpha$。</li><li>先正交化后单位化，顺序不能反。</li></ul>
+      <h5 class="blk">⑥ 命题规律</h5><p>数一特色，1997、2021；L6 二次型正交变换中还要再用。</p>
+    </div>
+
+    <div class="card" id="E5">
+      <h4><span class="tag es">E5</span>正交向量组 / 内积条件</h4>
+      <h5 class="blk">① 识别特征</h5><ul><li>$\gamma^T\alpha_i=\beta^T\alpha_i$ 之类的内积等式，反求系数。</li></ul>
+      <h5 class="blk">② 核心原理</h5><p>若 $\alpha_1,\dots,\alpha_s$ 两两正交（$(\alpha_i,\alpha_j)=0,i\ne j$），则 $\gamma=\sum k_i\alpha_i$ 时 $(\gamma,\alpha_i)=k_i\|\alpha_i\|^2$，可直接解出 $k_i$。</p>
+      <h5 class="blk">④ 真题演示</h5>
+      <div class="q"><span class="yh">【真题｜2023 数学一 第15题（5分）】</span>$\alpha_1=(1,0,1,1)^T,\alpha_2=(-1,-1,0,1)^T,\alpha_3=(0,1,-1,1)^T,\beta=(1,1,1,-1)^T$，$\gamma=k_1\alpha_1+k_2\alpha_2+k_3\alpha_3$ 且 $\gamma^T\alpha_i=\beta^T\alpha_i$，求 $k_1^2+k_2^2+k_3^2$。<br>
+      <b>解：</b>$\alpha_i$ 两两正交且 $\|\alpha_i\|^2=3$，故 $3k_i=(\beta,\alpha_i)$，得 $k_1=\frac13,k_2=-1,k_3=-\frac13$，和 $=\frac19+1+\frac19=\frac{11}{9}$。（提高篇 p031 / 答 p096）</div>
+      <h5 class="blk">⑤ 易错点</h5><ul><li>先验证正交性再用"对角化"捷径；不正交就得解方程组。</li></ul>
+      <h5 class="blk">⑥ 命题规律</h5><p>2023 新考法，把正交内积与坐标反求结合。</p>
+    </div>
+
+    <!-- ========== 决策流程 ========== -->
+    <h2 class="sec" id="flow">本章解题总决策流程</h2>
+    <div class="flowbox"><div id="chartFlow" class="chart" style="height:460px"></div></div>
+
+    <!-- ========== 附录 ========== -->
+    <h2 class="sec" id="appendix">附录 · 本章真题全清单（32 题）</h2>
+    <table class="tbl" id="appxtbl">
+      <tr><th>年份</th><th>题号</th><th>分值</th><th>题型</th><th>来源页码</th></tr>
+      <tr><td>1987</td><td>一(5)</td><td>3</td><td>E3</td><td>题p167/答p146</td></tr>
+      <tr><td>1988</td><td>三(5)</td><td>3</td><td>B1</td><td>题p161/答p140</td></tr>
+      <tr><td>1990</td><td>一(5)</td><td>3</td><td>C1</td><td>题p165/答p145</td></tr>
+      <tr><td>1991</td><td>七</td><td>8</td><td>A1/A3</td><td>题p159/答p139</td></tr>
+      <tr><td>1992</td><td>八</td><td>7</td><td>A2</td><td>题p159/答p139</td></tr>
+      <tr><td>1993</td><td>八</td><td>6</td><td>B4</td><td>题p164/答p143</td></tr>
+      <tr><td>1994</td><td>二(5)</td><td>3</td><td>B3</td><td>题p161/答p141</td></tr>
+      <tr><td>1997</td><td>二(4)</td><td>3</td><td>B5</td><td>题p161/答p141</td></tr>
+      <tr><td>1997</td><td>七(1)</td><td>5</td><td>E4</td><td>题p168/答p147</td></tr>
+      <tr><td>1998</td><td>十一</td><td>4</td><td>B4</td><td>题p162/答p141</td></tr>
+      <tr><td>2000</td><td>二(4)</td><td>3</td><td>D2</td><td>题p164/答p144</td></tr>
+      <tr><td>2003</td><td>二(4)</td><td>4</td><td>B5</td><td>题p162/答p141</td></tr>
+      <tr><td>2003</td><td>一(4)</td><td>4</td><td>E2</td><td>题p168/答p147</td></tr>
+      <tr><td>2004</td><td>12</td><td>4</td><td>B5</td><td>题p162/答p142</td></tr>
+      <tr><td>2005</td><td>11</td><td>4</td><td>B4</td><td>题p163/答p142</td></tr>
+      <tr><td>2006</td><td>11</td><td>4</td><td>B5</td><td>题p163/答p142</td></tr>
+      <tr><td>2007</td><td>7</td><td>4</td><td>B3</td><td>题p163/答p143</td></tr>
+      <tr><td>2009</td><td>5</td><td>4</td><td>E2</td><td>题p032/答p096</td></tr>
+      <tr><td>2010</td><td>13</td><td>4</td><td>E1</td><td>题p033/答p096</td></tr>
+      <tr><td>2011</td><td>20</td><td>11</td><td>A3</td><td>题p022/答p088</td></tr>
+      <tr><td>2012</td><td>5</td><td>4</td><td>B2</td><td>题p026/答p092</td></tr>
+      <tr><td>2013</td><td>5</td><td>4</td><td>D1</td><td>题p023/答p088</td></tr>
+      <tr><td>2014</td><td>6</td><td>4</td><td>B5</td><td>题p027/答p092</td></tr>
+      <tr><td>2015</td><td>20</td><td>11</td><td>E1/E3</td><td>题p033/答p097</td></tr>
+      <tr><td>2017</td><td>13</td><td>4</td><td>C2</td><td>题p029/答p094</td></tr>
+      <tr><td>2019</td><td>20</td><td>11</td><td>E2/E3</td><td>题p033/答p098</td></tr>
+      <tr><td>2020</td><td>6</td><td>4</td><td>A1</td><td>题p023/答p089</td></tr>
+      <tr><td>2021</td><td>6</td><td>5</td><td>E4</td><td>题p031/答p096</td></tr>
+      <tr><td>2022</td><td>7</td><td>5</td><td>D1</td><td>题p023/答p089</td></tr>
+      <tr><td>2023</td><td>7</td><td>5</td><td>A1</td><td>题p024/答p090</td></tr>
+      <tr><td>2023</td><td>15</td><td>5</td><td>E5</td><td>题p031/答p096</td></tr>
+      <tr><td>2024</td><td>6</td><td>5</td><td>B2</td><td>题p027/答p093</td></tr>
+    </table>
+    <p style="font-size:12.5px;color:#666;margin-top:8px">注：书上标注"数二/数三/数四/试卷II"的题（如1993试卷II过渡矩阵、2000数三四、2008数二三等）不进数一台账，仅在 E2 作计算示范提及。</p>
+    </div>
+  </div>
+</div>
+<a href="#top" class="backtop">↑</a>
+
+<script>
+// 年份题量柱状图
+(function(){
+  var yrs=['1987','1988','1990','1991','1992','1993','1994','1997','1998','2000','2003','2004','2005','2006','2007','2009','2010','2011','2012','2013','2014','2015','2017','2019','2020','2021','2022','2023','2024'];
+  var cnt=[1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1];
+  echarts.init(document.getElementById('chartBar')).setOption({
+    title:{text:'本章按年份题量分布（1987—2025，共32题）',left:'center',textStyle:{fontSize:14,color:'#1e3a5f'}},
+    tooltip:{},grid:{left:40,right:20,bottom:50,top:50},
+    xAxis:{type:'category',data:yrs,axisLabel:{rotate:45,fontSize:10}},
+    yAxis:{type:'value',minInterval:1},
+    series:[{type:'bar',data:cnt,itemStyle:{color:'#1e3a5f'}}]
+  });
+})();
+// 题型占比环形图
+echarts.init(document.getElementById('chartPie')).setOption({
+  title:{text:'各题型题量占比',left:'center',textStyle:{fontSize:14,color:'#1e3a5f'}},
+  tooltip:{trigger:'item'},legend:{bottom:0},
+  series:[{type:'pie',radius:['38%','62%'],center:['50%','52%'],
+    data:[
+      {value:14,name:'B 线性相关/无关'},
+      {value:9,name:'E 向量空间(数一专属)'},
+      {value:5,name:'A 线性表示'},
+      {value:2,name:'C 极大无关组与秩'},
+      {value:2,name:'D 向量组等价'}
+    ],
+    color:['#1e3a5f','#d97706','#3d6a9e','#7a9cc0','#b08a4e'],
+    label:{formatter:'{b}\n{c}题'}
+  }]
+});
+// 近10年分值趋势
+echarts.init(document.getElementById('chartTrend')).setOption({
+  title:{text:'近十年（2016—2025）本章分值趋势',left:'center',textStyle:{fontSize:14,color:'#1e3a5f'}},
+  tooltip:{},grid:{left:40,right:20,bottom:40,top:50},
+  xAxis:{type:'category',data:['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025']},
+  yAxis:{type:'value',name:'分'},
+  series:[{type:'line',data:[0,4,0,11,4,5,5,10,5,0],smooth:true,
+    itemStyle:{color:'#d97706'},areaStyle:{color:'rgba(217,119,6,.15)'}}]
+});
+// 决策流程图
+echarts.init(document.getElementById('chartFlow')).setOption({
+  tooltip:{},series:[{type:'graph',layout:'none',
+    symbolSize:[150,44],
+    label:{show:true,fontSize:12},
+    lineStyle:{color:'#8aa0b8',width:1.5,curveness:0},
+    edgeSymbol:['none','arrow'],edgeSymbolSize:8,
+    data:[
+      {name:'拿到本章题',x:400,y:20,itemStyle:{color:'#1e3a5f'},label:{color:'#fff'}},
+      {name:'给了具体坐标?',x:400,y:110,itemStyle:{color:'#2a4d7a'},label:{color:'#fff'}},
+      {name:'问"能否表出/求表示式"?',x:180,y:210,itemStyle:{color:'#3d6a9e'},label:{color:'#fff'}},
+      {name:'问"相关/无关"或证无关?',x:620,y:210,itemStyle:{color:'#3d6a9e'},label:{color:'#fff'}},
+      {name:'A类\n增广矩阵行变换\n判r(A)与r(Ā)',x:120,y:330,itemStyle:{color:'#e8f1fb'}},
+      {name:'B类\nn个n维→行列式\n一般→秩r<s?',x:560,y:330,itemStyle:{color:'#e8f1fb'}},
+      {name:'抽象(无坐标)?',x:620,y:110,itemStyle:{color:'#2a4d7a'},label:{color:'#fff'}},
+      {name:'概念/定理推理\n(定义法·秩法·经典结论)',x:820,y:210,itemStyle:{color:'#e8f1fb'}},
+      {name:'问"秩/极大无关组"?',x:180,y:330,itemStyle:{color:'#7a9cc0'},label:{color:'#fff'}}
+    ],
+    links:[
+      {source:'拿到本章题',target:'给了具体坐标?'},
+      {source:'给了具体坐标?',target:'问"能否表出/求表示式"?',label:{formatter:'是'}},
+      {source:'给了具体坐标?',target:'问"相关/无关"或证无关?'},
+      {source:'问"能否表出/求表示式"?',target:'A类\n增广矩阵行变换\n判r(A)与r(Ā)'},
+      {source:'问"相关/无关"或证无关?',target:'B类\nn个n维→行列式\n一般→秩r<s?'},
+      {source:'给了具体坐标?',target:'抽象(无坐标)?',label:{formatter:'否'}},
+      {source:'抽象(无坐标)?',target:'概念/定理推理\n(定义法·秩法·经典结论)'},
+      {source:'问"能否表出/求表示式"?',target:'问"秩/极大无关组"?'}
+    ]
+  }]
+});
+</script>
+</body>
+</html>
